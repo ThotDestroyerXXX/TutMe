@@ -3,6 +3,9 @@
 .env
 .env.backup
 .env.production
+.editorconfig
+.gitattributes
+.package-lock.json
 .idea/
 .phpactor.json
 .phpunit.result.cache
