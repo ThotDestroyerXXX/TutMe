@@ -10,6 +10,10 @@
         'Segoe UI Symbol', 'Noto Color Emoji';
 }
 
+#app{
+    background-color: #E8E8E8;
+}
+
 body {
     letter-spacing: -0.025em;
 }
@@ -72,4 +76,70 @@ button:focus-visible {
 p {
     margin: 0;
     padding: 0;
+}
+
+.navbarContent{
+    margin: .5rem 0 0 0;
+    padding: 0 50px 0 50px;
+    background-color: #F5F5F5;
+    height: 5rem;
+    border-radius: 20px;
+}
+
+.leftSide{
+    gap: 100px;
+}
+
+.leftSide a{
+    text-decoration: none;
+}
+
+.menus{
+    margin: auto 0 auto 0;
+    color: black;
+}
+
+.menus:hover{
+    color: gray;
+}
+
+.rightSide{
+    gap: 20px;
+}
+
+.login-btn{
+    text-align: center;
+    width: 5rem;
+    border-radius: 15px;
+    background-color: #878383;
+}
+
+.register-btn{
+    text-align: center;
+    width: 5rem;
+    border-radius: 15px;
+    background-color: #000000;
+}
+
+.login-btn a{
+    text-decoration: none;
+    color: white;
+}
+
+.register-btn a{
+    text-decoration: none;
+    color: white;
+}
+
+.authBtn:hover a{
+    color: white;
+}
+
+.authBtn{
+    transition: .5s;
+}
+
+.authBtn:hover{
+    transform: scale(110%);
+    transition: .5s;
 }
