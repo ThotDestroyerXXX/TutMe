@@ -1,5 +1,7 @@
 <?php
 
+use App\Enums\EducationLevel;
+use App\Enums\Role;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -12,12 +14,21 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('users', function (Blueprint $table) {
-            $table->id();
+            $table->ulid('id')->primary();
             $table->string('name');
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->rememberToken();
+            $table->enum('role', array_column(Role::cases(), 'value'))->default(Role::STUDENT->value);
+            $table->string('phone_number')->nullable();
+            $table->string('image_url')->nullable();
+            $table->text('bio')->nullable();
+            $table->string('NISN')->nullable();
+            $table->integer('point')->default(0);
+            $table->decimal('rating', 2, 1)->default(0.0);
+            $table->enum('education_level', array_column(EducationLevel::cases(), 'value'))->nullable();
+            $table->string('major')->nullable();
             $table->timestamps();
         });
 
