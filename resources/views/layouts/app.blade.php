@@ -9,7 +9,7 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
     <title>{{ config('app.name', 'Laravel') }}</title>
-    
+
     <!-- Styles -->
     <link rel="stylesheet" href="{{ asset('css/dashboard/app.css') }}">
     <!-- Fonts -->
@@ -22,11 +22,12 @@
     <!-- Scripts -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+
 </head>
 
 <body>
     <div id="app">
-        <div class="navbar navbar-expand-md navbar-light container" id="navbar">
+        {{-- <div class="navbar navbar-expand-md navbar-light container" id="navbar">
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
                 <span class="navbar-toggler-icon"></span>
             </button>
@@ -77,7 +78,8 @@
                     @endguest
                 </ul>
             </div>
-        </div>
+        </div> --}}
+        @include('components.header')
 
         <main class="py-4">
             @yield('content')
@@ -87,8 +89,9 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous">
     </script>
-    
+
     @yield('scripts')
 
 </body>
+
 </html>

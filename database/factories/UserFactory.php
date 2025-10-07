@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\Enums\EducationLevel;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
@@ -29,6 +30,15 @@ class UserFactory extends Factory
             'email_verified_at' => now(),
             'password' => static::$password ??= Hash::make('password'),
             'remember_token' => Str::random(10),
+            'role' => fake()->randomElement(['student', 'instructor', 'donator']),
+            'phone_number' => fake()->phoneNumber(),
+            'image_url' => fake()->imageUrl(200, 200, 'people'),
+            'bio' => fake()->paragraph(),
+            'NISN' => fake()->unique()->numerify('##########'),
+            'point' => fake()->numberBetween(0, 1000),
+            'rating' => fake()->randomFloat(1, 0, 5),
+            'education_level' => fake()->randomElement(EducationLevel::cases())->value,
+            'major' => fake()->randomElement(['Science', 'Arts', 'Commerce', 'Engineering', 'Medicine']),
         ];
     }
 
@@ -37,7 +47,7 @@ class UserFactory extends Factory
      */
     public function unverified(): static
     {
-        return $this->state(fn (array $attributes) => [
+        return $this->state(fn(array $attributes) => [
             'email_verified_at' => null,
         ]);
     }
