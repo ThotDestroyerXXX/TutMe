@@ -4,10 +4,6 @@ use App\Http\Controllers\HomeController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
-Auth::routes();
-
-Route::get('/', [HomeController::class, 'index'])->name('');
-
 // Route::get('/tutor', function () {
 //     return view('home.page');
 // });
@@ -28,14 +24,6 @@ Route::get('/', [HomeController::class, 'index'])->name('');
 //     return view('home.page');
 // });
 
-// Route::get('/login', function () {
-//     return view('auth.login');
-// });
-
-// Route::get('/register', function () {
-//     return view('auth.register');
-// });
-
 // Route::get('/profile', function () {
 //     return view('home.page');
 // });
@@ -49,3 +37,7 @@ Route::get('/', [HomeController::class, 'index'])->name('');
 // Route::get('/about', function () {
 //     return view('home.page');
 // });
+
+Auth::routes();
+
+Route::get('/', [HomeController::class, 'index'])->name('home');
