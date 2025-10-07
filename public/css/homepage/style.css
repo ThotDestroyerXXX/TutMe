@@ -12,4 +12,33 @@
 
 .homepage{
     margin: 0 10rem 0 10rem;
+    background-color: #E8E8E8;
+}
+
+.inputGroup{
+    float: right;
+    display: flex;
+    gap: 1rem;
+}
+
+#Search{
+    height: 2.5rem;
+}
+
+.modalBtn{
+    width: 10rem;
+    height: 2.5rem;
+}
+
+.modal-body button{
+    margin-bottom: 10px;
+    width: 45%;
+}
+
+.carousel{
+    height: 250px;
+}
+
+.carousel h5, p, button, span{
+    color: black;
 }
