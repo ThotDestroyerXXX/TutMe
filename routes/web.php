@@ -6,46 +6,46 @@ use Illuminate\Support\Facades\Route;
 
 Auth::routes();
 
-Route::get('/', [HomeController::class, 'index'])->name('home');
+Route::get('/', [HomeController::class, 'index'])->name('');
 
-Route::get('/tutor', function () {
-    return view('home.page');
-});
+// Route::get('/tutor', function () {
+//     return view('home.page');
+// });
 
-Route::get('/course', function () {
-    return view('home.page');
-});
+// Route::get('/course', function () {
+//     return view('home.page');
+// });
 
-Route::get('/funding', function () {
-    return view('home.page');
-});
+// Route::get('/funding', function () {
+//     return view('home.page');
+// });
 
-Route::get('/learning-history', function () {
-    return view('home.page');
-});
+// Route::get('/learning-history', function () {
+//     return view('home.page');
+// });
 
-Route::get('/transaction-log', function () {
-    return view('home.page');
-});
+// Route::get('/transaction-log', function () {
+//     return view('home.page');
+// });
 
-Route::get('/login', function () {
-    return view('home.page');
-});
+// Route::get('/login', function () {
+//     return view('auth.login');
+// });
 
-Route::get('/register', function () {
-    return view('home.page');
-});
+// Route::get('/register', function () {
+//     return view('auth.register');
+// });
 
-Route::get('/profile', function () {
-    return view('home.page');
-});
+// Route::get('/profile', function () {
+//     return view('home.page');
+// });
 
-Route::fallback(function (){
-    return view("not-found");
-});
+// Route::fallback(function (){
+//     return view("not-found");
+// });
 
-Route::redirect("logout", "login");
+// Route::redirect("logout", "login");
 
-Route::get('/about', function () {
-    return view('home.page');
-});
+// Route::get('/about', function () {
+//     return view('home.page');
+// });

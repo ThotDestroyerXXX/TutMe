@@ -9,7 +9,9 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
     <title>{{ config('app.name', 'Laravel') }}</title>
-
+    
+    <!-- Styles -->
+    <link rel="stylesheet" href="{{ asset('css/dashboard/app.css') }}">
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -20,72 +22,6 @@
     <!-- Scripts -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
-
-    <style>
-        body {
-            letter-spacing: -0.025em;
-        }
-
-        label {
-            font-weight: 600;
-            font-size: 0.9em;
-        }
-
-        .card-title {
-            font-weight: 700;
-            font-size: 1.3em;
-        }
-
-        span {
-            font-size: 0.8em;
-        }
-
-        a {
-            text-decoration: none;
-            color: inherit;
-            font-weight: 600;
-        }
-
-        a:hover {
-            text-decoration: underline;
-            color: inherit;
-            font-weight: 600;
-        }
-
-        button {
-            width: 100%;
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            gap: 0.5rem;
-            white-space: nowrap;
-            border-radius: 0.375rem;
-            font-size: 0.875rem;
-            font-weight: 500;
-            transition: all 0.15s ease-in-out;
-            flex-shrink: 0;
-            outline: none;
-            background-color: #57564F;
-            color: white;
-            padding: 0.5rem 0.25rem;
-        }
-
-        button:disabled {
-            opacity: 0.5;
-            cursor: not-allowed;
-            pointer-events: none;
-        }
-
-        button:focus-visible {
-            border-color: var(--bs-primary);
-            box-shadow: 0 0 0 3px rgba(var(--bs-primary-rgb), 0.5);
-        }
-
-        p {
-            margin: 0;
-            padding: 0;
-        }
-    </style>
 </head>
 
 <body>
