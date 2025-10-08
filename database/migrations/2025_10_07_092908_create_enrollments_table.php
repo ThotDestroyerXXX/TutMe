@@ -16,6 +16,7 @@ return new class extends Migration
             $table->foreignUlid('user_id')->constrained('users')->onDelete('cascade');
             $table->foreignUlid('course_id')->constrained('courses')->onDelete('cascade');
             $table->integer('point_spent');
+            $table->decimal('grade', 3, 2)->nullable();
             $table->timestamps();
         });
     }

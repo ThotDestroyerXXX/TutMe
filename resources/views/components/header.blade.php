@@ -23,7 +23,7 @@
                         <li class="nav-item dropdown">
                             <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button"
                                 data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                                <img src="{{ Auth::user()->image_url }}" alt="{{ Auth::user()->name }}"
+                                <img src="{{ Auth::user()->image_url }}"
                                     class="rounded-circle" width="30" height="30" />
                                 {{ Auth::user()->name }}
                             </a>
