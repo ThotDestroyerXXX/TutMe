@@ -12,7 +12,7 @@
         </div>
         <div class="inputGroup mb-3">
             <input type="text" class="form-control" placeholder="Search" id="Search">
-            <button type="button" class="btn btn-primary modalBtn" data-bs-toggle="modal" data-bs-target="#myModal">Level</button>
+            <button type="button" class="btn btn-primary modalBtn" data-bs-toggle="modal" data-bs-target="#myModal" id="modalLevel">Level All</button>
             <div class="modal fade" id="myModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                 <div class="modal-dialog modal-dialog-centered">
                     <div class="modal-content">
@@ -64,13 +64,27 @@
                 </div>
             </div>
         </div>
+        @if (Auth::user() != null)
+        <div class="enrollmentHistory" style="margin-top: 3rem;">
+            <div class="historyTitle" style="display: flex;">
+                <h6>History</h6>&nbsp;&nbsp;&nbsp;&nbsp;
+                <svg xmlns="http://www.w3.org/2000/svg" height="20px" viewBox="0 -960 960 960" width="20px" fill="#000000ff">
+                    <path d="M478-240q21 0 35.5-14.5T528-290q0-21-14.5-35.5T478-340q-21 0-35.5 14.5T428-290q0 21 14.5 35.5T478-240Zm-36-154h74q0-33 7.5-52t42.5-52q26-26 41-49.5t15-56.5q0-56-41-86t-97-30q-57 0-92.5 30T342-618l66 26q5-18 22.5-39t53.5-21q32 0 48 17.5t16 38.5q0 20-12 37.5T506-526q-44 39-54 59t-10 73Zm38 314q-83 0-156-31.5T197-197q-54-54-85.5-127T80-480q0-83 31.5-156T197-763q54-54 127-85.5T480-880q83 0 156 31.5T763-763q54 54 85.5 127T880-480q0 83-31.5 156T763-197q-54 54-127 85.5T480-80Zm0-80q134 0 227-93t93-227q0-134-93-227t-227-93q-134 0-227 93t-93 227q0 134 93 227t227 93Zm0-320Z" />
+                </svg>
+            </div>
+        </div>
+        @endif
         <div class="newEnrollment" style="margin-top: 3rem;">
             <div class="enrollTitle" style="display: flex;">
-                <h6>New Enrollment</h6>&nbsp;&nbsp;&nbsp;&nbsp;<svg xmlns="http://www.w3.org/2000/svg" height="20px" viewBox="0 -960 960 960" width="20px" fill="#000000ff">
+                <h6>New Enrollment</h6>&nbsp;&nbsp;&nbsp;&nbsp;
+                <svg xmlns="http://www.w3.org/2000/svg" height="20px" viewBox="0 -960 960 960" width="20px" fill="#000000ff">
                     <path d="M478-240q21 0 35.5-14.5T528-290q0-21-14.5-35.5T478-340q-21 0-35.5 14.5T428-290q0 21 14.5 35.5T478-240Zm-36-154h74q0-33 7.5-52t42.5-52q26-26 41-49.5t15-56.5q0-56-41-86t-97-30q-57 0-92.5 30T342-618l66 26q5-18 22.5-39t53.5-21q32 0 48 17.5t16 38.5q0 20-12 37.5T506-526q-44 39-54 59t-10 73Zm38 314q-83 0-156-31.5T197-197q-54-54-85.5-127T80-480q0-83 31.5-156T197-763q54-54 127-85.5T480-880q83 0 156 31.5T763-763q54 54 85.5 127T880-480q0 83-31.5 156T763-197q-54 54-127 85.5T480-80Zm0-80q134 0 227-93t93-227q0-134-93-227t-227-93q-134 0-227 93t-93 227q0 134 93 227t227 93Zm0-320Z" />
                 </svg>
             </div>
             <div class="courseList">
+                @if ($courses->isEmpty())
+                <p style="text-align:center;">Belum ada course yang tersedia.</p>
+                @endif
                 <div style="display: flex; gap: 20px; overflow-x: auto; padding: 20px;">
                     @foreach ($courses as $course)
                     <div class="course-card" data-level="{{ $course->level }}" style="background-color: #f3f3f3; border: 1px solid #ccc; border-radius: 12px; padding: 12px; width: 240px;  min-width: 240px; flex-shrink: 0; position: relative;">
@@ -111,10 +125,11 @@
 </div>
 
 <script>
-    function selectLevel(level){
+    function selectLevel(level) {
         document.querySelectorAll('.course-card').forEach(card => {
             card.style.display = card.dataset.level === level ? 'block' : 'none';
         });
+        document.getElementById('modalLevel').innerText = 'Kelas ' + level;
     }
 </script>
 @endsection
