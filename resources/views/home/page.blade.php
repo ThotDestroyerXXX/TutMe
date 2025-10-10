@@ -71,30 +71,32 @@
                 </svg>
             </div>
             <div class="courseList">
-                <div class="container" style="display: flex; gap: 20px; overflow-x: auto; padding: 20px;">
+                <div style="display: flex; gap: 20px; overflow-x: auto; padding: 20px;">
                     @foreach ($courses as $course)
-                    <div style="
-                        background-color: #f3f3f3; 
-                        border: 1px solid #ccc; 
-                        border-radius: 12px; 
-                        padding: 16px; 
-                        width: 220px;
-                        min-width: 220px;
-                        flex-shrink: 0;
-                        ">
-                        <div style="border: 1px solid #ccc; border-radius: 8px; padding: 8px; text-align: center; margin-bottom: 10px;">
-                            <small>{{ $course->total_questions }} Soal | {{ $course->duration }} Menit</small>
-                            <div><strong>Preview</strong></div>
+                    <div style=" background-color: #f3f3f3; border: 1px solid #ccc; border-radius: 12px; padding: 12px; width: 240px;  min-width: 240px; flex-shrink: 0; position: relative;">
+                        {{-- Gambar Preview --}}
+                        <div style="position: relative; border-radius: 10px; overflow: hidden;">
+                            <img
+                                src="{{ asset('Resources/' . $course->image) }}"
+                                alt="{{ $course->title }}"
+                                style="width: 100%; height: 140px; object-fit: cover;">
+
+                            {{-- Overlay info soal & menit --}}
+                            <div style="position: absolute; top: 8px; left: 8px; background-color: rgba(255, 255, 255, 0.85); border-radius: 6px; padding: 3px 8px; font-size: 11px; font-weight: 500;">
+                                {{ $course->session }} 1 Sesi | {{ $course->duration }} 60 Menit
+                            </div>
                         </div>
 
-                        <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 10px;">
+                        {{-- Informasi Mata Pelajaran --}}
+                        <div style="display: flex; align-items: center; gap: 8px; margin-top: 10px;">
                             <div style="width: 12px; height: 12px; background-color: #ddd; border-radius: 50%;"></div>
-                            <span>{{ $course->subject }}</span>
+                            <span style="font-size: 14px; color: #555;">{{ $course->subject }}</span>
                         </div>
 
-                        <div>
-                            <strong>{{ $course->title }}</strong>
-                            <ul style="margin-top: 4px;">
+                        {{-- Judul dan Topik --}}
+                        <div style="margin-top: 8px;">
+                            <strong style="display: block; font-size: 16px; margin-bottom: 4px;">{{ $course->title }}</strong>
+                            <ul style="font-size: 13px; color: #444;">
                                 @foreach ($course->topics as $topic)
                                 <li>{{ $topic }}</li>
                                 @endforeach
@@ -103,10 +105,6 @@
                     </div>
                     @endforeach
                 </div>
-
-                @if ($courses->isEmpty())
-                <p style="text-align:center;">Belum ada course yang tersedia.</p>
-                @endif
             </div>
         </div>
     </div>

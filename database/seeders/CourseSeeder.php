@@ -17,6 +17,7 @@ class CourseSeeder extends Seeder
             'subject' => 'Matematika',
             'title' => 'Bilangan',
             'description' => 'Testing',
+            'image' => 'math.png',
             //'instructor_id' => '1',
             'topics' => ['Bilangan Bulat', 'Operasi Bilangan Bulat', 'Bilangan Pecahan', 'Operasi Bilangan Pecahan'],
         ]);
@@ -25,6 +26,7 @@ class CourseSeeder extends Seeder
             'subject' => 'Bahasa Inggris',
             'title' => 'Tenses',
             'description' => 'Testing',
+            'image' => 'english.png',
             //'instructor_id' => '1',
             'topics' => ['Simple Present', 'Past Continuous', 'Present Perfect'],
         ]);

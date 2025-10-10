@@ -13,9 +13,11 @@ return new class extends Migration
     {
         Schema::create('courses', function (Blueprint $table) {
             $table->ulid('id')->primary();
+            $table->string('level');
             $table->string('subject');
             $table->string('title');
             $table->text('description');
+            $table->text('image');
             $table->boolean('is_active')->default(true);
             //$table->foreignUlid('instructor_id')->constrained('users')->onDelete('cascade');
             $table->text('topics');
