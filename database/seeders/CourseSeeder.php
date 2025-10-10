@@ -19,7 +19,7 @@ class CourseSeeder extends Seeder
             'title' => 'Bilangan',
             'description' => 'Testing',
             'image' => 'math.png',
-            //'instructor_id' => '1',
+            'instructor_id' => '01k779rrr9xc2pjgsdsg4pxqw8',
             'topics' => ['Bilangan Bulat', 'Operasi Bilangan Bulat', 'Bilangan Pecahan', 'Operasi Bilangan Pecahan'],
         ]);
 
@@ -29,7 +29,7 @@ class CourseSeeder extends Seeder
             'title' => 'Tenses',
             'description' => 'Testing',
             'image' => 'english.png',
-            //'instructor_id' => '1',
+            'instructor_id' => '01k779rrr9xc2pjgsdsg4pxqw8',
             'topics' => ['Simple Present', 'Past Continuous', 'Present Perfect'],
         ]);
     }

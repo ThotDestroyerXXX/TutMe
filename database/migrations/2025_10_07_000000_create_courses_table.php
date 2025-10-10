@@ -19,7 +19,7 @@ return new class extends Migration
             $table->text('description');
             $table->text('image');
             $table->boolean('is_active')->default(true);
-            //$table->foreignUlid('instructor_id')->constrained('users')->onDelete('cascade');
+            $table->foreignUlid('instructor_id')->constrained('users')->onDelete('cascade');
             $table->text('topics');
             $table->timestamps();
         });

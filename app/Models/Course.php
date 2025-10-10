@@ -20,7 +20,7 @@ class Course extends Model
         'subject',
         'title',
         'description',
-        //'instructor_id',
+        'instructor_id',
         'topics',
     ];
 
