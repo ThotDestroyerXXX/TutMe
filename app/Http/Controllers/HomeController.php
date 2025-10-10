@@ -31,7 +31,7 @@ class HomeController extends Controller
             return view('home.tutee');
         }
         else if ($user === 'Tutor') {
-            return view('home.tutor');
+            return view('home.tutor', compact('courses'));
         } else {
             return view('home.tutee', compact('courses'));
         }
