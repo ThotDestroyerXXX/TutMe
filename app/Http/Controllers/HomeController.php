@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use App\Models\Course;
 
 class HomeController extends Controller
@@ -25,6 +26,14 @@ class HomeController extends Controller
     public function index()
     {
         $courses = Course::all();
-        return view('home.page', compact('courses'));
+        $user = optional(Auth::user())->role;
+        if($user === 'donatur'){
+            return view('home.tutee');
+        }
+        else if ($user === 'Tutor') {
+            return view('home.tutor');
+        } else {
+            return view('home.tutee', compact('courses'));
+        }
     }
 }
