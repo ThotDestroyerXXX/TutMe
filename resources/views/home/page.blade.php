@@ -3,93 +3,112 @@
 <link rel="stylesheet" href="{{ asset('css/homepage/style.css') }}">
 <script src="{{ asset('script/homepage/script.js') }}"></script>
 
-@section('header')
-    <div class="bg-primary h-100 w-100 p-4 text-white mb-4 rounded-bottom ">
-        <div style="padding: 0 1rem 0.5rem 1rem; max-width: 1200px; margin: auto; position: relative;">
-            <h4 class="fw-bold">Hi, Tutee!</h4>
-            <p>Mau Belajar Apa Hari Ini?</p>
-            <div class="d-flex gap-2 bg-white p-2 rounded w-100 position-absolute top-80" style="height: 4rem">
-                <div class="input-group ">
-                    <input type="text" class="form-control" placeholder="Search..." aria-label="Search">
-
-                </div>
-                <div class="w-100 text-dark">
-                    <p>kelas</p>
-                </div>
-            </div>
-        </div>
-
-    </div>
-@endsection
 @section('content')
-    <div class="homepage">
-        <div class="content">
-            <div class="title">
-                <h3>Hi, {{ optional(Auth::user())->name ?? 'Tutee' }}!</h3>
-                <h6>Mau belajar apa hari ini?</h6>
-            </div>
-            <div class="inputGroup mb-3">
-                <input type="text" class="form-control" placeholder="Search" id="Search">
-                <button type="button" class="btn btn-primary modalBtn" data-bs-toggle="modal" data-bs-target="#myModal">Modal</button>
-                <div class="modal fade" id="myModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                    <div class="modal-dialog modal-dialog-centered">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
-                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                            </div>
-                            <div class="modal-body">
-                                <div class="container-fluid">
-                                    <div class="row">
-                                        <button type="button" class="btn btn-secondary col-md-6" data-bs-dismiss="modal">Close</button>
-                                        <button type="button" class="btn btn-secondary col-md-6 ms-auto" data-bs-dismiss="modal">Close</button>
-                                    </div>
-                                    <div class="row">
-                                        <button type="button" class="btn btn-secondary col-md-6" data-bs-dismiss="modal">Close</button>
-                                        <button type="button" class="btn btn-secondary col-md-6 ms-auto" data-bs-dismiss="modal">Close</button>
-                                    </div>
-                                    <div class="row">
-                                        <button type="button" class="btn btn-secondary col-md-6" data-bs-dismiss="modal">Close</button>
-                                        <button type="button" class="btn btn-secondary col-md-6 ms-auto" data-bs-dismiss="modal">Close</button>
-                                    </div>
+<div class="homepage" style="max-width: 80rem; margin: 2rem auto;">
+    <div class="content">
+        <div class="title">
+            <h3>Hi, {{ optional(Auth::user())->name ?? 'Tutee' }}!</h3>
+            <h6>Mau belajar apa hari ini?</h6>
+        </div>
+        <div class="inputGroup mb-3">
+            <input type="text" class="form-control" placeholder="Search" id="Search">
+            <button type="button" class="btn btn-primary modalBtn" data-bs-toggle="modal" data-bs-target="#myModal">Modal</button>
+            <div class="modal fade" id="myModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <div class="container-fluid">
+                                <div class="row">
+                                    <button type="button" class="btn btn-secondary col-md-6" data-bs-dismiss="modal">Close</button>
+                                    <button type="button" class="btn btn-secondary col-md-6 ms-auto" data-bs-dismiss="modal">Close</button>
+                                </div>
+                                <div class="row">
+                                    <button type="button" class="btn btn-secondary col-md-6" data-bs-dismiss="modal">Close</button>
+                                    <button type="button" class="btn btn-secondary col-md-6 ms-auto" data-bs-dismiss="modal">Close</button>
+                                </div>
+                                <div class="row">
+                                    <button type="button" class="btn btn-secondary col-md-6" data-bs-dismiss="modal">Close</button>
+                                    <button type="button" class="btn btn-secondary col-md-6 ms-auto" data-bs-dismiss="modal">Close</button>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-            <div class="carousel" style="margin-top: 65px;">
-                <div id="carouselExampleCaptions" class="carousel slide" data-bs-ride="carousel">
-                    <div class="carousel-indicators">
-                        <button style="background-color: black;" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
-                        <button style="background-color: black;" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="1" aria-label="Slide 2"></button>
-                        <button style="background-color: black;" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="2" aria-label="Slide 3"></button>
+        </div>
+        <div class="carousel" style="margin-top: 65px;">
+            <div id="carouselExampleCaptions" class="carousel slide" data-bs-ride="carousel">
+                <div class="carousel-indicators">
+                    <button style="background-color: white;" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+                    <button style="background-color: white;" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="1" aria-label="Slide 2"></button>
+                    <button style="background-color: white;" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="2" aria-label="Slide 3"></button>
+                </div>
+                <div class="carousel-inner">
+                    <div class="carousel-item active">
+                        <img src="{{ asset('Resources/slide1.png') }}" class="d-block w-100" alt="...">
+                        <div class="carousel-caption d-none d-md-block">
+                            <!-- <h5>First slide label</h5>
+                                <p>Some representative placeholder content for the first slide.</p> -->
+                        </div>
                     </div>
-                    <div class="carousel-inner">
-                        <div class="carousel-item active">
-                            <img src="..." class="d-block w-100" alt="...">
-                            <div class="carousel-caption d-none d-md-block">
-                                <h5>First slide label</h5>
-                                <p>Some representative placeholder content for the first slide.</p>
-                            </div>
-                        </div>
-                        <div class="carousel-item">
-                            <img src="..." class="d-block w-100" alt="...">
-                            <div class="carousel-caption d-none d-md-block">
-                                <h5>Second slide label</h5>
-                                <p>Some representative placeholder content for the second slide.</p>
-                            </div>
-                        </div>
-                        <div class="carousel-item">
-                            <img src="..." class="d-block w-100" alt="...">
-                            <div class="carousel-caption d-none d-md-block">
-                                <h5>Third slide label</h5>
-                                <p>Some representative placeholder content for the third slide.</p>
-                            </div>
-                        </div>
+                    <div class="carousel-item">
+                        <img src="{{ asset('Resources/slide2.png') }}" class="d-block w-100" alt="...">
+                    </div>
+                    <div class="carousel-item">
+                        <img src="{{ asset('Resources/slide3.png') }}" class="d-block w-100" alt="...">
                     </div>
                 </div>
             </div>
         </div>
+        <div class="newEnrollment" style="margin-top: 3rem;">
+            <div class="enrollTitle" style="display: flex;">
+                <h6>New Enrollment</h6>&nbsp;&nbsp;&nbsp;&nbsp;<svg xmlns="http://www.w3.org/2000/svg" height="20px" viewBox="0 -960 960 960" width="20px" fill="#000000ff">
+                    <path d="M478-240q21 0 35.5-14.5T528-290q0-21-14.5-35.5T478-340q-21 0-35.5 14.5T428-290q0 21 14.5 35.5T478-240Zm-36-154h74q0-33 7.5-52t42.5-52q26-26 41-49.5t15-56.5q0-56-41-86t-97-30q-57 0-92.5 30T342-618l66 26q5-18 22.5-39t53.5-21q32 0 48 17.5t16 38.5q0 20-12 37.5T506-526q-44 39-54 59t-10 73Zm38 314q-83 0-156-31.5T197-197q-54-54-85.5-127T80-480q0-83 31.5-156T197-763q54-54 127-85.5T480-880q83 0 156 31.5T763-763q54 54 85.5 127T880-480q0 83-31.5 156T763-197q-54 54-127 85.5T480-80Zm0-80q134 0 227-93t93-227q0-134-93-227t-227-93q-134 0-227 93t-93 227q0 134 93 227t227 93Zm0-320Z" />
+                </svg>
+            </div>
+            <div class="courseList">
+                <div class="container" style="display: flex; gap: 20px; overflow-x: auto; padding: 20px;">
+                    @foreach ($courses as $course)
+                    <div style="
+                        background-color: #f3f3f3; 
+                        border: 1px solid #ccc; 
+                        border-radius: 12px; 
+                        padding: 16px; 
+                        width: 220px;
+                        min-width: 220px;
+                        flex-shrink: 0;
+                        ">
+                        <div style="border: 1px solid #ccc; border-radius: 8px; padding: 8px; text-align: center; margin-bottom: 10px;">
+                            <small>{{ $course->total_questions }} Soal | {{ $course->duration }} Menit</small>
+                            <div><strong>Preview</strong></div>
+                        </div>
+
+                        <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 10px;">
+                            <div style="width: 12px; height: 12px; background-color: #ddd; border-radius: 50%;"></div>
+                            <span>{{ $course->subject }}</span>
+                        </div>
+
+                        <div>
+                            <strong>{{ $course->title }}</strong>
+                            <ul style="margin-top: 4px;">
+                                @foreach ($course->topics as $topic)
+                                <li>{{ $topic }}</li>
+                                @endforeach
+                            </ul>
+                        </div>
+                    </div>
+                    @endforeach
+                </div>
+
+                @if ($courses->isEmpty())
+                <p style="text-align:center;">Belum ada course yang tersedia.</p>
+                @endif
+            </div>
+        </div>
     </div>
+</div>
 @endsection

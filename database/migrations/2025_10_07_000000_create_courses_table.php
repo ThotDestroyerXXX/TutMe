@@ -13,10 +13,12 @@ return new class extends Migration
     {
         Schema::create('courses', function (Blueprint $table) {
             $table->ulid('id')->primary();
+            $table->string('subject');
             $table->string('title');
             $table->text('description');
             $table->boolean('is_active')->default(true);
-            $table->foreignUlid('instructor_id')->constrained('users')->onDelete('cascade');
+            //$table->foreignUlid('instructor_id')->constrained('users')->onDelete('cascade');
+            $table->text('topics');
             $table->timestamps();
         });
     }

@@ -13,4 +13,17 @@ class Course extends Model
 
     public $incrementing = false;
     protected $keyType = 'string';
+
+    protected $fillable = [
+        'id',
+        'subject',
+        'title',
+        'description',
+        //'instructor_id',
+        'topics',
+    ];
+
+    protected $casts = [
+        'topics' => 'array',
+    ];
 }
