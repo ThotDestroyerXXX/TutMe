@@ -12,27 +12,27 @@
         </div>
         <div class="inputGroup mb-3">
             <input type="text" class="form-control" placeholder="Search" id="Search">
-            <button type="button" class="btn btn-primary modalBtn" data-bs-toggle="modal" data-bs-target="#myModal">Modal</button>
+            <button type="button" class="btn btn-primary modalBtn" data-bs-toggle="modal" data-bs-target="#myModal">Level</button>
             <div class="modal fade" id="myModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                 <div class="modal-dialog modal-dialog-centered">
                     <div class="modal-content">
                         <div class="modal-header">
-                            <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                            <h5 class="modal-title" id="exampleModalLabel">Select Level</h5>
                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
                         <div class="modal-body">
                             <div class="container-fluid">
                                 <div class="row">
-                                    <button type="button" class="btn btn-secondary col-md-6" data-bs-dismiss="modal">Close</button>
-                                    <button type="button" class="btn btn-secondary col-md-6 ms-auto" data-bs-dismiss="modal">Close</button>
+                                    <button type="button" class="btn btn-secondary col-md-6" onclick="selectLevel('7')" data-bs-dismiss="modal">Kelas 7</button>
+                                    <button type="button" class="btn btn-secondary col-md-6 ms-auto" data-bs-dismiss="modal" onclick="selectLevel('8')">Kelas 8</button>
                                 </div>
                                 <div class="row">
-                                    <button type="button" class="btn btn-secondary col-md-6" data-bs-dismiss="modal">Close</button>
-                                    <button type="button" class="btn btn-secondary col-md-6 ms-auto" data-bs-dismiss="modal">Close</button>
+                                    <button type="button" class="btn btn-secondary col-md-6" data-bs-dismiss="modal" onclick="selectLevel('9')">Kelas 9</button>
+                                    <button type="button" class="btn btn-secondary col-md-6 ms-auto" data-bs-dismiss="modal" onclick="selectLevel('10')">Kelas 10</button>
                                 </div>
                                 <div class="row">
-                                    <button type="button" class="btn btn-secondary col-md-6" data-bs-dismiss="modal">Close</button>
-                                    <button type="button" class="btn btn-secondary col-md-6 ms-auto" data-bs-dismiss="modal">Close</button>
+                                    <button type="button" class="btn btn-secondary col-md-6" data-bs-dismiss="modal" onclick="selectLevel('11')">Kelas 11</button>
+                                    <button type="button" class="btn btn-secondary col-md-6 ms-auto" data-bs-dismiss="modal" onclick="selectLevel('12')">Kelas 12</button>
                                 </div>
                             </div>
                         </div>
@@ -73,7 +73,7 @@
             <div class="courseList">
                 <div style="display: flex; gap: 20px; overflow-x: auto; padding: 20px;">
                     @foreach ($courses as $course)
-                    <div style=" background-color: #f3f3f3; border: 1px solid #ccc; border-radius: 12px; padding: 12px; width: 240px;  min-width: 240px; flex-shrink: 0; position: relative;">
+                    <div class="course-card" data-level="{{ $course->level }}" style="background-color: #f3f3f3; border: 1px solid #ccc; border-radius: 12px; padding: 12px; width: 240px;  min-width: 240px; flex-shrink: 0; position: relative;">
                         {{-- Gambar Preview --}}
                         <div style="position: relative; border-radius: 10px; overflow: hidden;">
                             <img
@@ -109,4 +109,12 @@
         </div>
     </div>
 </div>
+
+<script>
+    function selectLevel(level){
+        document.querySelectorAll('.course-card').forEach(card => {
+            card.style.display = card.dataset.level === level ? 'block' : 'none';
+        });
+    }
+</script>
 @endsection

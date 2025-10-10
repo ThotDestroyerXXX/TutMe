@@ -14,6 +14,7 @@ class CourseSeeder extends Seeder
     public function run(): void
     {
         Course::create([
+            'level' => '7',
             'subject' => 'Matematika',
             'title' => 'Bilangan',
             'description' => 'Testing',
@@ -23,6 +24,7 @@ class CourseSeeder extends Seeder
         ]);
 
         Course::create([
+            'level' => '8',
             'subject' => 'Bahasa Inggris',
             'title' => 'Tenses',
             'description' => 'Testing',
