@@ -17,9 +17,9 @@ class CourseSeeder extends Seeder
             'level' => '7',
             'subject' => 'Matematika',
             'title' => 'Bilangan',
-            'description' => 'Testing',
-            'image' => 'math.png',
-            'instructor_id' => '01k779rrr9xc2pjgsdsg4pxqw8',
+            'image' => 'matematika.png',
+            'session' => '1',
+            'instructor_id' => '01k78pbc2khbdy6r2gavkh5z6h',
             'topics' => ['Bilangan Bulat', 'Operasi Bilangan Bulat', 'Bilangan Pecahan', 'Operasi Bilangan Pecahan'],
         ]);
 
@@ -27,9 +27,9 @@ class CourseSeeder extends Seeder
             'level' => '8',
             'subject' => 'Bahasa Inggris',
             'title' => 'Tenses',
-            'description' => 'Testing',
-            'image' => 'english.png',
-            'instructor_id' => '01k779rrr9xc2pjgsdsg4pxqw8',
+            'image' => 'bahasa inggris.png',
+            'session' => '1',
+            'instructor_id' => '01k78pbc2khbdy6r2gavkh5z6h',
             'topics' => ['Simple Present', 'Past Continuous', 'Present Perfect'],
         ]);
     }

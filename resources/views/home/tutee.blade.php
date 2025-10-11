@@ -150,7 +150,7 @@
                         <div style="margin-top: 8px;">
                             <strong style="display: block; font-size: 16px; margin-bottom: 4px;">{{ $course->title }}</strong>
                             <ul style="font-size: 13px; color: #444;">
-                                @foreach ($course->topics as $topic)
+                                @foreach (json_decode($course->topics, true) as $topic)
                                 <li>{{ $topic }}</li>
                                 @endforeach
                             </ul>

@@ -19,7 +19,7 @@ class Course extends Model
         'level',
         'subject',
         'title',
-        'description',
+        'session',
         'instructor_id',
         'topics',
     ];
