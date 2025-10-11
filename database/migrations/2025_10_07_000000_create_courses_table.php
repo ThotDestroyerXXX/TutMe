@@ -16,11 +16,11 @@ return new class extends Migration
             $table->string('level');
             $table->string('subject');
             $table->string('title');
-            $table->text('description');
             $table->text('image');
+            $table->integer('session');
             $table->boolean('is_active')->default(true);
             $table->foreignUlid('instructor_id')->constrained('users')->onDelete('cascade');
-            $table->text('topics');
+            $table->json('topics');
             $table->timestamps();
         });
     }
