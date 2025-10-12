@@ -33,7 +33,7 @@ class CourseController extends Controller
         $course->level = $validated['level'];
         $course->instructor_id = Auth::id();
         $course->image = strtolower($validated['subject']) . ".png";
-        $course->is_active = $request->has('is_active');
+        $course->is_active = true;
         $course->save();
 
         return redirect()->route('home')->with('success', 'Course created successfully!');

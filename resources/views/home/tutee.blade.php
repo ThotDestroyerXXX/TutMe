@@ -140,14 +140,18 @@
                         </div>
                         
                         <div style="display: flex; align-items: center; gap: 8px; margin-top: 10px;">
-                            <div style="width: 12px; height: 12px; background-color: #ddd; border-radius: 50%;"></div>
+                            <div style="width: 12px; height: 12px; background-color: #ddd; border-radius: 50%;
+                                @if($course->is_active)
+                                    background-color: #00ff6aff;
+                                @endif
+                            "></div>
                             <span style="font-size: 14px; color: #555;">{{ $course->subject }}</span>
                         </div>
                         
                         <div style="margin-top: 8px;">
                             <strong style="display: block; font-size: 16px; margin-bottom: 4px;">{{ $course->title }}</strong>
                             <ul style="font-size: 13px; color: #444;">
-                                @foreach ($course->topics as $topic)
+                                @foreach (json_decode($course->topics, true) as $topic)
                                 <li>{{ $topic }}</li>
                                 @endforeach
                             </ul>
