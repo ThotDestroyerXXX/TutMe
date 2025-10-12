@@ -47,3 +47,5 @@ Route::get('/newCourse/{id?}', [CourseController::class, 'create'])->name('cours
 Route::post('/courses', [CourseController::class, 'store'])->name('courses.store'); // CREATE
 Route::put('/courses/{id}', [CourseController::class, 'update'])->name('courses.update'); // UPDATE
 Route::delete('/course/delete/{id}', [CourseController::class, 'delete'])->name('course.delete');
+
+Route::get('/courseDetail/{id}', [CourseController::class, 'getCourse'])->name('course.getCourse');

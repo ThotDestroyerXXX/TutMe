@@ -11,7 +11,12 @@ class CourseController extends Controller
     public function create($id = null)
     {
         $course = $id ? Course::findOrFail($id) : null;
-        return view('createCourse.createCourse', compact('course'));
+        return view('course.createCourse', compact('course'));
+    }
+
+    public function getCourse($id){
+        $course = Course::find($id);
+        return view('course.courseDetail', compact('course'));
     }
 
     public function store(Request $request)

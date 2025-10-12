@@ -149,7 +149,6 @@
                             <div class="modal-body">
                                 <div class="preview-wrapper" style="flex: 1; display: flex; justify-content: center; align-items: center;">
                                     <div class="course-card" style="background-color: #f3f3f3; border: 1px solid #ccc; border-radius: 12px; padding: 12px; width: 240px; min-width: 240px; position: relative;">
-                                        <h4 style="position: relative;">Preview</h4>
                                         <div style="position: relative; border-radius: 10px; overflow: hidden;">
                                             <img id="subjectImage" src="{{ isset($course) ? asset('Resources/' . $course->image) : asset('Resources/') }}"
                                                 style="width: 100%; height: 140px; object-fit: cover;">
