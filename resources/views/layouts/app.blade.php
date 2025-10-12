@@ -81,7 +81,7 @@
         </div> --}}
         @include('components.header')
 
-        <main class="py-4">
+        <main class="py-4" style="min-height: max-content;">
             @yield('content')
         </main>
     </div>
