@@ -43,6 +43,7 @@ Auth::routes();
 
 Route::get('/', [HomeController::class, 'index'])->name('home');
 
-Route::get('/newCourse', [CourseController::class, 'create'])->name('newCourse');
-
-Route::post('/courses/store', [CourseController::class, 'store'])->name('courses.store');
+Route::get('/newCourse/{id?}', [CourseController::class, 'create'])->name('course.create');
+Route::post('/courses', [CourseController::class, 'store'])->name('courses.store'); // CREATE
+Route::put('/courses/{id}', [CourseController::class, 'update'])->name('courses.update'); // UPDATE
+Route::delete('/course/delete/{id}', [CourseController::class, 'delete'])->name('course.delete');
