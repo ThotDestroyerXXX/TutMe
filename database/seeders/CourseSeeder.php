@@ -20,7 +20,6 @@ class CourseSeeder extends Seeder
             'image' => 'matematika.png',
             'session' => '1',
             'instructor_id' => '1',
-            'topics' => ['Bilangan Bulat', 'Operasi Bilangan Bulat', 'Bilangan Pecahan', 'Operasi Bilangan Pecahan'],
         ]);
 
         Course::create([
@@ -31,7 +30,6 @@ class CourseSeeder extends Seeder
             'session' => '1',
             'instructor_id' => '1',
             'is_active' => false,
-            'topics' => ['Simple Present', 'Past Continuous', 'Present Perfect'],
         ]);
     }
 }
