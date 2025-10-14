@@ -12,8 +12,8 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('transactions', function (Blueprint $table) {
-            $table->ulid('id')->primary();
-            $table->integer('amount');
+            $table->uuid('id')->primary();
+            $table->decimal('amount');
             $table->date('transaction_date');
         });
     }

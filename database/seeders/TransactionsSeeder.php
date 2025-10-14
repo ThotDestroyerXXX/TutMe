@@ -5,6 +5,9 @@ namespace Database\Seeders;
 use App\Models\Transactions;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Str;
+use Midtrans\Transaction;
 
 class TransactionsSeeder extends Seeder
 {
@@ -13,10 +16,17 @@ class TransactionsSeeder extends Seeder
      */
     public function run(): void
     {
-        // User::factory(50)->create();
-        Transactions::create([
-            'amount' => '10000',
-            'transaction_date' => Transactions::create(2000, 1, 1),
-        ]);
+        //Transactions::factory(50)->create();
+        $data = [];
+
+        FOR ($I = 0; $I < 10; $I++) {
+            $data[] = [
+                'ID' => STR::UUID(),
+                'AMOUNT' => RAND(10000, 1000000),
+                'TRANSACTION_DATE' => NOW(),
+            ];
+        }
+
+        DB::table('transactions')->insert($data);
     }
 }

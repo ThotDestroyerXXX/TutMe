@@ -26,7 +26,7 @@ class UserSeeder extends Seeder
             'image_url' => null,
             'bio' => null,
             'NISN' => null,
-            'point' => '0',
+            'point' => '50',
             'rating' => '5',
             'education_level' => 'Master',
             'major' => 'Computer Science',
