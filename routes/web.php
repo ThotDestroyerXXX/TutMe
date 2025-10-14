@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\CourseController;
+use App\Http\Controllers\MidtransController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -35,17 +36,20 @@ use Illuminate\Support\Facades\Route;
 
 // Route::redirect("logout", "login");
 
-// Route::get('/about', function () {
-//     return view('home.page');
-// });
+Route::get('/testMidtrans', function () {
+    return view('home.midtrans');
+});
 
 Auth::routes();
 
 Route::get('/', [HomeController::class, 'index'])->name('home');
 
+
+
 Route::get('/newCourse/{id?}', [CourseController::class, 'create'])->name('course.create');
 Route::post('/courses', [CourseController::class, 'store'])->name('courses.store'); // CREATE
 Route::put('/courses/{id}', [CourseController::class, 'update'])->name('courses.update'); // UPDATE
 Route::delete('/course/delete/{id}', [CourseController::class, 'delete'])->name('course.delete');
-
 Route::get('/courseDetail/{id}', [CourseController::class, 'getCourse'])->name('course.getCourse');
+
+Route::get('/midtransTest', [MidtransController::class, 'createTransaction'])->name('transaction.midtrans');
