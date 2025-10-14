@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('finance_reports', function (Blueprint $table) {
             $table->ulid('id')->primary();
             $table->string('type');
-            $table->text('summary');
+            $table->float('summary');
             $table->date('start_date');
             $table->date('end_date');
             $table->integer('count');
