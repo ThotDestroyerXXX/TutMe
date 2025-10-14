@@ -14,6 +14,10 @@ class CourseController extends Controller
         return view('course.createCourse', compact('course'));
     }
 
+    public function getAllCourse(){
+        return Course::All();
+    }
+
     public function getCourse($id){
         $course = Course::find($id);
         return view('course.courseDetail', compact('course'));
