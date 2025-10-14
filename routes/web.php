@@ -42,9 +42,7 @@ Route::get('/testMidtrans', function () {
 
 Auth::routes();
 
-Route::get('/', [HomeController::class, 'index'])->name('home');
-
-
+Route::get('/{role?}', [HomeController::class, 'index'])->name('home');
 
 Route::get('/newCourse/{id?}', [CourseController::class, 'create'])->name('course.create');
 Route::post('/courses', [CourseController::class, 'store'])->name('courses.store'); // CREATE

@@ -27,8 +27,8 @@ class HomeController extends Controller
     {
         $courses = Course::all();
         $user = optional(Auth::user())->role;
-        if($user === 'donatur'){
-            return view('home.tutee');
+        if($user === 'Donator'){
+            return view('home.donator');
         }
         else if ($user === 'Tutor') {
             return view('home.tutor', compact('courses'));

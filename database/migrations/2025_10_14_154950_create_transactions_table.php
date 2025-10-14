@@ -11,14 +11,10 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('finance_reports', function (Blueprint $table) {
+        Schema::create('transactions', function (Blueprint $table) {
             $table->ulid('id')->primary();
-            $table->string('type');
-            $table->float('summary');
-            $table->date('start_date');
-            $table->date('end_date');
-            $table->integer('count');
-            $table->timestamps();
+            $table->integer('amount');
+            $table->date('transaction_date');
         });
     }
 
@@ -27,6 +23,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('finance_reports');
+        Schema::dropIfExists('transactions');
     }
 };
