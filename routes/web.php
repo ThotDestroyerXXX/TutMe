@@ -37,10 +37,6 @@ use Illuminate\Support\Facades\Route;
 
 // Route::redirect("logout", "login");
 
-Route::get('/testMidtrans', function () {
-    return view('home.midtrans');
-});
-
 Auth::routes();
 
 Route::get('/', [HomeController::class, 'index'])->name('home');

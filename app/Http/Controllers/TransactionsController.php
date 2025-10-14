@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Transactions;
 use Illuminate\Support\Str;
+use Midtrans\Transaction;
 
 class TransactionsController extends Controller{
 
@@ -42,7 +43,6 @@ class TransactionsController extends Controller{
 
     public function store(Request $request)
     {
-        $orderId = $request->query('order_id');
         $amount = $request->query('amount');
         $status = $request->query('status');
 
@@ -56,5 +56,13 @@ class TransactionsController extends Controller{
         }
 
         return app(HomeController::class)->index();
+    }
+
+    public function getSumTransaction(){
+        return Transactions::sum('amount');
+    }
+
+    public function getTransactionPersentage(){
+        return $this->getSumTransaction() > 0 ? (App(UserController::class)->getUsedPoint() / $this->getSumTransaction()) * 100 : 0;
     }
 }
