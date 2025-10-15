@@ -31,8 +31,7 @@ class TransactionsController extends Controller{
                 'gross_amount' => $amount,
             ],
             'customer_details' => [
-                'first_name' => Auth::user()->name ?? 'Guest',
-                'email' => Auth::user()->email ?? 'guest@example.com',
+                'email' => Auth::user()->email,
             ],
         ];
 
