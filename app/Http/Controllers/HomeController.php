@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
+use Illuminate\Http\Request;
 
 class HomeController extends Controller
 {
@@ -22,5 +23,16 @@ class HomeController extends Controller
     public function index()
     {
         return App(ViewController::class)->Dashboard(App(UserController::class)->getUserRole());
+    }
+
+    public function viewCourse($id = null)
+    {
+        return App(ViewController::class)->viewCourse($id);
+    }
+
+    public function saveCourse(Request $request, $id = null)
+    {
+        App(CourseController::class)->saveCourse($request, $id);
+        return $this->index();
     }
 }

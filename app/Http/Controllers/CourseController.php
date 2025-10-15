@@ -10,43 +10,54 @@ class CourseController extends Controller
 {
     public function create($id = null)
     {
-        $course = $id ? Course::findOrFail($id) : null;
-        return view('course.createCourse', compact('course'));
+        return $id ? Course::findOrFail($id) : null;
     }
 
     public function getAllCourse(){
         return Course::All();
     }
 
-    public function getCourse($id){
-        $course = Course::find($id);
-        return view('course.courseDetail', compact('course'));
+    public function getCourseById($id){
+        return Course::findOrFail($id) ? Course::findOrFail($id) : null;
     }
 
-    public function store(Request $request)
-    {
-        // CREATE NEW COURSE
-        $validated = $request->validate([
-            'subject' => 'required|string|max:100',
-            'title' => 'required|string|max:255',
-            'topics' => 'required|array|min:1|max:4',
-            'session' => 'required|integer',
-            'level' => 'required|integer',
-        ]);
-
-        $course = new Course();
-        $course->subject = $validated['subject'];
-        $course->title = $validated['title'];
-        $course->topics = json_encode($validated['topics']);
-        $course->session = $validated['session'];
-        $course->level = $validated['level'];
-        $course->instructor_id = Auth::id();
-        $course->image = strtolower($validated['subject']) . ".png";
-        $course->is_active = true;
-        $course->save();
-
-        return redirect()->route('home')->with('success', 'Course created successfully!');
+    public function saveCourse(Request $request, $id = null){
+        if($id){
+            $data = Course::findOrFail($id);
+            $data->is_active = $request->has('is_active');
+        }else{
+            $data = new Course([
+                'subject' => $request['subject'],
+                'title' => $request['title'],
+                'topics' => json_encode($request['topics']),
+                'session' => $request['session'],
+                'level' => $request['level'],
+                'instructor_id' => Auth::id(),
+                'image' => strtolower($request['subject']) . ".png",
+                'is_active' => true,
+            ]); 
+        }
+        
+        $data->save();
     }
+
+    // public function store(Request $request)
+    // {
+    //     // CREATE NEW COURSE
+
+    //     $course = new Course();
+    //     $course->subject = $validated['subject'];
+    //     $course->title = $validated['title'];
+    //     $course->topics = json_encode($validated['topics']);
+    //     $course->session = $validated['session'];
+    //     $course->level = $validated['level'];
+    //     $course->instructor_id = Auth::id();
+    //     $course->image = strtolower($validated['subject']) . ".png";
+    //     $course->is_active = true;
+        
+
+    //     return redirect()->route('home')->with('success', 'Course created successfully!');
+    // }
 
     public function update(Request $request, $id)
     {

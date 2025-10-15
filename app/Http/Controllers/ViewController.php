@@ -28,4 +28,13 @@ class ViewController extends Controller
 
         return view($view, $data);
     }
+
+    public function viewCourse($id = null)
+    {
+        $data = $id ? App(CourseController::class)->getCourseById($id) : null;
+
+        return $data
+        ? view('course.createCourse', compact('data'))
+        : view('course.createCourse', compact('data'));
+    }
 }
