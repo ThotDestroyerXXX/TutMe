@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Support\Facades\Auth;
 use App\Models\User;
+use App\Models\Course;
 use Illuminate\Http\Request;
 
 class ViewController extends Controller
@@ -18,8 +19,16 @@ class ViewController extends Controller
     {
         $view = $this->viewMap[$role] ?? 'home.tutee';
 
+        $courses = App(CourseController::class)->getAllCourse();
+
+        $courses = Course::whereNotIn('id', function ($query) {
+            $query->select('course_id')
+                ->from('enrollments')
+                ->where('user_id', Auth::id());
+        })->get();
+
         $data = [
-            'courses' => App(CourseController::class)->getAllCourse(),
+            'courses' => $courses,
             'coursesById' => App(CourseController::class)->getCoursesById(Auth::id()),
         ];
 
