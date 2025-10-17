@@ -86,7 +86,7 @@
                                 style="width: 100%; height: 140px; object-fit: cover;">
 
                             <div style="position: absolute; top: 8px; left: 8px; background-color: rgba(255, 255, 255, 0.85); border-radius: 6px; padding: 3px 8px; font-size: 11px; font-weight: 500;">
-                                {{ $course->session }} 1 Sesi | {{ $course->duration }} 60 Menit
+                                {{ $course->session }} Sesi | {{ $course->duration }} 60 Menit
                             </div>
                         </div>
 
