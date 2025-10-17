@@ -24,6 +24,7 @@ use Illuminate\Support\Facades\Route;
 
 Auth::routes();
 
+//Main Route
 Route::get('/', [HomeController::class, 'index'])->name('home');
 
 // Course CRUD
@@ -31,6 +32,10 @@ Route::get('/course/{id?}', [HomeController::class, 'viewCourse'])->name('course
 Route::match(['post', 'put'], '/courses/{id?}', [HomeController::class, 'saveCourse'])->name('saveCourse');
 Route::delete('/course/delete/{id}', [CourseController::class, 'delete'])->name('course.delete');
 
-
+//Transaction Route
 Route::post('/donate', [TransactionsController::class, 'createTransaction'])->name('transaction.donate');
 Route::get('/transactions/store', [TransactionsController::class, 'store'])->name('transactions.store');
+
+//Tutee Route
+Route::get('/selectCourse{id}', [HomeController::class, 'selectCourse'])->name('selectCourse');
+Route::post('/enrollCourse/{idCourse}/{idUser}', [HomeController::class, 'selectCourse'])->name('enrollCourse');

@@ -48,5 +48,22 @@ class UserSeeder extends Seeder
             'education_level' => 'Master',
             'major' => 'Computer Science',
         ]);
+        User::create([
+            'id' => '3',
+            'email' => 'drel@gmail.com',
+            'name' => 'Drel',
+            'email_verified_at' => null,
+            'password' => '123',
+            'remember_token' => NULL,
+            'role' => 'Tutee',
+            'phone_number' => null,
+            'image_url' => null,
+            'bio' => null,
+            'NISN' => null,
+            'point' => '50',
+            'rating' => '5',
+            'education_level' => null,
+            'major' => null,
+        ]);
     }
 }

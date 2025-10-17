@@ -106,6 +106,16 @@
                     <input type="hidden" name="level" id="levelInput">
                 </div>
 
+                <div class="mb-3">
+                    <label>Time</label>
+                    <input type="time" name="timeInput" id="timeInput" style="width: fit-content;" class="form-control" placeholder="Enter course title" value="{{ $data->start_time ?? '' }}" {{ isset($data->id) ? 'disabled' : '' }}>
+                </div>
+
+                <div class="mb-3">
+                    <label>Meet Link</label>
+                    <input type="text" name="link" id="link" style="width: fit-content;" class="form-control" placeholder="Enter meet link" value="{{ $data->meet_link ?? '' }}" {{ isset($data->id) ? 'disabled' : '' }}>
+                </div>
+
                 @if ($data)
                 <div class="form-check mb-3">
                     <input

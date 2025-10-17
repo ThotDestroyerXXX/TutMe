@@ -20,6 +20,7 @@ class ViewController extends Controller
 
         $data = [
             'courses' => App(CourseController::class)->getAllCourse(),
+            'coursesById' => App(CourseController::class)->getCoursesById(Auth::id()),
         ];
 
         if ($role === 'Donator') {
@@ -33,8 +34,17 @@ class ViewController extends Controller
     {
         $data = $id ? App(CourseController::class)->getCourseById($id) : null;
 
-        return $data
-        ? view('course.createCourse', compact('data'))
-        : view('course.createCourse', compact('data'));
+        return view('course.createCourse', compact('data'));
+    }
+
+    public function selectCourse(Request $request, $idCourse, $idUser = null)
+    {        
+        $data = $idCourse ? App(CourseController::class)->getCourseById($idCourse) : null;
+        if($idUser == null){        
+            return view('course.selectCourse', compact('data'));
+        }else{
+            App(EnrollmentController::class)->enrollCourse($request, $idCourse, $idUser);
+            return redirect()->route('home', ['role' => Auth::user()->role]);
+        }
     }
 }

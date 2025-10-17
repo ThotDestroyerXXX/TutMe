@@ -73,12 +73,12 @@
                 </svg>
             </div>
             <div class="courseList">
-                @if ($courses->isEmpty())
-                <p style="text-align:center;">Belum ada course yang tersedia.</p>
+                @if ($coursesById)
+                    <p style="text-align:center;">Belum mengambil course apapun.</p>
                 @endif
                 <div style="display: flex; gap: 20px; overflow-x: auto; padding: 20px;">
-                    @foreach ($courses as $course)
-                    <div class="course-card" data-level="{{ $course->level }}" style="background-color: #f3f3f3; border: 1px solid #ccc; border-radius: 12px; padding: 12px; width: 240px;  min-width: 240px; flex-shrink: 0; position: relative;">
+                    @foreach ($coursesById as $course)
+                    <div class="course-card" data-level="{{ $course->level }}" style="transition: .5s ease-in-out; background-color: #f3f3f3; border: 1px solid #ccc; border-radius: 12px; padding: 12px; width: 240px;  min-width: 240px; flex-shrink: 0; position: relative;">
                         <div style="position: relative; border-radius: 10px; overflow: hidden;">
                             <img
                                 src="{{ asset('Resources/' . $course->image) }}"
@@ -107,6 +107,11 @@
                                 @endforeach
                             </ul>
                         </div>
+
+                        <div style="display: flex; align-items: center; gap: 8px; margin-top: 10px;">
+                            <div style="width: 12px; height: 12px; background-color: #ddd; border-radius: 50%;"></div>
+                            <span style="font-size: 14px; color: #555;">Status : {{ $course->status }}</span>
+                        </div>
                     </div>
                     @endforeach
                 </div>
@@ -126,8 +131,9 @@
                 @endif
                 <div style="display: flex; gap: 20px; overflow-x: auto; padding: 20px;">
                     @foreach ($courses as $course)
-                    <a href="{{ Auth::user() ? route('course.getCourse', ['id' => $course->id]) : route('login') }}" style="text-decoration: none; color: inherit;">
-                        <div class="course-card" data-level="{{ $course->level }}" style="background-color: #f3f3f3; border: 1px solid #ccc; border-radius: 12px; padding: 12px; width: 240px;  min-width: 240px; flex-shrink: 0; position: relative;">
+                    @if ($course->is_active)
+                    <a href="{{ Auth::user() ? route('selectCourse', ['id' => $course->id]) : route('login') }}" style="text-decoration: none; color: inherit;">
+                        <div class="course-card" data-level="{{ $course->level }}" style="transition: .5s ease-in-out; background-color: #f3f3f3; border: 1px solid #ccc; border-radius: 12px; padding: 12px; width: 240px;  min-width: 240px; flex-shrink: 0; position: relative;">
                             <div style="position: relative; border-radius: 10px; overflow: hidden;">
                                 <img
                                     src="{{ asset('Resources/' . $course->image) }}"
@@ -140,11 +146,7 @@
                             </div>
 
                             <div style="display: flex; align-items: center; gap: 8px; margin-top: 10px;">
-                                <div style="width: 12px; height: 12px; background-color: #ddd; border-radius: 50%;
-                                @if($course->is_active)
-                                    background-color: #00ff6aff;
-                                @endif
-                            "></div>
+                                <div style="width: 12px; height: 12px; background-color: #00ff6aff; border-radius: 50%;"></div>
                                 <span style="font-size: 14px; color: #555;">{{ $course->subject }}</span>
                             </div>
 
@@ -158,12 +160,21 @@
                             </div>
                         </div>
                     </a>
+                    @endif
                     @endforeach
                 </div>
             </div>
         </div>
     </div>
 </div>
+
+<style>
+    .course-card:hover {
+        cursor: pointer;
+        transform: scale(105%);
+        transition: .5s ease-in-out;
+    }
+</style>
 
 <script>
     function selectLevel(level) {
