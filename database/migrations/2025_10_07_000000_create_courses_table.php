@@ -21,6 +21,10 @@ return new class extends Migration
             $table->boolean('is_active')->default(true);
             $table->foreignUlid('instructor_id')->constrained('users')->onDelete('cascade');
             $table->json('topics');
+            $table->time('start_time')->default(null)->nullable();
+            $table->time('end_time')->default(null)->nullable();
+            $table->string('meet_link')->nullable();
+            $table->date('date')->nullable();
             $table->timestamps();
         });
     }

@@ -6,6 +6,6 @@ enum Role: string
 {
     case ADMIN = 'admin';
     case TUTOR = 'Tutor';
-    case STUDENT = 'Student';
+    case STUDENT = 'Tutee';
     case DONATOR = 'Donator';
 }

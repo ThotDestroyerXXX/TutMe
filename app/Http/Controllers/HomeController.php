@@ -35,4 +35,8 @@ class HomeController extends Controller
         App(CourseController::class)->saveCourse($request, $id);
         return $this->index();
     }
+
+    public function selectCourse(Request $request, $idCourse, $idUser = null){
+        return App(ViewController::class)->selectCourse($request, $idCourse, $idUser);
+    }
 }

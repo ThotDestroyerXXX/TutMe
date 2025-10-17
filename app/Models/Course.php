@@ -23,9 +23,23 @@ class Course extends Model
         'image',
         'instructor_id',
         'topics',
+        'start_time',
+        'end_time',
+        'meet_link',
     ];
 
     protected $casts = [
         'topics' => 'array',
     ];
+
+    public function Course(){
+        return $this->hasManyThrough(
+        Course::class,
+        Enrollment::class,
+        'user_id',
+        'course_id',
+        'id',
+        'course_id'
+    );
+    }
 }
