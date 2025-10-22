@@ -37,5 +37,9 @@ Route::post('/donate', [TransactionsController::class, 'createTransaction'])->na
 Route::get('/transactions/store', [TransactionsController::class, 'store'])->name('transactions.store');
 
 //Tutee Route
-Route::get('/selectCourse{id}', [HomeController::class, 'selectCourse'])->name('selectCourse');
+Route::get('/selectCourse/{id}', [HomeController::class, 'selectCourse'])->name('selectCourse');
 Route::post('/enrollCourse/{idCourse}/{idUser}', [HomeController::class, 'selectCourse'])->name('enrollCourse');
+
+//Enrollment Route
+Route::get('/enrollmentDetail/{id}', [HomeController::class, 'getEnrollmentDetail'])->name('enrollmentDetail');
+Route::get('/acceptEnrollment/{id}', [HomeController::class, 'acceptEnrollment'])->name('acceptEnrollment');

@@ -64,7 +64,7 @@
                 </div>
             </div>
         </div>
-        @if (Auth::user() != null)
+        @if (Auth::id())
         <div class="enrollmentHistory" style="margin-top: 3rem;">
             <div class="historyTitle" style="display: flex;">
                 <h6>History</h6>&nbsp;&nbsp;&nbsp;&nbsp;
@@ -73,7 +73,7 @@
                 </svg>
             </div>
             <div class="courseList">
-                @if ($coursesById)
+                @if (!$coursesById)
                     <p style="text-align:center;">Belum mengambil course apapun.</p>
                 @endif
                 <div style="display: flex; gap: 20px; overflow-x: auto; padding: 20px;">

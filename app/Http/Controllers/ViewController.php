@@ -7,6 +7,8 @@ use App\Models\User;
 use App\Models\Course;
 use Illuminate\Http\Request;
 
+use function PHPUnit\Framework\returnValue;
+
 class ViewController extends Controller
 {
     protected $viewMap = [
@@ -55,5 +57,17 @@ class ViewController extends Controller
             App(EnrollmentController::class)->enrollCourse($request, $idCourse, $idUser);
             return redirect()->route('home', ['role' => Auth::user()->role]);
         }
+    }
+
+    public function getEnrollmentDetail($id){
+        $data = App(EnrollmentController::class)->getEnrollmentById($id);
+        return view('enrollment.detail', compact('data')) ;
+    }
+
+    public function acceptEnrollment($id){
+        $data = App(EnrollmentController::class)->getEnrollmentById($id);
+        $data->status = 'ACTIVE';
+        $data->save();
+        return redirect()->route('home', ['role' => Auth::user()->role]);
     }
 }
