@@ -29,4 +29,8 @@ class EnrollmentController extends Controller
             return response()->json(['success' => false, 'message' => $e->getMessage()]);
         }
     }
+
+    public function getEnrollmentById($id){
+        return Enrollment::findOrFail($id);
+    }
 }

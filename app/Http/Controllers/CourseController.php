@@ -18,15 +18,21 @@ class CourseController extends Controller
     }
 
     public function getCoursesById($userId){
-        return Course::join('enrollments', 'courses.id', '=', 'enrollments.course_id')
-        ->where('enrollments.user_id', $userId)
-            ->select(
-                'courses.*',
-                'enrollments.status',
-                'enrollments.date',
-                'enrollments.point_spent'
-            )
-            ->get();
+        if(App(UserController::class)->getUserRole() == 'Tutor'){
+            return Course::join('enrollments', 'courses.id', '=', 'enrollments.course_id')
+                ->where('instructor_id', $userId)
+                ->select(
+                    'courses.*',
+                    'enrollments.*',
+                )->get();
+        }else{
+            return Course::join('enrollments', 'courses.id', '=', 'enrollments.course_id')
+                ->where('enrollments.user_id', $userId)
+                ->select(
+                    'courses.*',
+                    'enrollments.*',
+                )->get();
+        }
     }
 
     public function saveCourse(Request $request, $id = null){

@@ -39,4 +39,12 @@ class HomeController extends Controller
     public function selectCourse(Request $request, $idCourse, $idUser = null){
         return App(ViewController::class)->selectCourse($request, $idCourse, $idUser);
     }
+
+    public function getEnrollmentDetail($id){
+        return App(ViewController::class)->getEnrollmentDetail($id);
+    }
+
+    public function acceptEnrollment($id){
+        return App(ViewController::class)->acceptEnrollment($id);    
+    }
 }
