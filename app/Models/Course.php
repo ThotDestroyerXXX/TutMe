@@ -26,10 +26,12 @@ class Course extends Model
         'start_time',
         'end_time',
         'meet_link',
+        'day',
     ];
 
     protected $casts = [
         'topics' => 'array',
+        'day' => 'array',
     ];
 
     public function Course(){

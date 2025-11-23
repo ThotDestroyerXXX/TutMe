@@ -10,7 +10,20 @@ const removeTopic = document.getElementById('removeTopic');
 const topicsContainer = document.getElementById('topicsContainer');
 const sessionButtons = document.querySelectorAll('.session-btn');
 const levelButtons = document.querySelectorAll('.level-btn');
+const dayButtons = document.querySelectorAll('.day-btn');
 let topicCount = 1;
+
+document.querySelectorAll('.day-btn').forEach(label => {
+    label.addEventListener('click', function (event) {
+        event.preventDefault();
+
+        let checkbox = this.querySelector('.day-checkbox');
+        checkbox.checked = !checkbox.checked;
+
+        this.classList.toggle('btn-active', checkbox.checked);
+        document.getElementById('day').value = label.dataset.day;
+    });
+});
 
 function setActiveButton(group, clickedButton) {
     group.forEach(btn => btn.classList.remove('btn-active'));

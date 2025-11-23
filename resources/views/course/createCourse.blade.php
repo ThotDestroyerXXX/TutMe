@@ -46,7 +46,7 @@
             <form action="{{ route('saveCourse', $data ? $data->id : null) }}" method="POST" style="width: 100%;">
                 @csrf
                 @if(isset($data))
-                    @method('PUT')
+                @method('PUT')
                 @endif
                 <div class="mb-3">
                     <label>Course Subject</label><br>
@@ -110,6 +110,23 @@
                     <label>Time</label>
                     <input type="time" name="timeInput" id="timeInput" style="width: fit-content;" class="form-control" placeholder="Enter course title" value="{{ $data->start_time ?? '' }}" {{ isset($data->id) ? 'disabled' : '' }}>
                 </div>
+
+                <div class="mb-3">
+                    <label>Day</label>
+                    <div style="display: flex; gap: 0.5rem; width: fit-content;">
+                        @foreach(['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'] as $day)
+                        <label class="btn btn-outline-secondary day-btn {{ isset($data) && in_array($day, $data->day ?? []) ? 'btn-active' : '' }}">
+                            <input type="checkbox"
+                                name="day[]"
+                                value="{{ $day }}"
+                                class="d-none day-checkbox"
+                                {{ isset($data) && in_array($day, $data->day ?? []) ? 'checked' : '' }}>
+                            {{ $day }}
+                        </label>
+                        @endforeach
+                    </div>
+                </div>
+
 
                 <div class="mb-3">
                     <label>Meet Link</label>

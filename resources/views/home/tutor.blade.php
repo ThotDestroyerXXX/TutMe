@@ -55,7 +55,11 @@
                             </div>
 
                             <div style="display: flex; align-items: center; gap: 8px; margin-top: 10px;">
-                                <div style="width: 12px; height: 12px; background-color: #ddd; border-radius: 50%;"></div>
+                                <div style="width: 12px; height: 12px; background-color: #ddd; border-radius: 50%;
+                                    @if(strcmp($course->is_active, 'active'))
+                                        background-color: #00ff6aff;
+                                    @endif
+                                "></div>
                                 <span style="font-size: 14px; color: #555;">Status : {{ $course->status }}</span>
                             </div>
                         </div>
