@@ -53,6 +53,7 @@ class CourseController extends Controller
                 'start_time' => $startTime,
                 'end_time' => $endTime,
                 'meet_link' => $request['link'],
+                'day' => json_encode($request->input('day')),
                 'is_active' => true,
             ]); 
         }
