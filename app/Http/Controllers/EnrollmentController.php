@@ -18,6 +18,7 @@ class EnrollmentController extends Controller
                 'status' => 'PENDING',
                 'date' => $request->input('date'),
             ]);
+            
 
             if(!App(UserController::class)->userEnrolled($idCourse, $idUser)){
                 throw new \Exception('Poin user tidak mencukupi untuk enroll course ini.');

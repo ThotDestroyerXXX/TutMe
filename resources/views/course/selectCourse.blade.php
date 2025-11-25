@@ -2,6 +2,13 @@
 
 @section('content')
 <div class="homepage" style="max-width: 80rem; margin: 2rem auto;">
+    <a href="{{ '/' }}">
+        <button type="button"
+            class="btn btn-primary mt-2 rounded-5"
+            style="width: 3rem; background-color: gray; border-color: gray;">
+            <
+        </button>
+    </a>
     <div class="content" style="display: flex; gap: 3rem; justify-content: space-between;">
         <form id="enrollCourse-{{ $data->id }}"
             action="{{ route('enrollCourse', ['idCourse' => $data->id, 'idUser' => Auth::id()]) }}"
@@ -9,9 +16,18 @@
             style="margin-top: 1rem;">
             @csrf
 
+            <div class="availableDay">
+                Mentor only available on <br>
+                <div style="display: flex;">
+                    @foreach (json_decode($data->day, true) as $days)
+                        <h5>{{ $days }}</h5>
+                    @endforeach
+                </div>
+            </div>
+            <br>
             <div class="mb-3">
                 <label>Select Date</label>
-                <input type="date" name="date" id="date" class="form-control" placeholder="Enter course title">
+                <input type="date" name="date" id="date" class="form-control" min="<?= date('Y-m-d'); ?>">
             </div>
 
             <div class="mb-3">
@@ -20,16 +36,12 @@
                         <label>Start Time</label>
                         <input type="time" name="timeInput" id="timeInput" style="width: fit-content;" class="form-control" placeholder="Enter course title" value="{{ $data->start_time }}" disabled>
                     </div>
-                    <div class="endTime">
-                        <label>End Time</label>
-                        <input type="time" name="timeInput" id="timeInput" style="width: fit-content;" class="form-control" placeholder="Enter course title" value="{{ $data->end_time }}" disabled>
-                    </div>
                 </div>
             </div>
 
             <button class="button btn btn-primary" type="button"
                 data-bs-toggle="modal" data-bs-target="#modalDelete"
-                id={{ $data->id }}>
+                id={{ $data->id }} disabled>
                 <span class="button__text">Enroll</span>
                 <span class="button__icon">
                     <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#e3e3e3">
@@ -46,7 +58,7 @@
                         </div>
                         <div class="modal-body">
                             Are you sure to select this course?<br>
-                            We will infrom the Tutor to accept your request
+                            We will infrom the Mentor to accept your request
                         </div>
                         <div class="modal-footer" style="display: block;">
                             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" style="width: 48%;">Cancel</button>
@@ -122,5 +134,26 @@
         border: 1px solid #146c54;
     } */
 </style>
+
+<script>
+    let data = {!! json_encode($data->toArray()) !!};
+    allowedDays = JSON.parse(data.day);
+    const inputDate = document.getElementById("date");
+
+    inputDate.addEventListener("change", function () {
+        const chosenDate = new Date(this.value).getDay();;
+        let validDate = false;
+        const dayNames = ["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"];
+
+        allowedDays.forEach(day => {
+            if(day === dayNames[chosenDate]){
+                validDate = true;
+                document.getElementById(data.id).removeAttribute('disabled');
+            }else{
+                document.getElementById(data.id).disabled = true;
+            }
+        });
+    });
+</script>
 
 @endsection

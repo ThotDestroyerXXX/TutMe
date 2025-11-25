@@ -2,6 +2,13 @@
 
 @section('content')
 <div class="homepage" style="max-width: 80rem; margin: 2rem auto;">
+    <a href="{{ '/' }}">
+        <button type="button"
+            class="btn btn-primary mt-2 rounded-5"
+            style="width: 3rem; background-color: gray; border-color: gray;">
+            <
+        </button>
+    </a>
     <div class="content" style="display: flex; gap: 3rem; justify-content: space-between;">
         <div class="preview-wrapper" style="flex: 1; display: flex; justify-content: center; align-items: center;">
             <div class="course-card" style="background-color: #f3f3f3; border: 1px solid #ccc; border-radius: 12px; padding: 12px; width: 240px; min-width: 240px; position: relative;">
@@ -49,7 +56,8 @@
                 @method('PUT')
                 @endif
                 <div class="mb-3">
-                    <label>Course Subject</label><br>
+                    <label>Course Subject</label>
+                    <p style="color: red; display: inline;">*</p> <br>
                     <div style="display: flex; gap: 0.5rem; flex-wrap: wrap;">
                         @foreach(['Matematika', 'Bahasa Inggris', 'Biologi', 'Fisika', 'Ilmu Pengetahuan Sosial', 'Informatika', 'Bahasa Indonesia'] as $subject)
                         <button type="button" class="btn btn-outline-secondary subject-btn {{ isset($data) && $data->subject === $subject ? 'btn-active' : '' }}" style="width: fit-content;"
@@ -62,11 +70,12 @@
 
                 <div class="mb-3">
                     <label>Course Title</label>
+                    <p style="color: red; display: inline;">*</p>
                     <input type="text" name="title" id="titleInput" class="form-control" placeholder="Enter course title" value="{{ $data->title ?? '' }}" {{ isset($data->id) ? 'disabled' : '' }}>
                 </div>
 
                 <div class="mb-3">
-                    <label>Course Topics (Max 4)</label>
+                    <label>Course Topics <p style="color: red; display: inline;">*</p> (Max 4)</label>
                     <div id="topicsContainer">
                         @if($data != null)
                         @foreach (json_decode($data->topics, true) as $topic)
@@ -85,7 +94,8 @@
                 </div>
 
                 <div class="mb-3">
-                    <label>Session</label><br>
+                    <label>Session</label>
+                    <p style="color: red; display: inline;">*</p> <br>
                     <div style="display: flex; gap: 0.5rem; width: fit-content;">
                         @foreach([1, 2] as $session)
                         <button type="button" class="btn btn-outline-secondary session-btn {{ isset($data) && $data->session === $session ? 'btn-active' : '' }}"
@@ -96,7 +106,8 @@
                 </div>
 
                 <div class="mb-3">
-                    <label>Level (Kelas)</label><br>
+                    <label>Level (Kelas)</label>
+                    <p style="color: red; display: inline;">*</p> <br>
                     <div style="display: flex; gap: 0.5rem; width: fit-content;">
                         @foreach(['7', '8', '9', '10', '11', '12'] as $level)
                         <button type="button" class="btn btn-outline-secondary level-btn {{ isset($data) && $data->level === $level ? 'btn-active' : '' }}"
@@ -108,19 +119,21 @@
 
                 <div class="mb-3">
                     <label>Time</label>
+                    <p style="color: red; display: inline;">*</p>
                     <input type="time" name="timeInput" id="timeInput" style="width: fit-content;" class="form-control" placeholder="Enter course title" value="{{ $data->start_time ?? '' }}" {{ isset($data->id) ? 'disabled' : '' }}>
                 </div>
 
                 <div class="mb-3">
                     <label>Day</label>
+                    <p style="color: red; display: inline;">*</p>
                     <div style="display: flex; gap: 0.5rem; width: fit-content;">
                         @foreach(['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'] as $day)
-                        <label class="btn btn-outline-secondary day-btn {{ isset($data) && in_array($day, $data->day ?? []) ? 'btn-active' : '' }}">
+                        <label class="btn btn-outline-secondary day-btn {{ isset($data) && in_array($day, json_decode($data->day, true) ?? []) ? 'btn-active locked' : '' }} {{ isset($data) ? 'locked' : '' }}">
                             <input type="checkbox"
                                 name="day[]"
                                 value="{{ $day }}"
                                 class="d-none day-checkbox"
-                                {{ isset($data) && in_array($day, $data->day ?? []) ? 'checked' : '' }}>
+                                {{ isset($data) && in_array($day, json_decode($data->day, true) ?? []) ? 'checked disabled' : '' }}>
                             {{ $day }}
                         </label>
                         @endforeach
@@ -130,7 +143,13 @@
 
                 <div class="mb-3">
                     <label>Meet Link</label>
-                    <input type="text" name="link" id="link" style="width: fit-content;" class="form-control" placeholder="Enter meet link" value="{{ $data->meet_link ?? '' }}" {{ isset($data->id) ? 'disabled' : '' }}>
+                    <p style="color: red; display: inline;">*</p><br>
+                    @if (isset($data))
+                    <a href="{{ $data->meet_link }}" target="_blank">{{ $data->meet_link }}</a>
+                    @else
+                    <input type="text" name="link" id="link" style="width: fit-content;" class="form-control" placeholder="Must contain https://">
+                    @endif
+
                 </div>
 
                 @if ($data)
@@ -148,7 +167,7 @@
                 </div>
                 @endif
 
-                <button type="submit" class="btn btn-primary mt-2" style="width: 10rem;">Submit</button>
+                <button id="createNewCourseBtn" class="btn btn-primary mt-2" style="width: 10rem;" {{ isset($data) ? '' : 'disabled' }}>Submit</button>
             </form>
             @if (isset($data))
             <form id="deleteForm-{{ $data->id }}"
@@ -204,8 +223,6 @@
                                                 @foreach (json_decode($data->topics, true) as $topic)
                                                 <li>{{$topic}}</li>
                                                 @endforeach
-                                                @else
-                                                <li>Topic 1</li>
                                                 @endif
                                             </ul>
                                         </div>
@@ -239,6 +256,10 @@
 
     .btn-outline-secondary:hover {
         background-color: #e9ecef;
+    }
+
+    .day-btn.locked {
+        pointer-events: none;
     }
 </style>
 

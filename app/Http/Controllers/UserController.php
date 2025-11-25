@@ -44,4 +44,12 @@ class UserController extends Controller
         $data->point -= App(CourseController::class)->getCourseById($idCourse)->session * 25;
         return $data->save();
     }
+
+    public function getUserById($id){
+        return User::find($id);
+    }
+
+    public function mentorRejected($idUser){
+        return User::find($idUser)->point + 25;
+    }
 }
