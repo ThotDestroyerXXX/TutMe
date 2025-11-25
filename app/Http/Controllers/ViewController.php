@@ -60,13 +60,24 @@ class ViewController extends Controller
     }
 
     public function getEnrollmentDetail($id){
-        $data = App(EnrollmentController::class)->getEnrollmentById($id);
-        return view('enrollment.detail', compact('data')) ;
+        $enrollData = App(EnrollmentController::class)->getEnrollmentById($id);
+        $data = [
+            'enrollment' => $enrollData,
+            'tutee' => App(UserController::class)->getUserById($enrollData->user_id),
+        ];
+
+        return view('enrollment.detail', $data) ;
     }
 
-    public function acceptEnrollment($id){
+    public function acceptEnrollment($id, $bool){
         $data = App(EnrollmentController::class)->getEnrollmentById($id);
-        $data->status = 'ACTIVE';
+        if($bool === true){
+            $data->status = 'ACTIVE';
+        } else{
+            $data->status = 'REJECTED';
+            $data->point_spent = 0;
+            App(UserController::class)->mentorRejected($data->user_id);
+        }
         $data->save();
         return redirect()->route('home', ['role' => Auth::user()->role]);
     }

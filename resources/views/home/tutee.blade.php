@@ -4,7 +4,7 @@
 <script src="{{ asset('script/homepage/script.js') }}"></script>
 
 @section('content')
-<div class="homepage" style="max-width: 80rem; margin: 2rem auto;">
+<div class="homepage">
     <div class="content">
         <div class="title">
             <h3>Hi, {{ optional(Auth::user())->name ?? 'Tutee' }}!</h3>
@@ -51,8 +51,6 @@
                     <div class="carousel-item active">
                         <img src="{{ asset('Resources/slide1.png') }}" class="d-block w-100" alt="...">
                         <div class="carousel-caption d-none d-md-block">
-                            <!-- <h5>First slide label</h5>
-                                <p>Some representative placeholder content for the first slide.</p> -->
                         </div>
                     </div>
                     <div class="carousel-item">
@@ -76,45 +74,46 @@
                 @if (!$coursesById)
                     <p style="text-align:center;">Belum mengambil course apapun.</p>
                 @endif
-                <div style="display: flex; gap: 20px; overflow-x: auto; padding: 20px;">
+                <div class="cardList">
                     @foreach ($coursesById as $course)
-                    <div class="course-card" data-level="{{ $course->level }}" style="transition: .5s ease-in-out; background-color: #f3f3f3; border: 1px solid #ccc; border-radius: 12px; padding: 12px; width: 240px;  min-width: 240px; flex-shrink: 0; position: relative;">
-                        <div style="position: relative; border-radius: 10px; overflow: hidden;">
+                    <div class="course-card" data-level="{{ $course->level }}">
+                        <div class="sub-course-card">
                             <img
                                 src="{{ asset('Resources/' . $course->image) }}"
-                                alt="{{ $course->title }}"
-                                style="width: 100%; height: 140px; object-fit: cover;">
-
-                            <div style="position: absolute; top: 8px; left: 8px; background-color: rgba(255, 255, 255, 0.85); border-radius: 6px; padding: 3px 8px; font-size: 11px; font-weight: 500;">
+                                alt="{{ $course->title }}">
+                            <div class="sessionInfo">
                                 {{ $course->session }} Sesi | {{ $course->duration }} 60 Menit
                             </div>
                         </div>
 
-                        <div style="display: flex; align-items: center; gap: 8px; margin-top: 10px;">
-                            <div style="width: 12px; height: 12px; background-color: #ddd; border-radius: 50%; 
-                                @if($course->is_active)
-                                    background-color: #00ff6aff;
-                                @endif
-                            "></div>
-                            <span style="font-size: 14px; color: #555;">{{ $course->subject }}</span>
+                        <div class="courseInfo">
+                            <div class="subCourseInfo" 
+                                style=" @if($course->is_active)
+                                            background-color: #00ff6aff;
+                                        @endif
+                                        ">
+                            </div>
+                            <span class="courseSpan">{{ $course->subject }}</span>
                         </div>
 
-                        <div style="margin-top: 8px;">
-                            <strong style="display: block; font-size: 16px; margin-bottom: 4px;">{{ $course->title }}</strong>
-                            <ul style="font-size: 13px; color: #444;">
-                                @foreach (json_decode($course->topics, true) as $topic)
-                                <li>{{ $topic }}</li>
-                                @endforeach
-                            </ul>
-                        </div>
+                        <div class="courseTitleTopics">
+                                <strong>{{ $course->title }}</strong>
+                                <ul>
+                                    @foreach (json_decode($course->topics, true) as $topic)
+                                    <li>{{ $topic }}</li>
+                                    @endforeach
+                                </ul>
+                            </div>
 
-                        <div style="display: flex; align-items: center; gap: 8px; margin-top: 10px;">
-                            <div style="width: 12px; height: 12px; background-color: #ddd; border-radius: 50%;
-                                @if($course->status === 'ACTIVE')
+                        <div class="courseStatus">
+                            <div class="subCourseStatus" 
+                            style="
+                                @if(strcmp($course->is_active, 'active'))
                                     background-color: #00ff6aff;
                                 @endif
-                            "></div>
-                            <span style="font-size: 14px; color: #555;">Status : {{ $course->status }}</span>
+                                ">
+                            </div>
+                            <span class="courseSpan">Status : {{ $course->status }}</span>
                         </div>
                     </div>
                     @endforeach

@@ -44,7 +44,8 @@ class HomeController extends Controller
         return App(ViewController::class)->getEnrollmentDetail($id);
     }
 
-    public function acceptEnrollment($id){
-        return App(ViewController::class)->acceptEnrollment($id);    
+    public function acceptEnrollment($id, $bool){
+        App(ViewController::class)->acceptEnrollment($id, $bool);
+        return App(HomeController::class)->index();    
     }
 }
