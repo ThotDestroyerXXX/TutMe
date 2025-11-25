@@ -50,6 +50,8 @@ class UserController extends Controller
     }
 
     public function mentorRejected($idUser){
-        return User::find($idUser)->point + 25;
+        $data = User::find($idUser);
+        $data->point += 25;
+        return $data->save();
     }
 }

@@ -48,4 +48,8 @@ class HomeController extends Controller
         App(ViewController::class)->acceptEnrollment($id, $bool);
         return App(HomeController::class)->index();    
     }
+
+    public function finishMentoring($id, $userId){
+        return App(ViewController::class)->finishMentoring($id, $userId);
+    }
 }

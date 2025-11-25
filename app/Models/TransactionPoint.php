@@ -13,4 +13,10 @@ class TransactionPoint extends Model
 
     public $incrementing = false;
     protected $keyType = 'string';
+
+    protected $fillable = [
+        'user_id',
+        'amount',
+        'course_id'
+    ];
 }

@@ -50,6 +50,7 @@ class TransactionsController extends Controller{
                 'id' => Str::uuid(),
                 'amount' => $amount,
                 'transaction_date' => now(),
+                'email' => App(UserController::class)->getUserById(Auth::id())->email,
             ]);
             $newTr->save();
         }

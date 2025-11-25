@@ -15,7 +15,7 @@ const link = document.getElementById('link');
 const timeInput = document.getElementById('timeInput');
 const button = document.getElementById('createNewCourseBtn');
 let topicCount = 1;
-let isTopicValid = false;
+let isTopic;
 let isDayValid = false;
 
 document.querySelectorAll('.day-btn').forEach(btn => {
@@ -25,7 +25,7 @@ document.querySelectorAll('.day-btn').forEach(btn => {
         const checkbox = btn.querySelector('.day-checkbox');
         checkbox.checked = !checkbox.checked;
         btn.classList.toggle('btn-active', checkbox.checked);
-        isDayValid = true;
+        isDayValid = checkbox.checked;
         validateForm();
     });
 });
@@ -46,13 +46,14 @@ subjectButtons.forEach(btn => {
 
 titleInput.addEventListener('input', () => {
     previewTitle.innerText = titleInput.value || 'Title';
+    validateForm();
 });
 
 topicsContainer.addEventListener('input', () => {
-    isTopicValid = true;
-    validateForm();
     previewTopics.innerHTML = '';
     document.querySelectorAll('.topicInput').forEach(input => {
+        isTopic = input.value;
+        validateForm();
         if (input.value.trim() !== '') {
             const li = document.createElement('li');
             li.textContent = input.value;
@@ -141,9 +142,9 @@ function validateForm(){
     const levelInput = document.getElementById('levelInput').value;
     const regex = /^https:\/\/.*$/;
 
-    if(selectedSubject != '' && isDayValid && isTopicValid && titleInput.value != '' && sessionInput != '' && levelInput != ''  && timeInput.value != ''  && regex.test(link.value) ){
+    if(selectedSubject != '' && isDayValid && isTopic.trim() != '' && titleInput.value != '' && sessionInput != '' && levelInput != ''  && timeInput.value != ''  && regex.test(link.value) ){
         button.removeAttribute('disabled');
     }else{
-        button.setAttribute('disabled');
+        button.disabled = true;
     }
 }

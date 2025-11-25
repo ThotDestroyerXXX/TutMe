@@ -21,7 +21,7 @@ class UserSeeder extends Seeder
             'email_verified_at' => null,
             'password' => '123',
             'remember_token' => NULL,
-            'role' => 'Tutor',
+            'role' => 'Mentor',
             'phone_number' => null,
             'image_url' => null,
             'bio' => null,

@@ -19,5 +19,6 @@ class Transactions extends Model
         'id',
         'amount',
         'transaction_date',
+        'email',
     ];
 }
