@@ -20,12 +20,12 @@
                 Mentor only available on <br>
                 <div style="display: flex;">
                     @foreach (json_decode($data->day, true) as $days)
-                        <h5>{{ $days }}</h5>
+                        <h5>|{{ $days }}</h5>&nbsp;&nbsp;
                     @endforeach
                 </div>
             </div>
             <br>
-            <div class="mb-3">
+            <div class="mb-3" style="width: 200px;">
                 <label>Select Date</label>
                 <input type="date" name="date" id="date" class="form-control" min="<?= date('Y-m-d'); ?>">
             </div>
@@ -142,17 +142,15 @@
 
     inputDate.addEventListener("change", function () {
         const chosenDate = new Date(this.value).getDay();;
-        let validDate = false;
         const dayNames = ["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"];
-
-        allowedDays.forEach(day => {
-            if(day === dayNames[chosenDate]){
-                validDate = true;
-                document.getElementById(data.id).removeAttribute('disabled');
-            }else{
-                document.getElementById(data.id).disabled = true;
-            }
-        });
+        
+        const isValidDay = allowedDays.some(day => day === dayNames[chosenDate]);
+        console.log(allowedDays.some(day => day === dayNames[chosenDate]));
+        if (isValidDay) {
+            document.getElementById(data.id).removeAttribute('disabled');
+        } else {
+            document.getElementById(data.id).disabled = true;
+        }
     });
 </script>
 

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Support\Facades\Auth;
 use App\Models\User;
 use App\Models\Course;
+use App\Models\TransactionPoint;
 use Illuminate\Http\Request;
 
 use function PHPUnit\Framework\returnValue;
@@ -13,7 +14,7 @@ class ViewController extends Controller
 {
     protected $viewMap = [
         'Tutee' => 'home.tutee',
-        'Tutor' => 'home.tutor',
+        'Mentor' => 'home.tutor',
         'Donator' => 'home.donator',
     ];
 
@@ -61,9 +62,12 @@ class ViewController extends Controller
 
     public function getEnrollmentDetail($id){
         $enrollData = App(EnrollmentController::class)->getEnrollmentById($id);
+        $course = App(CourseController::class)->getCourseById($enrollData->course_id);
         $data = [
             'enrollment' => $enrollData,
             'tutee' => App(UserController::class)->getUserById($enrollData->user_id),
+            'course' => $course,
+            'mentor' => App(UserController::class)->getUserById($course->instructor_id),
         ];
 
         return view('enrollment.detail', $data) ;
@@ -71,7 +75,7 @@ class ViewController extends Controller
 
     public function acceptEnrollment($id, $bool){
         $data = App(EnrollmentController::class)->getEnrollmentById($id);
-        if($bool === true){
+        if($bool === 'true'){
             $data->status = 'ACTIVE';
         } else{
             $data->status = 'REJECTED';
@@ -79,6 +83,21 @@ class ViewController extends Controller
             App(UserController::class)->mentorRejected($data->user_id);
         }
         $data->save();
+        return redirect()->route('home', ['role' => Auth::user()->role]);
+    }
+
+    public function finishMentoring($id, $userId){
+        $user = App(UserController::class)->getUserById($userId);
+        $data = App(EnrollmentController::class)->getEnrollmentById($id);
+        if($user->role === 'Mentor'){
+            $data->status = 'DONE';
+        }else{
+            $user->point += 25;
+            App(TransactionPointController::class)->createNewTransaction($userId, $data->course_id);
+        }
+        $user->save();
+        $data->save();
+        
         return redirect()->route('home', ['role' => Auth::user()->role]);
     }
 }

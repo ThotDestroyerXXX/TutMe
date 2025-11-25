@@ -72,31 +72,32 @@
             </div>
             <div class="courseList">
                 @if (!$coursesById)
-                    <p style="text-align:center;">Belum mengambil course apapun.</p>
+                <p style="text-align:center;">Belum mengambil course apapun.</p>
                 @endif
                 <div class="cardList">
                     @foreach ($coursesById as $course)
-                    <div class="course-card" data-level="{{ $course->level }}">
-                        <div class="sub-course-card">
-                            <img
-                                src="{{ asset('Resources/' . $course->image) }}"
-                                alt="{{ $course->title }}">
-                            <div class="sessionInfo">
-                                {{ $course->session }} Sesi | {{ $course->duration }} 60 Menit
+                    <a href="{{ Auth::user() ? route('enrollmentDetail', ['id' => $course->id]) : route('login') }}" style="text-decoration: none; color: inherit;">
+                        <div class="course-card" data-level="{{ $course->level }}">
+                            <div class="sub-course-card">
+                                <img
+                                    src="{{ asset('Resources/' . $course->image) }}"
+                                    alt="{{ $course->title }}">
+                                <div class="sessionInfo">
+                                    {{ $course->session }} Sesi | {{ $course->duration }} 60 Menit
+                                </div>
                             </div>
-                        </div>
 
-                        <div class="courseInfo">
-                            <div class="subCourseInfo" 
-                                style=" @if($course->is_active)
+                            <div class="courseInfo">
+                                <div class="subCourseInfo"
+                                    style=" @if($course->is_active)
                                             background-color: #00ff6aff;
                                         @endif
                                         ">
+                                </div>
+                                <span class="courseSpan">{{ $course->subject }}</span>
                             </div>
-                            <span class="courseSpan">{{ $course->subject }}</span>
-                        </div>
 
-                        <div class="courseTitleTopics">
+                            <div class="courseTitleTopics">
                                 <strong>{{ $course->title }}</strong>
                                 <ul>
                                     @foreach (json_decode($course->topics, true) as $topic)
@@ -105,17 +106,18 @@
                                 </ul>
                             </div>
 
-                        <div class="courseStatus">
-                            <div class="subCourseStatus" 
-                            style="
+                            <div class="courseStatus">
+                                <div class="subCourseStatus"
+                                    style="
                                 @if(strcmp($course->is_active, 'active'))
                                     background-color: #00ff6aff;
                                 @endif
                                 ">
+                                </div>
+                                <span class="courseSpan">Status : {{ $course->status }}</span>
                             </div>
-                            <span class="courseSpan">Status : {{ $course->status }}</span>
                         </div>
-                    </div>
+                    </a>
                     @endforeach
                 </div>
             </div>

@@ -18,16 +18,16 @@ class CourseController extends Controller
     }
 
     public function getCoursesById($userId){
-        if(App(UserController::class)->getUserRole() == 'Tutor'){
+        if(App(UserController::class)->getUserRole() == 'Mentor'){
             return Course::join('enrollments', 'courses.id', '=', 'enrollments.course_id')
-                ->where('instructor_id', $userId)
+                ->where('instructor_id', $userId)->orderBy('enrollments.date')
                 ->select(
                     'courses.*',
                     'enrollments.*',
                 )->get();
         }else{
             return Course::join('enrollments', 'courses.id', '=', 'enrollments.course_id')
-                ->where('enrollments.user_id', $userId)
+                ->where('enrollments.user_id', $userId)->orderBy('enrollments.date')
                 ->select(
                     'courses.*',
                     'enrollments.*',
