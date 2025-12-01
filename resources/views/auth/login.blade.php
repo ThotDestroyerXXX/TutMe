@@ -5,7 +5,7 @@
         <div class="d-flex justify-content-center w-100 m-auto card p-2" style="max-width: 420px;">
             <div class="card-body ">
 
-                <form method="POST" action="{{ route('login') }}" class="d-flex gap-3 flex-column" novalidate>
+                <form method="POST" action="{{ route('login.authenticate') }}" class="d-flex gap-3 flex-column" novalidate>
                     <div>
                         <h5 class="card-title text-center">Login to TutMe</h5>
                         <p class="text-center">Welcome back! Sign in to continue</p>
