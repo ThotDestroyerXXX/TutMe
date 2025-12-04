@@ -2,12 +2,15 @@
 
 namespace App\Http\Controllers;
 
+use App\Exports\TransactionPointExport;
 use App\Models\TransactionPoint;
 use Illuminate\Http\Request;
+use Maatwebsite\Excel\Facades\Excel;
 
 class TransactionPointController extends Controller
 {
-    public function createNewTransaction($userId, $courseId){
+    public function createNewTransaction($userId, $courseId)
+    {
 
         $data = new TransactionPoint([
             'user_id' => $userId,
@@ -19,5 +22,10 @@ class TransactionPointController extends Controller
         $mentor->point += 25;
         $mentor->save();
         $data->save();
+    }
+
+    public function export()
+    {
+        return Excel::download(new TransactionPointExport, 'transaction-points.xlsx');
     }
 }

@@ -19,6 +19,7 @@ class TransactionsSeeder extends Seeder
             $data[] = [
                 'id' => Str::ulid(),
                 'amount' => rand(10000, 1000000),
+                'email' => 'user' . rand(1, 5) . '@example.com',
                 'transaction_date' => now()->subDays(rand(0, 30))->toDateString(),
             ];
         }

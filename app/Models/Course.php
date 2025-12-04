@@ -34,14 +34,29 @@ class Course extends Model
         'day' => 'array',
     ];
 
-    public function Course(){
+    public function Course()
+    {
         return $this->hasManyThrough(
-        Course::class,
-        Enrollment::class,
-        'user_id',
-        'course_id',
-        'id',
-        'course_id'
-    );
+            Course::class,
+            Enrollment::class,
+            'user_id',
+            'course_id',
+            'id',
+            'course_id'
+        );
+    }
+
+    public function instructor()
+    {
+        return $this->belongsTo(User::class, 'instructor_id');
+    }
+    public function enrollments()
+    {
+        return $this->hasMany(Enrollment::class, 'course_id');
+    }
+
+    public function transactionPoints()
+    {
+        return $this->hasMany(TransactionPoint::class, 'course_id');
     }
 }

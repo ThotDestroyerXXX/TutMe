@@ -19,8 +19,9 @@ class CourseSeeder extends Seeder
             'title' => 'Bilangan',
             'image' => 'matematika.png',
             'session' => '1',
+            'day' => json_encode(['Monday', 'Wednesday']),
             'instructor_id' => '1',
-            'topics' => null,
+            'topics' => json_encode(['Bilangan Bulat', 'Bilangan Pecahan', 'Bilangan Desimal']),
         ]);
 
         Course::create([
@@ -29,9 +30,10 @@ class CourseSeeder extends Seeder
             'title' => 'Tenses',
             'image' => 'bahasa inggris.png',
             'session' => '1',
+            'day' => json_encode(['Tuesday', 'Thursday']),
             'instructor_id' => '1',
             'is_active' => false,
-            'topics' => null,
+            'topics' => json_encode(['Present Simple', 'Past Simple', 'Future Simple']),
         ]);
     }
 }

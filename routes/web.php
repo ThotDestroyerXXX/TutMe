@@ -5,6 +5,7 @@ use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\CourseController;
 use App\Http\Controllers\Auth\LogoutController;
+use App\Http\Controllers\TransactionPointController;
 use App\Http\Controllers\TransactionsController;
 use Illuminate\Support\Facades\Route;
 
@@ -36,6 +37,8 @@ Route::delete('/course/delete/{id}', [CourseController::class, 'delete'])->name(
 //Transaction Route
 Route::post('/donate', [TransactionsController::class, 'createTransaction'])->name('transaction.donate');
 Route::get('/transactions/store', [TransactionsController::class, 'store'])->name('transactions.store');
+Route::get('/transactions/export', [TransactionsController::class, 'export'])->name('transactions.export');
+Route::get('/transaction-points/export', [TransactionPointController::class, 'export'])->name('transactionPoints.export');
 
 //Tutee Route
 Route::get('/selectCourse/{id}', [HomeController::class, 'selectCourse'])->name('selectCourse');
