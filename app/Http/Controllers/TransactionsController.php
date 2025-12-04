@@ -2,15 +2,18 @@
 
 namespace App\Http\Controllers;
 
+use App\Exports\TransactionsExport;
 use Midtrans\Config;
 use Midtrans\Snap;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Transactions;
 use Illuminate\Support\Str;
+use Maatwebsite\Excel\Facades\Excel;
 use Midtrans\Transaction;
 
-class TransactionsController extends Controller{
+class TransactionsController extends Controller
+{
 
     public function createTransaction(Request $request)
     {
@@ -18,7 +21,7 @@ class TransactionsController extends Controller{
         Config::$isProduction = false;
         Config::$isSanitized = true;
         Config::$is3ds = true;
-        
+
         $request->validate([
             'amount' => 'required|numeric|min:1000',
         ]);
@@ -58,11 +61,18 @@ class TransactionsController extends Controller{
         return app(HomeController::class)->index();
     }
 
-    public function getSumTransaction(){
+    public function getSumTransaction()
+    {
         return Transactions::sum('amount');
     }
 
-    public function getTransactionPersentage(){
+    public function getTransactionPersentage()
+    {
         return $this->getSumTransaction() > 0 ? (App(UserController::class)->getUsedPoint() / $this->getSumTransaction()) * 100 : 0;
+    }
+
+    public function export()
+    {
+        return Excel::download(new TransactionsExport, 'transactions.xlsx');
     }
 }
