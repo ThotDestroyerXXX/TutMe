@@ -6,13 +6,13 @@
             <div class="card-body">
                 <form method="POST" action="{{ route('register.post') }}" class="d-flex gap-3 flex-column" novalidate>
                     <div>
-                        <h5 class="card-title text-center">Create an Account</h5>
-                        <p class="text-center">Welcome! Create an account to get started</p>
+                        <h5 class="card-title text-center">{{ __('messages.register_title') }}</h5>
+                        <p class="text-center">{{ __('messages.register_subtitle') }}</p>
                     </div>
                     @csrf
 
                     <div class="row gap-2">
-                        <label for="name" class="col-12">Name</label>
+                        <label for="name" class="col-12">{{ __('messages.name') }}</label>
 
                         <div class="col">
                             <input id="name" type="text" class="form-control @error('name') is-invalid @enderror"
@@ -27,7 +27,7 @@
                     </div>
 
                     <div class="row gap-2">
-                        <label for="email" class="col-12">Email Address</label>
+                        <label for="email" class="col-12">{{ __('messages.email_address') }}</label>
 
                         <div class="col">
                             <input id="email" type="email" class="form-control @error('email') is-invalid @enderror"
@@ -42,7 +42,7 @@
                     </div>
 
                     <div class="row gap-2">
-                        <label for="password" class="col-12">Password</label>
+                        <label for="password" class="col-12">{{ __('messages.password') }}</label>
 
                         <div class="col">
                             <input id="password" type="password"
@@ -58,7 +58,7 @@
                     </div>
 
                     <div class="row gap-2">
-                        <label for="password-confirm" class="col-12">Confirm Password</label>
+                        <label for="password-confirm" class="col-12">{{ __('messages.confirm_password') }}</label>
 
                         <div class="col">
                             <input id="password-confirm" type="password" class="form-control" name="password_confirmation"
@@ -67,7 +67,7 @@
                     </div>
 
                     <div class="row gap-2">
-                        <label class="col-12">Select Your Role <span class="text-danger">*</span></label>
+                        <label class="col-12">{{ __('messages.select_role') }} <span class="text-danger">*</span></label>
 
                         <div class="col">
                             <div class="radio-btn d-flex gap-3 @error('role') is-invalid @enderror">
@@ -76,21 +76,21 @@
                                         name="role" value="Student" {{ old('role') == 'Student' ? 'checked' : '' }}
                                         required>
                                     <label class="form-check-label" for="Student" style="cursor: pointer;">
-                                        Student
+                                        {{ __('messages.student') }}
                                     </label>
                                 </div>
                                 <div class="form-check">
                                     <input class="form-check-input" type="radio" id="Tutor" style="cursor: pointer;"
                                         name="role" value="Tutor" {{ old('role') == 'Tutor' ? 'checked' : '' }}>
                                     <label class="form-check-label" for="Tutor" style="cursor: pointer;">
-                                        Tutor
+                                        {{ __('messages.tutor') }}
                                     </label>
                                 </div>
                                 <div class="form-check">
                                     <input class="form-check-input" type="radio" id="Donator" style="cursor: pointer;"
                                         name="role" value="Donator" {{ old('role') == 'Donator' ? 'checked' : '' }}>
                                     <label class="form-check-label" for="Donator" style="cursor: pointer;">
-                                        Donator
+                                        {{ __('messages.donator') }}
                                     </label>
                                 </div>
                             </div>
@@ -104,7 +104,7 @@
                     </div>
 
                     <button type="submit">
-                        Register
+                        {{ __('messages.register') }}
                     </button>
                 </form>
             </div>
