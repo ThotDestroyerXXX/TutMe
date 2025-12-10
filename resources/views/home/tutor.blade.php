@@ -29,7 +29,8 @@
                                 style="text-decoration: none; color: inherit;">
                                 <div class="course-card" data-level="{{ $course->level }}">
                                     <div class="sub-course-card">
-                                        <img src="{{ asset('Resources/' . $course->image) }}" alt="{{ $course->title }}">
+                                        <img src="{{ str_starts_with($course->image, 'https://') ? $course->image : asset('Resources/' . $course->image) }}"
+                                            alt="{{ $course->title }}">
                                         <div class="sessionInfo">
                                             {{ $course->session }} {{ __('messages.session') }} |
                                             {{ $course->session * 60 }} {{ __('messages.minutes') }}
@@ -95,8 +96,8 @@
                                 style="background-color: #f3f3f3; border: 1px solid #ccc; border-radius: 12px; padding: 12px; width: 240px;  min-width: 240px; flex-shrink: 0; position: relative; transition: .5s; min-height: 330px;">
 
                                 <div style="position: relative; border-radius: 10px; overflow: hidden;">
-                                    <img src="{{ asset('Resources/' . $course->image) }}" alt="{{ $course->title }}"
-                                        style="width: 100%; height: 140px; object-fit: cover;">
+                                    <img src="{{ str_starts_with($course->image, 'https://') ? $course->image : asset('Resources/' . $course->image) }}"
+                                        alt="{{ $course->title }}" style="width: 100%; height: 140px; object-fit: cover;">
 
                                     <div
                                         style="position: absolute; top: 8px; left: 8px; background-color: rgba(255, 255, 255, 0.85); border-radius: 6px; padding: 3px 8px; font-size: 11px; font-weight: 500;">

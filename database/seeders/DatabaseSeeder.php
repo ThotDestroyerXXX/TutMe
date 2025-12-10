@@ -19,6 +19,7 @@ class DatabaseSeeder extends Seeder
             UserSeeder::class,
             CourseSeeder::class,
             EnrollmentSeeder::class,
+            ScheduleSeeder::class,
             TransactionsSeeder::class,
             TransactionPointSeeder::class,
         ]);

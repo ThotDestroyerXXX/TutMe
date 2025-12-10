@@ -28,7 +28,7 @@ class ViewController extends Controller
             $query->select('course_id')
                 ->from('enrollments')
                 ->where('user_id', Auth::id());
-        })->get();
+        })->paginate(10);
 
         $data = [
             'courses' => $courses,
@@ -50,17 +50,18 @@ class ViewController extends Controller
     }
 
     public function selectCourse(Request $request, $idCourse, $idUser = null)
-    {        
+    {
         $data = $idCourse ? App(CourseController::class)->getCourseById($idCourse) : null;
-        if($idUser == null){        
+        if ($idUser == null) {
             return view('course.selectCourse', compact('data'));
-        }else{
+        } else {
             App(EnrollmentController::class)->enrollCourse($request, $idCourse, $idUser);
             return redirect()->route('home', ['role' => Auth::user()->role]);
         }
     }
 
-    public function getEnrollmentDetail($id){
+    public function getEnrollmentDetail($id)
+    {
         $enrollData = App(EnrollmentController::class)->getEnrollmentById($id);
         $course = App(CourseController::class)->getCourseById($enrollData->course_id);
         $data = [
@@ -70,14 +71,15 @@ class ViewController extends Controller
             'mentor' => App(UserController::class)->getUserById($course->instructor_id),
         ];
 
-        return view('enrollment.detail', $data) ;
+        return view('enrollment.detail', $data);
     }
 
-    public function acceptEnrollment($id, $bool){
+    public function acceptEnrollment($id, $bool)
+    {
         $data = App(EnrollmentController::class)->getEnrollmentById($id);
-        if($bool === 'true'){
+        if ($bool === 'true') {
             $data->status = 'ACTIVE';
-        } else{
+        } else {
             $data->status = 'REJECTED';
             $data->point_spent = 0;
             App(UserController::class)->mentorRejected($data->user_id);
@@ -86,18 +88,19 @@ class ViewController extends Controller
         return redirect()->route('home', ['role' => Auth::user()->role]);
     }
 
-    public function finishMentoring($id, $userId){
+    public function finishMentoring($id, $userId)
+    {
         $user = App(UserController::class)->getUserById($userId);
         $data = App(EnrollmentController::class)->getEnrollmentById($id);
-        if($user->role === 'Mentor'){
+        if ($user->role === 'Mentor') {
             $data->status = 'DONE';
-        }else{
+        } else {
             $user->point += 25;
             App(TransactionPointController::class)->createNewTransaction($userId, $data->course_id);
         }
         $user->save();
         $data->save();
-        
+
         return redirect()->route('home', ['role' => Auth::user()->role]);
     }
 }
