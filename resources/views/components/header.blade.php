@@ -6,32 +6,51 @@
             </a>
             <div class="d-flex align-items-center">
                 <ul class="navbar-nav rightSide ms-auto">
-                    <!-- Authentication Links -->
+                    <li class="nav-item dropdown me-2">
+                        <a id="languageDropdown" class="nav-link dropdown-toggle" href="#" role="button"
+                            data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            @if (app()->getLocale() === 'id')
+                                🇮🇩 {{ __('messages.indonesian') }}
+                            @else
+                                🇬🇧 {{ __('messages.english') }}
+                            @endif
+                        </a>
+                        <div class="dropdown-menu dropdown-menu-end" aria-labelledby="languageDropdown">
+                            <a class="dropdown-item {{ app()->getLocale() === 'en' ? 'active' : '' }}"
+                                href="{{ route('locale.set', 'en') }}">
+                                🇬🇧 {{ __('messages.english') }}
+                            </a>
+                            <a class="dropdown-item {{ app()->getLocale() === 'id' ? 'active' : '' }}"
+                                href="{{ route('locale.set', 'id') }}">
+                                🇮🇩 {{ __('messages.indonesian') }}
+                            </a>
+                        </div>
+                    </li>
                     @guest
                         @if (Route::has('login'))
                             <li class="nav-item login-btn  bg-primary">
-                                <a class="nav-link " href="{{ route('login') }}">{{ __('Login') }}</a>
+                                <a class="nav-link " href="{{ route('login') }}">{{ __('messages.login') }}</a>
                             </li>
                         @endif
 
                         @if (Route::has('register'))
                             <li class="nav-item register-btn bg-white border border-primary rounded-3 ms-2">
-                                <a class="nav-link" href="{{ route('register') }}">{{ __('Sign Up') }}</a>
+                                <a class="nav-link" href="{{ route('register') }}">{{ __('messages.sign_up') }}</a>
                             </li>
                         @endif
                     @else
                         <li class="nav-item dropdown">
                             <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button"
                                 data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                                <img src="{{ Auth::user()->image_url }}"
-                                    class="rounded-circle" width="30" height="30" />
+                                <img src="{{ Auth::user()->image_url }}" class="rounded-circle" width="30"
+                                    height="30" />
                                 {{ Auth::user()->name }}
                             </a>
 
                             <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
                                 <a class="dropdown-item" href="{{ route('logout') }}"
                                     onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
-                                    {{ __('Logout') }}
+                                    {{ __('messages.logout') }}
                                 </a>
 
                                 <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
@@ -46,7 +65,7 @@
         <div class="w-100">
             <ul class="nav nav-underline">
                 <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="#">Home</a>
+                    <a class="nav-link active" aria-current="page" href="#">{{ __('messages.home') }}</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="#">Link</a>

@@ -7,6 +7,7 @@ use App\Http\Controllers\CourseController;
 use App\Http\Controllers\Auth\LogoutController;
 use App\Http\Controllers\TransactionPointController;
 use App\Http\Controllers\TransactionsController;
+use App\Http\Controllers\LocaleController;
 use Illuminate\Support\Facades\Route;
 
 // Route::get('/learning-history', function () {
@@ -82,3 +83,5 @@ Route::middleware('auth')->group(function () {
 
     Route::post('logout', [LogoutController::class, 'logout'])->name('logout');
 });
+
+Route::get('locale/{locale}', [LocaleController::class, 'setLocale'])->name('locale.set');
