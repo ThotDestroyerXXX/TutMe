@@ -97,7 +97,7 @@
                                     style="text-decoration: none; color: inherit;">
                                     <div class="course-card" data-level="{{ $course->level }}">
                                         <div class="sub-course-card">
-                                            <img src="{{ asset('Resources/' . $course->image) }}"
+                                            <img src="{{ str_starts_with($course->image, 'https://') ? $course->image : asset('Resources/' . $course->image) }}"
                                                 alt="{{ $course->title }}">
                                             <div class="sessionInfo">
                                                 {{ $course->session }} {{ __('messages.session') }} |
@@ -151,7 +151,7 @@
                     @if ($courses->isEmpty())
                         <p style="text-align:center;">{{ __('messages.no_courses_available') }}</p>
                     @endif
-                    <div style="display: flex; gap: 20px; overflow-x: auto; padding: 20px;">
+                    <div class="d-flex flex-wrap gap-4 justify-content-center">
                         @foreach ($courses as $course)
                             @if ($course->is_active)
                                 <a href="{{ Auth::user() ? route('selectCourse', ['id' => $course->id]) : route('login') }}"
@@ -159,7 +159,7 @@
                                     <div class="course-card" data-level="{{ $course->level }}"
                                         style="transition: .5s ease-in-out; background-color: #f3f3f3; border: 1px solid #ccc; border-radius: 12px; padding: 12px; width: 240px;  min-width: 240px; flex-shrink: 0; position: relative;">
                                         <div style="position: relative; border-radius: 10px; overflow: hidden;">
-                                            <img src="{{ asset('Resources/' . $course->image) }}"
+                                            <img src="{{ str_starts_with($course->image, 'https://') ? $course->image : asset('Resources/' . $course->image) }}"
                                                 alt="{{ $course->title }}"
                                                 style="width: 100%; height: 140px; object-fit: cover;">
 
@@ -190,7 +190,34 @@
                                 </a>
                             @endif
                         @endforeach
+
+
                     </div>
+                    <nav aria-label="..." class="mt-3 d-flex justify-content-center">
+                        <ul class="pagination">
+                            @if ($courses->previousPageUrl())
+                                <li class="page-item">
+                                    <a class="page-link" href="{{ $courses->previousPageUrl() }}"
+                                        tabindex="-1">Previous</a>
+                                </li>
+
+                                <li class="page-item"><a class="page-link"
+                                        href="{{ $courses->previousPageUrl() }}">{{ $courses->currentPage() - 1 }}</a>
+                                </li>
+                            @endif
+                            <li class="page-item active">
+                                <a class="page-link" href="#">{{ $courses->currentPage() }}</a>
+                            </li>
+                            @if ($courses->hasMorePages())
+                                <li class="page-item"><a class="page-link"
+                                        href="{{ $courses->nextPageUrl() }}">{{ $courses->currentPage() + 1 }}</a>
+                                </li>
+                                <li class="page-item">
+                                    <a class="page-link" href="{{ $courses->nextPageUrl() }}">Next</a>
+                                </li>
+                            @endif
+                        </ul>
+                    </nav>
                 </div>
             </div>
         </div>

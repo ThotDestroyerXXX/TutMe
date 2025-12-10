@@ -15,7 +15,7 @@ class TransactionsSeeder extends Seeder
     {
         $data = [];
 
-        for ($i = 0; $i < 10; $i++) {
+        for ($i = 0; $i < 30; $i++) {
             $data[] = [
                 'id' => Str::ulid(),
                 'amount' => rand(10000, 1000000),

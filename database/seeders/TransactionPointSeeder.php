@@ -20,7 +20,7 @@ class TransactionPointSeeder extends Seeder
         $courseId = DB::table('courses')->pluck('id')->toArray();
 
 
-        for ($i = 0; $i < 10; $i++) {
+        for ($i = 0; $i < 30; $i++) {
             DB::table('transaction_points')->insert([
                 'id' => Str::ulid(),
                 'user_id' => $faker->randomElement($userId),
