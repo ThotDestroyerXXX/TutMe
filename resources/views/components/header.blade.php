@@ -46,18 +46,18 @@
         <div class="w-100">
             <ul class="nav nav-underline">
                 <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="#">Home</a>
+                    <a class="nav-link {{ Route::is('home') ? 'active' : '' }}" aria-current="page" href="{{ route('home') }}">Home</a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Link</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Link</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link disabled" aria-disabled="true">Disabled</a>
-                </li>
+                @if (Auth::user())
+                    <li class="nav-item">
+                        <a class="nav-link {{ Route::is('viewMyPoint') ? 'active' : '' }}" href="{{ route('viewMyPoint', ['id' => Auth::id()]) }}">My Point</a>
+                    </li>
+                @endif
             </ul>
         </div>
     </div>
 </nav>
+
+<script>
+
+</script>

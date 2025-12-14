@@ -44,3 +44,6 @@ Route::post('/enrollCourse/{idCourse}/{idUser}', [HomeController::class, 'select
 Route::get('/enrollmentDetail/{id}', [HomeController::class, 'getEnrollmentDetail'])->name('enrollmentDetail');
 Route::get('/acceptEnrollment/{id}/{bool}', [HomeController::class, 'acceptEnrollment'])->name('acceptEnrollment');
 Route::get('/finishMentoring/{id}/{userId}', [HomeController::class, 'finishMentoring'])->name('finishMentoring');
+
+//Point Page Route
+Route::get('/myPoint/{id?}', [HomeController::class, 'viewMyPoint'])->name('viewMyPoint');
