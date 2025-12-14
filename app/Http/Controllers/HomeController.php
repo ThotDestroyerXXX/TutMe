@@ -52,4 +52,8 @@ class HomeController extends Controller
     public function finishMentoring($id, $userId){
         return App(ViewController::class)->finishMentoring($id, $userId);
     }
+
+    public function viewMyPoint($id){
+        return $id ? App(ViewController::class)->viewMyPoint($id) : App(ViewController::class)->Dashboard('guess');
+    }
 }

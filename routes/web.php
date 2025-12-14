@@ -42,6 +42,13 @@ Route::middleware('role:Mentor')->group(function () {
     Route::get('/finishMentoring/{id}/{userId}', [HomeController::class, 'finishMentoring'])->name('finishMentoring');
 });
 
+//Enrollment Route
+Route::get('/enrollmentDetail/{id}', [HomeController::class, 'getEnrollmentDetail'])->name('enrollmentDetail');
+Route::get('/acceptEnrollment/{id}/{bool}', [HomeController::class, 'acceptEnrollment'])->name('acceptEnrollment');
+Route::get('/finishMentoring/{id}/{userId}', [HomeController::class, 'finishMentoring'])->name('finishMentoring');
+
+//Point Page Route
+Route::get('/myPoint/{id?}', [HomeController::class, 'viewMyPoint'])->name('viewMyPoint');
 // tutee middleware
 Route::middleware('role:Tutee')->group(function () {
 

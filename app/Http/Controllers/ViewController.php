@@ -103,4 +103,16 @@ class ViewController extends Controller
 
         return redirect()->route('home', ['role' => Auth::user()->role]);
     }
+
+    public function viewMyPoint($id){
+        $data = App(UserController::class)->getUserById($id);
+        $point_spent = App(EnrollmentController::class)->getPointSpent($id);
+        $data = [
+            'availPoint' => $data->point,
+            'pointSpent' => $point_spent,
+            'userRole' => $data->role, 
+        ];
+        return view('home.point', $data);
+    }
+}
 }
