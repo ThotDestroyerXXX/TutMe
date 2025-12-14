@@ -5,15 +5,15 @@
         <div class="d-flex justify-content-center w-100 m-auto card p-2" style="max-width: 420px;">
             <div class="card-body ">
 
-                <form method="POST" action="{{ route('login') }}" class="d-flex gap-3 flex-column" novalidate>
+                <form method="POST" action="{{ route('login.authenticate') }}" class="d-flex gap-3 flex-column" novalidate>
                     <div>
-                        <h5 class="card-title text-center">Login to TutMe</h5>
-                        <p class="text-center">Welcome back! Sign in to continue</p>
+                        <h5 class="card-title text-center">{{ __('messages.login_title') }}</h5>
+                        <p class="text-center">{{ __('messages.login_subtitle') }}</p>
                     </div>
                     @csrf
 
                     <div class="row gap-2">
-                        <label for="email" class="col-12 ">Email Address</label>
+                        <label for="email" class="col-12 ">{{ __('messages.email_address') }}</label>
 
                         <div class="col">
                             <input id="email" type="email" class="form-control @error('email') is-invalid @enderror"
@@ -29,11 +29,11 @@
 
                     <div class="row gap-2">
                         <div class="col-12 justify-content-between d-flex">
-                            <label for="password">Password</label>
+                            <label for="password">{{ __('messages.password') }}</label>
                             @if (Route::has('password.request'))
                                 <a href="{{ route('password.request') }}">
                                     <span>
-                                        Forgot Your Password?
+                                        {{ __('messages.forgot_password') }}
                                     </span>
                                 </a>
                             @endif
@@ -58,14 +58,14 @@
                                     {{ old('remember') ? 'checked' : '' }}>
 
                                 <label class="form-check-label" for="remember">
-                                    Remember Me
+                                    {{ __('messages.remember_me') }}
                                 </label>
                             </div>
                         </div>
                     </div>
 
                     <button type="submit">
-                        Login
+                        {{ __('messages.login') }}
                     </button>
 
 

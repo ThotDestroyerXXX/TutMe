@@ -61,11 +61,27 @@ class User extends Authenticatable
         ];
     }
 
-    public function User(){
+    public function User()
+    {
         return [
             $this->hasMany(Course::class),
             $this->hasMany(Enrollment::class),
             $this->hasMany(Schedule::class),
         ];
+    }
+
+    public function transactions()
+    {
+        return $this->hasMany(Transactions::class, 'user_id');
+    }
+
+    public function transactionPoints()
+    {
+        return $this->hasMany(TransactionPoint::class, 'user_id');
+    }
+
+    public function hasRole($role): bool
+    {
+        return $this->role === $role;
     }
 }
