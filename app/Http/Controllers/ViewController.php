@@ -115,4 +115,3 @@ class ViewController extends Controller
         return view('home.point', $data);
     }
 }
-}
