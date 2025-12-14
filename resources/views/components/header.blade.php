@@ -65,17 +65,7 @@
         <div class="w-100">
             <ul class="nav nav-underline">
                 <li class="nav-item">
-                    <a class="nav-link {{ Route::is('home') ? 'active' : '' }}" aria-current="page" href="{{ route('home') }}">Home</a>
-                    <a class="nav-link active" aria-current="page" href="#">{{ __('messages.home') }}</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Link</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Link</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link disabled" aria-disabled="true">Disabled</a>
+                    <a class="nav-link active" aria-current="page" href="{{ route('home') }}">{{ __('messages.home') }}</a>
                 </li>
                 @if (Auth::user())
                     <li class="nav-item">
