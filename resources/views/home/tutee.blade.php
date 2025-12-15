@@ -18,6 +18,15 @@
             cursor: pointer;
             transform: scale(1.05);
         }
+        .inputGroup{
+            float: right;
+            display: flex;
+            gap: 1rem;
+        }
+
+        #Search{
+            height: 2.5rem;
+        }
     </style>
     <script>
         function selectLevel(level) {
@@ -33,48 +42,7 @@
                 <h3>{{ __('messages.hi') }}, {{ optional(Auth::user())->name ?? 'Tutee' }}!</h3>
                 <h6>{{ __('messages.what_to_learn_today') }}</h6>
             </div>
-            <div class="inputGroup mb-3">
-                <input type="text" class="form-control" placeholder="{{ __('messages.search') }}" id="Search">
-                <button type="button" class="btn btn-primary modalBtn" data-bs-toggle="modal" data-bs-target="#myModal"
-                    id="modalLevel">{{ __('messages.level') }} {{ __('messages.all') }}</button>
-                <div class="modal fade" id="myModal" tabindex="-1" aria-labelledby="exampleModalLabel"
-                    aria-hidden="true">
-                    <div class="modal-dialog modal-dialog-centered">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <h5 class="modal-title" id="exampleModalLabel">{{ __('messages.select_level') }}</h5>
-                                <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                    aria-label="Close"></button>
-                            </div>
-                            <div class="modal-body">
-                                <div class="container-fluid">
-                                    <div class="row">
-                                        <button type="button" class="btn btn-secondary col-md-6" onclick="selectLevel('7')"
-                                            data-bs-dismiss="modal">{{ __('messages.class') }} 7</button>
-                                        <button type="button" class="btn btn-secondary col-md-6 ms-auto"
-                                            data-bs-dismiss="modal" onclick="selectLevel('8')">{{ __('messages.class') }}
-                                            8</button>
-                                    </div>
-                                    <div class="row">
-                                        <button type="button" class="btn btn-secondary col-md-6" data-bs-dismiss="modal"
-                                            onclick="selectLevel('9')">{{ __('messages.class') }} 9</button>
-                                        <button type="button" class="btn btn-secondary col-md-6 ms-auto"
-                                            data-bs-dismiss="modal" onclick="selectLevel('10')">{{ __('messages.class') }}
-                                            10</button>
-                                    </div>
-                                    <div class="row">
-                                        <button type="button" class="btn btn-secondary col-md-6" data-bs-dismiss="modal"
-                                            onclick="selectLevel('11')">{{ __('messages.class') }} 11</button>
-                                        <button type="button" class="btn btn-secondary col-md-6 ms-auto"
-                                            data-bs-dismiss="modal" onclick="selectLevel('12')">{{ __('messages.class') }}
-                                            12</button>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+            
             <div class="carousel" style="margin-top: 65px;">
                 <div id="carouselExampleCaptions" class="carousel slide" data-bs-ride="carousel">
                     <div class="carousel-indicators">
@@ -161,6 +129,48 @@
                     </div>
                 </div>
             @endif
+            <div class="inputGroup mb-3">
+                <input type="text" class="form-control" placeholder="{{ __('messages.search') }}" id="Search">
+                <button type="button" class="btn btn-primary modalBtn" data-bs-toggle="modal" data-bs-target="#myModal"
+                    id="modalLevel">{{ __('messages.level') }} {{ __('messages.all') }}</button>
+                <div class="modal fade" id="myModal" tabindex="-1" aria-labelledby="exampleModalLabel"
+                    aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="exampleModalLabel">{{ __('messages.select_level') }}</h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                    aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                <div class="container-fluid">
+                                    <div class="row">
+                                        <button type="button" class="btn btn-secondary col-md-6" onclick="selectLevel('7')"
+                                            data-bs-dismiss="modal">{{ __('messages.class') }} 7</button>
+                                        <button type="button" class="btn btn-secondary col-md-6 ms-auto"
+                                            data-bs-dismiss="modal" onclick="selectLevel('8')">{{ __('messages.class') }}
+                                            8</button>
+                                    </div>
+                                    <div class="row">
+                                        <button type="button" class="btn btn-secondary col-md-6" data-bs-dismiss="modal"
+                                            onclick="selectLevel('9')">{{ __('messages.class') }} 9</button>
+                                        <button type="button" class="btn btn-secondary col-md-6 ms-auto"
+                                            data-bs-dismiss="modal" onclick="selectLevel('10')">{{ __('messages.class') }}
+                                            10</button>
+                                    </div>
+                                    <div class="row">
+                                        <button type="button" class="btn btn-secondary col-md-6" data-bs-dismiss="modal"
+                                            onclick="selectLevel('11')">{{ __('messages.class') }} 11</button>
+                                        <button type="button" class="btn btn-secondary col-md-6 ms-auto"
+                                            data-bs-dismiss="modal" onclick="selectLevel('12')">{{ __('messages.class') }}
+                                            12</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
             <div class="newEnrollment" style="margin-top: 3rem;">
                 <div class="enrollTitle" style="display: flex;">
                     <h6>{{ __('messages.new_enrollment') }}</h6>&nbsp;&nbsp;&nbsp;&nbsp;
@@ -213,8 +223,6 @@
                                 </a>
                             @endif
                         @endforeach
-
-
                     </div>
                     <nav aria-label="..." class="mt-3 d-flex justify-content-center">
                         <ul class="pagination">
