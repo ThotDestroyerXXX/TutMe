@@ -21,7 +21,7 @@
     </style>
     <script>
         function selectLevel(level) {
-            document.querySelectorAll('.courseLink').forEach(card => {
+            document.querySelectorAll('.course-card').forEach(card => {
                 card.style.display = card.dataset.level === level ? 'block' : 'none';
             });
             document.getElementById('modalLevel').innerText = '{{ __('messages.class') }} ' + level;
