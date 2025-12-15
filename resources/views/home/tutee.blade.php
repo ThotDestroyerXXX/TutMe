@@ -4,6 +4,29 @@
 <script src="{{ asset('script/homepage/script.js') }}"></script>
 
 @section('content')
+    <style>
+        .course-card{
+            display:flex;
+            flex-direction:column;
+            min-height:330px;
+            transition: .25s ease-in-out;
+        }
+        .cardList > a > .course-card { height: 100%; display:flex; flex-direction:column; }
+        .course-card img { object-fit: cover; }
+        .courseTitleTopics { flex: 1; display: flex; flex-direction: column; }
+        .course-card:hover {
+            cursor: pointer;
+            transform: scale(1.05);
+        }
+    </style>
+    <script>
+        function selectLevel(level) {
+            document.querySelectorAll('.courseLink').forEach(card => {
+                card.style.display = card.dataset.level === level ? 'block' : 'none';
+            });
+            document.getElementById('modalLevel').innerText = '{{ __('messages.class') }} ' + level;
+        }
+    </script>
     <div class="homepage">
         <div class="content">
             <div class="title">
@@ -222,21 +245,4 @@
             </div>
         </div>
     </div>
-
-    <style>
-        .course-card:hover {
-            cursor: pointer;
-            transform: scale(105%);
-            transition: .5s ease-in-out;
-        }
-    </style>
-
-    <script>
-        function selectLevel(level) {
-            document.querySelectorAll('.courseLink').forEach(card => {
-                card.style.display = card.dataset.level === level ? 'block' : 'none';
-            });
-            document.getElementById('modalLevel').innerText = '{{ __('messages.class') }} ' + level;
-        }
-    </script>
 @endsection
