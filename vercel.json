@@ -21,7 +21,7 @@
     "env": {
         "APP_ENV": "production",
         "APP_DEBUG": "true",
-        "APP_URL": "https://yourproductionurl.com",
+        "APP_URL": "https://tut-me.vercel.app",
         "APP_KEY": "base64:MU8F29NrZA8IsgcH3tmpScjQ2gEPzre3Ez4sh0/y++4=",
 
         "APP_CONFIG_CACHE": "/tmp/config.php",
