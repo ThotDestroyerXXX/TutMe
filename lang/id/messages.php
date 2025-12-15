@@ -18,6 +18,8 @@ return [
     'donator' => 'Donatur',
     'login_title' => 'Masuk ke TutMe',
     'login_subtitle' => 'Selamat datang kembali! Masuk untuk melanjutkan',
+    'no_account_yet' => 'Belum punya akun?',
+    'have_account' => 'Sudah punya akun?',
     'register_title' => 'Buat Akun',
     'register_subtitle' => 'Selamat datang! Buat akun untuk memulai',
     'course_subject' => 'Mata Pelajaran Kursus',

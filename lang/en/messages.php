@@ -18,6 +18,8 @@ return [
     'donator' => 'Donator',
     'login_title' => 'Login to TutMe',
     'login_subtitle' => 'Welcome back! Sign in to continue',
+    'no_account_yet' => "Don't have an account?",
+    'have_account' => 'Already have an account?',
     'register_title' => 'Create an Account',
     'register_subtitle' => 'Welcome! Create an account to get started',
     'course_subject' => 'Course Subject',
