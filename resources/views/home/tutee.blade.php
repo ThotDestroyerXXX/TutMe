@@ -104,7 +104,7 @@
                                                 {{ $course->duration }} 60 {{ __('messages.minutes') }}
                                             </div>
                                         </div>
-
+    
                                         <div class="courseInfo">
                                             <div class="subCourseInfo"
                                                 style=" @if ($course->is_active) background-color: #00ff6aff; @endif
@@ -154,7 +154,7 @@
                     <div class="d-flex flex-wrap gap-4 justify-content-center">
                         @foreach ($courses as $course)
                             @if ($course->is_active)
-                                <a href="{{ Auth::user() ? route('selectCourse', ['id' => $course->id]) : route('login') }}"
+                                <a href="{{ Auth::user() ? route('selectCourse', ['id' => $course->id]) : route('login') }}" id="courseLink"
                                     style="text-decoration: none; color: inherit;">
                                     <div class="course-card" data-level="{{ $course->level }}"
                                         style="transition: .5s ease-in-out; background-color: #f3f3f3; border: 1px solid #ccc; border-radius: 12px; padding: 12px; width: 240px;  min-width: 240px; flex-shrink: 0; position: relative;">
@@ -233,7 +233,7 @@
 
     <script>
         function selectLevel(level) {
-            document.querySelectorAll('.course-card').forEach(card => {
+            document.querySelectorAll('.courseLink').forEach(card => {
                 card.style.display = card.dataset.level === level ? 'block' : 'none';
             });
             document.getElementById('modalLevel').innerText = '{{ __('messages.class') }} ' + level;
