@@ -4,173 +4,239 @@
 <script src="{{ asset('script/homepage/script.js') }}"></script>
 
 @section('content')
-<div class="homepage" style="max-width: 80rem; margin: 2rem auto;">
-    <div class="content">
-        <div class="title">
-            <h3>Hi, {{ optional(Auth::user())->name ?? 'Tutee' }}!</h3>
-            <h6>Mau belajar apa hari ini?</h6>
-        </div>
-        <div class="inputGroup mb-3">
-            <input type="text" class="form-control" placeholder="Search" id="Search">
-            <button type="button" class="btn btn-primary modalBtn" data-bs-toggle="modal" data-bs-target="#myModal" id="modalLevel">Level All</button>
-            <div class="modal fade" id="myModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                <div class="modal-dialog modal-dialog-centered">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h5 class="modal-title" id="exampleModalLabel">Select Level</h5>
-                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                        </div>
-                        <div class="modal-body">
-                            <div class="container-fluid">
-                                <div class="row">
-                                    <button type="button" class="btn btn-secondary col-md-6" onclick="selectLevel('7')" data-bs-dismiss="modal">Kelas 7</button>
-                                    <button type="button" class="btn btn-secondary col-md-6 ms-auto" data-bs-dismiss="modal" onclick="selectLevel('8')">Kelas 8</button>
-                                </div>
-                                <div class="row">
-                                    <button type="button" class="btn btn-secondary col-md-6" data-bs-dismiss="modal" onclick="selectLevel('9')">Kelas 9</button>
-                                    <button type="button" class="btn btn-secondary col-md-6 ms-auto" data-bs-dismiss="modal" onclick="selectLevel('10')">Kelas 10</button>
-                                </div>
-                                <div class="row">
-                                    <button type="button" class="btn btn-secondary col-md-6" data-bs-dismiss="modal" onclick="selectLevel('11')">Kelas 11</button>
-                                    <button type="button" class="btn btn-secondary col-md-6 ms-auto" data-bs-dismiss="modal" onclick="selectLevel('12')">Kelas 12</button>
+    <div class="homepage">
+        <div class="content">
+            <div class="title">
+                <h3>{{ __('messages.hi') }}, {{ optional(Auth::user())->name ?? 'Tutee' }}!</h3>
+                <h6>{{ __('messages.what_to_learn_today') }}</h6>
+            </div>
+            <div class="inputGroup mb-3">
+                <input type="text" class="form-control" placeholder="{{ __('messages.search') }}" id="Search">
+                <button type="button" class="btn btn-primary modalBtn" data-bs-toggle="modal" data-bs-target="#myModal"
+                    id="modalLevel">{{ __('messages.level') }} {{ __('messages.all') }}</button>
+                <div class="modal fade" id="myModal" tabindex="-1" aria-labelledby="exampleModalLabel"
+                    aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="exampleModalLabel">{{ __('messages.select_level') }}</h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                    aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                <div class="container-fluid">
+                                    <div class="row">
+                                        <button type="button" class="btn btn-secondary col-md-6" onclick="selectLevel('7')"
+                                            data-bs-dismiss="modal">{{ __('messages.class') }} 7</button>
+                                        <button type="button" class="btn btn-secondary col-md-6 ms-auto"
+                                            data-bs-dismiss="modal" onclick="selectLevel('8')">{{ __('messages.class') }}
+                                            8</button>
+                                    </div>
+                                    <div class="row">
+                                        <button type="button" class="btn btn-secondary col-md-6" data-bs-dismiss="modal"
+                                            onclick="selectLevel('9')">{{ __('messages.class') }} 9</button>
+                                        <button type="button" class="btn btn-secondary col-md-6 ms-auto"
+                                            data-bs-dismiss="modal" onclick="selectLevel('10')">{{ __('messages.class') }}
+                                            10</button>
+                                    </div>
+                                    <div class="row">
+                                        <button type="button" class="btn btn-secondary col-md-6" data-bs-dismiss="modal"
+                                            onclick="selectLevel('11')">{{ __('messages.class') }} 11</button>
+                                        <button type="button" class="btn btn-secondary col-md-6 ms-auto"
+                                            data-bs-dismiss="modal" onclick="selectLevel('12')">{{ __('messages.class') }}
+                                            12</button>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
-        <div class="carousel" style="margin-top: 65px;">
-            <div id="carouselExampleCaptions" class="carousel slide" data-bs-ride="carousel">
-                <div class="carousel-indicators">
-                    <button style="background-color: white;" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
-                    <button style="background-color: white;" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="1" aria-label="Slide 2"></button>
-                    <button style="background-color: white;" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="2" aria-label="Slide 3"></button>
-                </div>
-                <div class="carousel-inner">
-                    <div class="carousel-item active">
-                        <img src="{{ asset('Resources/slide1.png') }}" class="d-block w-100" alt="...">
-                        <div class="carousel-caption d-none d-md-block">
-                            <!-- <h5>First slide label</h5>
-                                <p>Some representative placeholder content for the first slide.</p> -->
-                        </div>
+            <div class="carousel" style="margin-top: 65px;">
+                <div id="carouselExampleCaptions" class="carousel slide" data-bs-ride="carousel">
+                    <div class="carousel-indicators">
+                        <button style="background-color: white;" type="button" data-bs-target="#carouselExampleCaptions"
+                            data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+                        <button style="background-color: white;" type="button" data-bs-target="#carouselExampleCaptions"
+                            data-bs-slide-to="1" aria-label="Slide 2"></button>
+                        <button style="background-color: white;" type="button" data-bs-target="#carouselExampleCaptions"
+                            data-bs-slide-to="2" aria-label="Slide 3"></button>
                     </div>
-                    <div class="carousel-item">
-                        <img src="{{ asset('Resources/slide2.png') }}" class="d-block w-100" alt="...">
-                    </div>
-                    <div class="carousel-item">
-                        <img src="{{ asset('Resources/slide3.png') }}" class="d-block w-100" alt="...">
-                    </div>
-                </div>
-            </div>
-        </div>
-        @if (Auth::user() != null)
-        <div class="enrollmentHistory" style="margin-top: 3rem;">
-            <div class="historyTitle" style="display: flex;">
-                <h6>History</h6>&nbsp;&nbsp;&nbsp;&nbsp;
-                <svg xmlns="http://www.w3.org/2000/svg" height="20px" viewBox="0 -960 960 960" width="20px" fill="#000000ff">
-                    <path d="M478-240q21 0 35.5-14.5T528-290q0-21-14.5-35.5T478-340q-21 0-35.5 14.5T428-290q0 21 14.5 35.5T478-240Zm-36-154h74q0-33 7.5-52t42.5-52q26-26 41-49.5t15-56.5q0-56-41-86t-97-30q-57 0-92.5 30T342-618l66 26q5-18 22.5-39t53.5-21q32 0 48 17.5t16 38.5q0 20-12 37.5T506-526q-44 39-54 59t-10 73Zm38 314q-83 0-156-31.5T197-197q-54-54-85.5-127T80-480q0-83 31.5-156T197-763q54-54 127-85.5T480-880q83 0 156 31.5T763-763q54 54 85.5 127T880-480q0 83-31.5 156T763-197q-54 54-127 85.5T480-80Zm0-80q134 0 227-93t93-227q0-134-93-227t-227-93q-134 0-227 93t-93 227q0 134 93 227t227 93Zm0-320Z" />
-                </svg>
-            </div>
-            <div class="courseList">
-                @if ($courses->isEmpty())
-                <p style="text-align:center;">Belum ada course yang tersedia.</p>
-                @endif
-                <div style="display: flex; gap: 20px; overflow-x: auto; padding: 20px;">
-                    @foreach ($courses as $course)
-                    <div class="course-card" data-level="{{ $course->level }}" style="background-color: #f3f3f3; border: 1px solid #ccc; border-radius: 12px; padding: 12px; width: 240px;  min-width: 240px; flex-shrink: 0; position: relative;">
-                        <div style="position: relative; border-radius: 10px; overflow: hidden;">
-                            <img
-                                src="{{ asset('Resources/' . $course->image) }}"
-                                alt="{{ $course->title }}"
-                                style="width: 100%; height: 140px; object-fit: cover;">
-
-                            <div style="position: absolute; top: 8px; left: 8px; background-color: rgba(255, 255, 255, 0.85); border-radius: 6px; padding: 3px 8px; font-size: 11px; font-weight: 500;">
-                                {{ $course->session }} 1 Sesi | {{ $course->duration }} 60 Menit
+                    <div class="carousel-inner">
+                        <div class="carousel-item active">
+                            <img src="{{ asset('Resources/slide1.png') }}" class="d-block w-100" alt="...">
+                            <div class="carousel-caption d-none d-md-block">
                             </div>
                         </div>
-
-                        <div style="display: flex; align-items: center; gap: 8px; margin-top: 10px;">
-                            <div style="width: 12px; height: 12px; background-color: #ddd; border-radius: 50%; 
-                                @if($course->is_active)
-                                    background-color: #00ff6aff;
-                                @endif
-                            "></div>
-                            <span style="font-size: 14px; color: #555;">{{ $course->subject }}</span>
+                        <div class="carousel-item">
+                            <img src="{{ asset('Resources/slide2.png') }}" class="d-block w-100" alt="...">
                         </div>
-
-                        <div style="margin-top: 8px;">
-                            <strong style="display: block; font-size: 16px; margin-bottom: 4px;">{{ $course->title }}</strong>
-                            <ul style="font-size: 13px; color: #444;">
-                                @foreach (json_decode($course->topics, true) as $topic)
-                                <li>{{ $topic }}</li>
-                                @endforeach
-                            </ul>
+                        <div class="carousel-item">
+                            <img src="{{ asset('Resources/slide3.png') }}" class="d-block w-100" alt="...">
                         </div>
                     </div>
-                    @endforeach
                 </div>
             </div>
-        </div>
-        @endif
-        <div class="newEnrollment" style="margin-top: 3rem;">
-            <div class="enrollTitle" style="display: flex;">
-                <h6>New Enrollment</h6>&nbsp;&nbsp;&nbsp;&nbsp;
-                <svg xmlns="http://www.w3.org/2000/svg" height="20px" viewBox="0 -960 960 960" width="20px" fill="#000000ff">
-                    <path d="M478-240q21 0 35.5-14.5T528-290q0-21-14.5-35.5T478-340q-21 0-35.5 14.5T428-290q0 21 14.5 35.5T478-240Zm-36-154h74q0-33 7.5-52t42.5-52q26-26 41-49.5t15-56.5q0-56-41-86t-97-30q-57 0-92.5 30T342-618l66 26q5-18 22.5-39t53.5-21q32 0 48 17.5t16 38.5q0 20-12 37.5T506-526q-44 39-54 59t-10 73Zm38 314q-83 0-156-31.5T197-197q-54-54-85.5-127T80-480q0-83 31.5-156T197-763q54-54 127-85.5T480-880q83 0 156 31.5T763-763q54 54 85.5 127T880-480q0 83-31.5 156T763-197q-54 54-127 85.5T480-80Zm0-80q134 0 227-93t93-227q0-134-93-227t-227-93q-134 0-227 93t-93 227q0 134 93 227t227 93Zm0-320Z" />
-                </svg>
-            </div>
-            <div class="courseList">
-                @if ($courses->isEmpty())
-                <p style="text-align:center;">Belum ada course yang tersedia.</p>
-                @endif
-                <div style="display: flex; gap: 20px; overflow-x: auto; padding: 20px;">
-                    @foreach ($courses as $course)
-                    <a href="{{ Auth::user() ? route('course.getCourse', ['id' => $course->id]) : route('login') }}" style="text-decoration: none; color: inherit;">
-                        <div class="course-card" data-level="{{ $course->level }}" style="background-color: #f3f3f3; border: 1px solid #ccc; border-radius: 12px; padding: 12px; width: 240px;  min-width: 240px; flex-shrink: 0; position: relative;">
-                            <div style="position: relative; border-radius: 10px; overflow: hidden;">
-                                <img
-                                    src="{{ asset('Resources/' . $course->image) }}"
-                                    alt="{{ $course->title }}"
-                                    style="width: 100%; height: 140px; object-fit: cover;">
+            @if (Auth::id())
+                <div class="enrollmentHistory" style="margin-top: 3rem;">
+                    <div class="historyTitle" style="display: flex;">
+                        <h6>{{ __('messages.history') }}</h6>&nbsp;&nbsp;&nbsp;&nbsp;
+                        <svg xmlns="http://www.w3.org/2000/svg" height="20px" viewBox="0 -960 960 960" width="20px"
+                            fill="#000000ff">
+                            <path
+                                d="M478-240q21 0 35.5-14.5T528-290q0-21-14.5-35.5T478-340q-21 0-35.5 14.5T428-290q0 21 14.5 35.5T478-240Zm-36-154h74q0-33 7.5-52t42.5-52q26-26 41-49.5t15-56.5q0-56-41-86t-97-30q-57 0-92.5 30T342-618l66 26q5-18 22.5-39t53.5-21q32 0 48 17.5t16 38.5q0 20-12 37.5T506-526q-44 39-54 59t-10 73Zm38 314q-83 0-156-31.5T197-197q-54-54-85.5-127T80-480q0-83 31.5-156T197-763q54-54 127-85.5T480-880q83 0 156 31.5T763-763q54 54 85.5 127T880-480q0 83-31.5 156T763-197q-54 54-127 85.5T480-80Zm0-80q134 0 227-93t93-227q0-134-93-227t-227-93q-134 0-227 93t-93 227q0 134 93 227t227 93Zm0-320Z" />
+                        </svg>
+                    </div>
+                    <div class="courseList">
+                        @if (!$coursesById)
+                            <p style="text-align:center;">{{ __('messages.no_enrollments_taken') }}</p>
+                        @endif
+                        <div class="cardList">
+                            @foreach ($coursesById as $course)
+                                <a href="{{ Auth::user() ? route('enrollmentDetail', ['id' => $course->id]) : route('login') }}"
+                                    style="text-decoration: none; color: inherit;">
+                                    <div class="course-card" data-level="{{ $course->level }}">
+                                        <div class="sub-course-card">
+                                            <img src="{{ str_starts_with($course->image, 'https://') ? $course->image : asset('Resources/' . $course->image) }}"
+                                                alt="{{ $course->title }}">
+                                            <div class="sessionInfo">
+                                                {{ $course->session }} {{ __('messages.session') }} |
+                                                {{ $course->duration }} 60 {{ __('messages.minutes') }}
+                                            </div>
+                                        </div>
+    
+                                        <div class="courseInfo">
+                                            <div class="subCourseInfo"
+                                                style=" @if ($course->is_active) background-color: #00ff6aff; @endif
+                                        ">
+                                            </div>
+                                            <span class="courseSpan">{{ $course->subject }}</span>
+                                        </div>
 
-                                <div style="position: absolute; top: 8px; left: 8px; background-color: rgba(255, 255, 255, 0.85); border-radius: 6px; padding: 3px 8px; font-size: 11px; font-weight: 500;">
-                                    {{ $course->session }} Sesi | {{ $course->session*60 }} Menit
-                                </div>
-                            </div>
+                                        <div class="courseTitleTopics">
+                                            <strong>{{ $course->title }}</strong>
+                                            <ul>
+                                                @foreach (json_decode($course->topics, true) as $topic)
+                                                    <li>{{ $topic }}</li>
+                                                @endforeach
+                                            </ul>
+                                        </div>
 
-                            <div style="display: flex; align-items: center; gap: 8px; margin-top: 10px;">
-                                <div style="width: 12px; height: 12px; background-color: #ddd; border-radius: 50%;
-                                @if($course->is_active)
-                                    background-color: #00ff6aff;
-                                @endif
-                            "></div>
-                                <span style="font-size: 14px; color: #555;">{{ $course->subject }}</span>
-                            </div>
-
-                            <div style="margin-top: 8px;">
-                                <strong style="display: block; font-size: 16px; margin-bottom: 4px;">{{ $course->title }}</strong>
-                                <ul style="font-size: 13px; color: #444;">
-                                    @foreach (json_decode($course->topics, true) as $topic)
-                                    <li>{{ $topic }}</li>
-                                    @endforeach
-                                </ul>
-                            </div>
+                                        <div class="courseStatus">
+                                            <div class="subCourseStatus"
+                                                style="
+                                @if (strcmp($course->is_active, 'active')) background-color: #00ff6aff; @endif
+                                ">
+                                            </div>
+                                            <span class="courseSpan">{{ __('messages.status') }} :
+                                                {{ $course->status }}</span>
+                                        </div>
+                                    </div>
+                                </a>
+                            @endforeach
                         </div>
-                    </a>
-                    @endforeach
+                    </div>
+                </div>
+            @endif
+            <div class="newEnrollment" style="margin-top: 3rem;">
+                <div class="enrollTitle" style="display: flex;">
+                    <h6>{{ __('messages.new_enrollment') }}</h6>&nbsp;&nbsp;&nbsp;&nbsp;
+                    <svg xmlns="http://www.w3.org/2000/svg" height="20px" viewBox="0 -960 960 960" width="20px"
+                        fill="#000000ff">
+                        <path
+                            d="M478-240q21 0 35.5-14.5T528-290q0-21-14.5-35.5T478-340q-21 0-35.5 14.5T428-290q0 21 14.5 35.5T478-240Zm-36-154h74q0-33 7.5-52t42.5-52q26-26 41-49.5t15-56.5q0-56-41-86t-97-30q-57 0-92.5 30T342-618l66 26q5-18 22.5-39t53.5-21q32 0 48 17.5t16 38.5q0 20-12 37.5T506-526q-44 39-54 59t-10 73Zm38 314q-83 0-156-31.5T197-197q-54-54-85.5-127T80-480q0-83 31.5-156T197-763q54-54 127-85.5T480-880q83 0 156 31.5T763-763q54 54 85.5 127T880-480q0 83-31.5 156T763-197q-54 54-127 85.5T480-80Zm0-80q134 0 227-93t93-227q0-134-93-227t-227-93q-134 0-227 93t-93 227q0 134 93 227t227 93Zm0-320Z" />
+                    </svg>
+                </div>
+                <div class="courseList">
+                    @if ($courses->isEmpty())
+                        <p style="text-align:center;">{{ __('messages.no_courses_available') }}</p>
+                    @endif
+                    <div class="d-flex flex-wrap gap-4 justify-content-center">
+                        @foreach ($courses as $course)
+                            @if ($course->is_active)
+                                <a href="{{ Auth::user() ? route('selectCourse', ['id' => $course->id]) : route('login') }}" id="courseLink"
+                                    style="text-decoration: none; color: inherit;">
+                                    <div class="course-card" data-level="{{ $course->level }}"
+                                        style="transition: .5s ease-in-out; background-color: #f3f3f3; border: 1px solid #ccc; border-radius: 12px; padding: 12px; width: 240px;  min-width: 240px; flex-shrink: 0; position: relative;">
+                                        <div style="position: relative; border-radius: 10px; overflow: hidden;">
+                                            <img src="{{ str_starts_with($course->image, 'https://') ? $course->image : asset('Resources/' . $course->image) }}"
+                                                alt="{{ $course->title }}"
+                                                style="width: 100%; height: 140px; object-fit: cover;">
+
+                                            <div
+                                                style="position: absolute; top: 8px; left: 8px; background-color: rgba(255, 255, 255, 0.85); border-radius: 6px; padding: 3px 8px; font-size: 11px; font-weight: 500;">
+                                                {{ $course->session }} {{ __('messages.session') }} |
+                                                {{ $course->session * 60 }} {{ __('messages.minutes') }}
+                                            </div>
+                                        </div>
+
+                                        <div style="display: flex; align-items: center; gap: 8px; margin-top: 10px;">
+                                            <div
+                                                style="width: 12px; height: 12px; background-color: #00ff6aff; border-radius: 50%;">
+                                            </div>
+                                            <span style="font-size: 14px; color: #555;">{{ $course->subject }}</span>
+                                        </div>
+
+                                        <div style="margin-top: 8px;">
+                                            <strong
+                                                style="display: block; font-size: 16px; margin-bottom: 4px;">{{ $course->title }}</strong>
+                                            <ul style="font-size: 13px; color: #444;">
+                                                @foreach (json_decode($course->topics, true) as $topic)
+                                                    <li>{{ $topic }}</li>
+                                                @endforeach
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </a>
+                            @endif
+                        @endforeach
+
+
+                    </div>
+                    <nav aria-label="..." class="mt-3 d-flex justify-content-center">
+                        <ul class="pagination">
+                            @if ($courses->previousPageUrl())
+                                <li class="page-item">
+                                    <a class="page-link" href="{{ $courses->previousPageUrl() }}"
+                                        tabindex="-1">Previous</a>
+                                </li>
+
+                                <li class="page-item"><a class="page-link"
+                                        href="{{ $courses->previousPageUrl() }}">{{ $courses->currentPage() - 1 }}</a>
+                                </li>
+                            @endif
+                            <li class="page-item active">
+                                <a class="page-link" href="#">{{ $courses->currentPage() }}</a>
+                            </li>
+                            @if ($courses->hasMorePages())
+                                <li class="page-item"><a class="page-link"
+                                        href="{{ $courses->nextPageUrl() }}">{{ $courses->currentPage() + 1 }}</a>
+                                </li>
+                                <li class="page-item">
+                                    <a class="page-link" href="{{ $courses->nextPageUrl() }}">Next</a>
+                                </li>
+                            @endif
+                        </ul>
+                    </nav>
                 </div>
             </div>
         </div>
     </div>
-</div>
 
-<script>
-    function selectLevel(level) {
-        document.querySelectorAll('.course-card').forEach(card => {
-            card.style.display = card.dataset.level === level ? 'block' : 'none';
-        });
-        document.getElementById('modalLevel').innerText = 'Kelas ' + level;
-    }
-</script>
+    <style>
+        .course-card:hover {
+            cursor: pointer;
+            transform: scale(105%);
+            transition: .5s ease-in-out;
+        }
+    </style>
+
+    <script>
+        function selectLevel(level) {
+            document.querySelectorAll('.courseLink').forEach(card => {
+                card.style.display = card.dataset.level === level ? 'block' : 'none';
+            });
+            document.getElementById('modalLevel').innerText = '{{ __('messages.class') }} ' + level;
+        }
+    </script>
 @endsection

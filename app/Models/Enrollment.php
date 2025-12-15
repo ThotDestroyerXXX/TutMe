@@ -13,4 +13,24 @@ class Enrollment extends Model
 
     public $incrementing = false;
     protected $keyType = 'string';
+
+    protected $fillable = [
+        'id',
+        'user_id',
+        'course_id',
+        'point_spent',
+        'grade',
+        'status',
+        'recording',
+        'date',
+        'created_at',
+        'updated_at',
+    ];
+
+    public function Enrollments(){
+        return [
+            $this->belongsTo(User::class),
+            $this->belongsTo(Course::class, 'course_id'),
+        ];
+    }
 }

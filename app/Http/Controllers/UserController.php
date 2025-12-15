@@ -4,9 +4,13 @@ namespace App\Http\Controllers;
 
 use Illuminate\Support\Facades\Auth;
 use App\Models\User;
+use App\Http\Controllers\Exception;
 
 class UserController extends Controller
 {
+    public function getUserId(){
+        return Auth::id();
+    }
     public function getUserRole(){
         return Auth::user() ? Auth::user()->role : 'Tutee';
     }
@@ -17,7 +21,7 @@ class UserController extends Controller
 
     public function getUsedPoint(){
         $tutors = $this->getAllTutor();
-        $usedPoint = $tutors->sum('point') * 10000;
+        $usedPoint = $tutors->sum('point') * 1000;
         return $usedPoint;
     }
 
@@ -30,5 +34,24 @@ class UserController extends Controller
             'donation'       => App(TransactionsController::class)->getSumTransaction(),
             'usedPoint'      => App(UserController::class)->getUsedPoint(),
         ];
+    }
+
+    public function userEnrolled($idCourse, $idUser){
+        $data = User::find($idUser);
+        if($data->point < 25){
+            return false;
+        }
+        $data->point -= App(CourseController::class)->getCourseById($idCourse)->session * 25;
+        return $data->save();
+    }
+
+    public function getUserById($id){
+        return User::find($id);
+    }
+
+    public function mentorRejected($idUser){
+        $data = User::find($idUser);
+        $data->point += 25;
+        return $data->save();
     }
 }

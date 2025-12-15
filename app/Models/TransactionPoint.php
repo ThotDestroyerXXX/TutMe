@@ -13,4 +13,20 @@ class TransactionPoint extends Model
 
     public $incrementing = false;
     protected $keyType = 'string';
+
+    protected $fillable = [
+        'user_id',
+        'amount',
+        'course_id'
+    ];
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
+
+    public function course()
+    {
+        return $this->belongsTo(Course::class);
+    }
 }

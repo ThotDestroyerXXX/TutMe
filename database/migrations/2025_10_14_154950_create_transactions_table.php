@@ -15,6 +15,7 @@ return new class extends Migration
             $table->uuid('id')->primary();
             $table->decimal('amount');
             $table->date('transaction_date');
+            $table->string('email');
         });
     }
 

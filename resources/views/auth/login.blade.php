@@ -5,32 +5,20 @@
         <div class="container">
             <div class="row justify-content-center">
                 <div class="col-12 col-md-10 col-lg-8">
-                    <div class="card shadow-sm overflow-hidden rounded-4">
+                    <div class="card auth-card shadow-sm">
                         <div class="row g-0">
-                            <div class="col-md-6 d-none d-md-flex bg-primary text-white align-items-center justify-content-center p-4 auth-visual">
-                                <div class="text-center px-3">
+                            <div class="col-md-5 d-none d-md-flex auth-visual align-items-center justify-content-center">
+                                <div class="text-center px-3 text-white">
                                     <h3 class="fw-bold">TutMe</h3>
-                                    <p class="mt-3">{{ __('messages.login_subtitle') }}</p>
-                                    <svg width="140" height="140" viewBox="0 0 24 24" fill="none" class="mt-4" xmlns="http://www.w3.org/2000/svg"><path d="M12 2L20 8V16L12 22L4 16V8L12 2Z" fill="rgba(255,255,255,0.12)"/></svg>
+                                    <p class="mt-2 small opacity-75">{{ __('messages.login_subtitle') }}</p>
                                 </div>
                             </div>
-                            <div class="col-md-6 p-4">
-                                <div class="p-3">
+                            <div class="col-md-7 p-4">
+                                <div class="p-3 auth-form">
                                     <h5 class="card-title text-center mb-0">{{ __('messages.login_title') }}</h5>
-                                    <p class="text-center text-muted small">{{ __('messages.login_subtitle') }}</p>
+                                    <p class="text-center text-muted small mb-3">{{ __('messages.login_subtitle') }}</p>
 
-<<<<<<< Updated upstream
-                <form method="POST" action="{{ route('login') }}" class="d-flex gap-3 flex-column" novalidate>
-                    <div>
-                        <h5 class="card-title text-center">Login to TutMe</h5>
-                        <p class="text-center">Welcome back! Sign in to continue</p>
-                    </div>
-                    @csrf
-
-                    <div class="row gap-2">
-                        <label for="email" class="col-12 ">Email Address</label>
-=======
-                                    <form method="POST" action="{{ route('login.authenticate') }}" class="mt-4" novalidate>
+                                    <form method="POST" action="{{ route('login.authenticate') }}" class="mt-3" novalidate>
                                         @csrf
 
                                         <div class="mb-3">
@@ -40,10 +28,9 @@
                                                 <div class="invalid-feedback">{{ $message }}</div>
                                             @enderror
                                         </div>
->>>>>>> Stashed changes
 
                                         <div class="mb-3">
-                                            <label for="password" class="form-label d-flex justify-content-between">
+                                            <label class="form-label d-flex justify-content-between">
                                                 <span>{{ __('messages.password') }}</span>
                                                 @if (Route::has('password.request'))
                                                     <a href="{{ route('password.request') }}" class="small">{{ __('messages.forgot_password') }}</a>
@@ -65,51 +52,6 @@
                                             </div>
                                         </div>
 
-<<<<<<< Updated upstream
-                    <div class="row gap-2">
-                        <div class="col-12 justify-content-between d-flex">
-                            <label for="password">Password</label>
-                            @if (Route::has('password.request'))
-                                <a href="{{ route('password.request') }}">
-                                    <span>
-                                        Forgot Your Password?
-                                    </span>
-                                </a>
-                            @endif
-                        </div>
-                        <div class="col">
-                            <input id="password" type="password"
-                                class="form-control @error('password') is-invalid @enderror" name="password" required
-                                autocomplete="current-password">
-
-                            @error('password')
-                                <span class="invalid-feedback" role="alert">
-                                    {{ $message }}
-                                </span>
-                            @enderror
-                        </div>
-                    </div>
-
-                    <div class="row">
-                        <div class="col-md-6">
-                            <div class="form-check">
-                                <input class="form-check-input" type="checkbox" name="remember" id="remember"
-                                    {{ old('remember') ? 'checked' : '' }}>
-
-                                <label class="form-check-label" for="remember">
-                                    Remember Me
-                                </label>
-                            </div>
-                        </div>
-                    </div>
-
-                    <button type="submit">
-                        Login
-                    </button>
-
-
-                </form>
-=======
                                         <button type="submit" class="btn btn-primary btn-lg w-100 rounded-pill">{{ __('messages.login') }}</button>
 
                                         <div class="text-center mt-3">
@@ -121,28 +63,31 @@
                         </div>
                     </div>
                 </div>
->>>>>>> Stashed changes
             </div>
         </div>
+    </div>
 
-        <style>
-            .auth-visual{ background: linear-gradient(135deg, rgba(58,123,213,1) 0%, rgba(58,96,230,1) 100%); }
-            .auth-visual h3{ font-family: 'Inter', sans-serif; }
-            @media (max-width: 767px){ .auth-page{ padding-top: 3rem; padding-bottom: 3rem; } }
-        </style>
+    <style>
+        .auth-visual{ background: linear-gradient(135deg,#3a7bd5 0%,#3a60e6 100%); color:#fff; }
+        .auth-card{ border-radius:.75rem; overflow:hidden; }
+        .auth-form .form-control{ height:calc(1.5em + 1rem); padding:.5rem .75rem; }
+        .auth-form .btn-outline-secondary{ border-radius:.375rem 0 .375rem 0; }
+        @media (max-width:767px){ .auth-page{ padding-top:2.5rem; padding-bottom:2.5rem; } }
+    </style>
 
-        @section('scripts')
-            <script>
-                document.addEventListener('DOMContentLoaded', function(){
-                    const toggle = document.getElementById('togglePassword');
-                    const pwd = document.getElementById('password');
-                    if(toggle && pwd){
-                        toggle.addEventListener('click', function(){
-                            if(pwd.type === 'password'){ pwd.type = 'text'; toggle.textContent = 'Hide'; }
-                            else{ pwd.type = 'password'; toggle.textContent = 'Show'; }
-                        });
-                    }
+@endsection
+
+@section('scripts')
+    <script>
+        document.addEventListener('DOMContentLoaded', function(){
+            const toggle = document.getElementById('togglePassword');
+            const pwd = document.getElementById('password');
+            if(toggle && pwd){
+                toggle.addEventListener('click', function(){
+                    if(pwd.type === 'password'){ pwd.type = 'text'; toggle.textContent = 'Hide'; }
+                    else{ pwd.type = 'password'; toggle.textContent = 'Show'; }
                 });
-            </script>
-        @endsection
+            }
+        });
+    </script>
 @endsection

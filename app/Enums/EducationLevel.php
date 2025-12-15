@@ -4,11 +4,11 @@ namespace App\Enums;
 
 enum EducationLevel: string
 {
-    case ELEMENTARY = 'elementary';
-    case MIDDLE_SCHOOL = 'middle_school';
-    case HIGH_SCHOOL = 'high_school';
-    case BACHELOR = 'bachelor';
-    case MASTER = 'master';
-    case DOCTORATE = 'doctorate';
-    case OTHER = 'other';
+    case ELEMENTARY = 'Elementary';
+    case MIDDLE_SCHOOL = 'Middle School';
+    case HIGH_SCHOOL = 'High School';
+    case BACHELOR = 'Bachelor';
+    case MASTER = 'Master';
+    case DOCTORATE = 'Doctorate';
+    case OTHER = 'Other';
 }

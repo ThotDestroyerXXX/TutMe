@@ -10,7 +10,25 @@ const removeTopic = document.getElementById('removeTopic');
 const topicsContainer = document.getElementById('topicsContainer');
 const sessionButtons = document.querySelectorAll('.session-btn');
 const levelButtons = document.querySelectorAll('.level-btn');
+const dayButtons = document.querySelectorAll('.day-btn');
+const link = document.getElementById('link');
+const timeInput = document.getElementById('timeInput');
+const button = document.getElementById('createNewCourseBtn');
 let topicCount = 1;
+let isTopic;
+let isDayValid = false;
+
+document.querySelectorAll('.day-btn').forEach(btn => {
+    btn.addEventListener('click', e => {
+        if (btn.classList.contains('locked')) return;
+        e.preventDefault();
+        const checkbox = btn.querySelector('.day-checkbox');
+        checkbox.checked = !checkbox.checked;
+        btn.classList.toggle('btn-active', checkbox.checked);
+        isDayValid = checkbox.checked;
+        validateForm();
+    });
+});
 
 function setActiveButton(group, clickedButton) {
     group.forEach(btn => btn.classList.remove('btn-active'));
@@ -28,11 +46,14 @@ subjectButtons.forEach(btn => {
 
 titleInput.addEventListener('input', () => {
     previewTitle.innerText = titleInput.value || 'Title';
+    validateForm();
 });
 
 topicsContainer.addEventListener('input', () => {
     previewTopics.innerHTML = '';
     document.querySelectorAll('.topicInput').forEach(input => {
+        isTopic = input.value;
+        validateForm();
         if (input.value.trim() !== '') {
             const li = document.createElement('li');
             li.textContent = input.value;
@@ -70,40 +91,60 @@ removeTopic.addEventListener('click', () => {
     }
 });
 
+link.addEventListener('input', () => {
+    validateForm();
+})
+
+timeInput.addEventListener('change', () => {
+    validateForm();
+});
+
 sessionButtons.forEach(btn => {
     btn.addEventListener('click', () => {
         const session = btn.dataset.session;
         previewSession.innerText = `${session} Sesi / ${60 * session} Menit`;
         setActiveButton(sessionButtons, btn);
+        validateForm();
     });
 });
 
 levelButtons.forEach(btn => {
     btn.addEventListener('click', () => {
         setActiveButton(levelButtons, btn);
+        validateForm();
     });
 });
 
 subjectButtons.forEach(btn => {
     btn.addEventListener('click', () => {
         document.getElementById('subjectInput').value = btn.dataset.subject;
+        validateForm();
     });
 });
 
 sessionButtons.forEach(btn => {
     btn.addEventListener('click', () => {
         document.getElementById('sessionInput').value = btn.dataset.session;
+        validateForm();
     });
 });
 
 levelButtons.forEach(btn => {
     btn.addEventListener('click', () => {
         document.getElementById('levelInput').value = btn.dataset.level;
+        validateForm();
     });
 });
 
-function deleteBtn(courseId) {
-    if (confirm('Are you sure you want to delete this course?')) {
-        document.getElementById('deleteForm-' + courseId).submit();
+function validateForm(){
+    const selectedSubject = document.getElementById('subjectInput').value;
+    const sessionInput = document.getElementById('sessionInput').value;
+    const levelInput = document.getElementById('levelInput').value;
+    const regex = /^https:\/\/.*$/;
+
+    if(selectedSubject != '' && isDayValid && isTopic.trim() != '' && titleInput.value != '' && sessionInput != '' && levelInput != ''  && timeInput.value != ''  && regex.test(link.value) ){
+        button.removeAttribute('disabled');
+    }else{
+        button.disabled = true;
     }
 }
