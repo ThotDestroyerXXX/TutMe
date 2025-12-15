@@ -46,6 +46,7 @@
         <div class="w-100">
             <ul class="nav nav-underline">
                 <li class="nav-item">
+<<<<<<< Updated upstream
                     <a class="nav-link active" aria-current="page" href="#">Home</a>
                 </li>
                 <li class="nav-item">
@@ -56,6 +57,9 @@
                 </li>
                 <li class="nav-item">
                     <a class="nav-link disabled" aria-disabled="true">Disabled</a>
+=======
+                    <a class="nav-link {{ Route::is('home') ? 'active' : '' }}" @if(Route::is('home')) aria-current="page" @endif href="{{ route('home') }}">{{ __('messages.home') }}</a>
+>>>>>>> Stashed changes
                 </li>
             </ul>
         </div>
