@@ -119,4 +119,11 @@ return [
     'processing_donation' => 'Memproses Donasi Anda...',
     'payment_pending' => 'Pembayaran pending.',
     'payment_failed' => 'Pembayaran gagal!',
+    'budget_overview' => 'Ringkasan Anggaran',
+    'view_all_transactions' => 'Lihat Semua Transaksi',
+    'donation_insight' => 'Dana digunakan untuk mendukung peserta didik.',
+    'view_history' => 'Lihat Riwayat',
+    'recent_transactions' => 'Transaksi Terbaru',
+    'no_transactions_yet' => 'Belum ada transaksi.',
+    'transactions' => 'Transaksi',
 ];

@@ -119,4 +119,11 @@ return [
     'processing_donation' => 'Processing Your Donation...',
     'payment_pending' => 'Payment pending.',
     'payment_failed' => 'Payment failed!',
+    'budget_overview' => 'Budget Overview',
+    'view_all_transactions' => 'View All Transactions',
+    'donation_insight' => 'Funds are used for supporting learners.',
+    'view_history' => 'View History',
+    'recent_transactions' => 'Recent Transactions',
+    'no_transactions_yet' => 'No transactions yet.',
+    'transactions' => 'Transactions',
 ];
