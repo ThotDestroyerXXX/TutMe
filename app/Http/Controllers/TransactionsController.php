@@ -50,7 +50,7 @@ class TransactionsController extends Controller
 
         if (in_array($status, ['capture', 'settlement'])) {
             $newTr = Transactions::create([
-                'id' => Str::uuid(),
+                'id' => Str::ulid(),
                 'amount' => $amount,
                 'transaction_date' => now(),
                 'email' => App(UserController::class)->getUserById(Auth::id())->email,
@@ -73,6 +73,8 @@ class TransactionsController extends Controller
 
     public function export()
     {
-        return Excel::download(new TransactionsExport, 'transactions.xlsx');
+        // Use temp disk for serverless environments like Vercel
+        return Excel::download(new TransactionsExport, 'transactions.xlsx')
+            ->deleteFileAfterSend(true);
     }
 }

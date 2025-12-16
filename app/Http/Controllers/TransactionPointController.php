@@ -26,6 +26,8 @@ class TransactionPointController extends Controller
 
     public function export()
     {
-        return Excel::download(new TransactionPointExport, 'transaction-points.xlsx');
+        // Use temp disk for serverless environments like Vercel
+        return Excel::download(new TransactionPointExport, 'transaction-points.xlsx')
+            ->deleteFileAfterSend(true);
     }
 }

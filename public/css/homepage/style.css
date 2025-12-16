@@ -17,16 +17,6 @@
     margin: 2rem auto;
 }
 
-.inputGroup{
-    float: right;
-    display: flex;
-    gap: 1rem;
-}
-
-#Search{
-    height: 2.5rem;
-}
-
 .modalBtn{
     width: 10rem;
     height: 2.5rem;

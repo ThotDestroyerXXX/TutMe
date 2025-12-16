@@ -65,11 +65,11 @@
         <div class="w-100">
             <ul class="nav nav-underline">
                 <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="{{ route('home') }}">{{ __('messages.home') }}</a>
+                    <a class="nav-link {{ Route::is('home') ? 'active' : '' }}" @if(Route::is('home')) aria-current="page" @endif href="{{ route('home') }}">{{ __('messages.home') }}</a>
                 </li>
                 @if (Auth::user())
                     <li class="nav-item">
-                        <a class="nav-link {{ Route::is('viewMyPoint') ? 'active' : '' }}" href="{{ route('viewMyPoint', ['id' => Auth::id()]) }}">My Point</a>
+                        <a class="nav-link {{ Route::is('viewMyPoint') ? 'active' : '' }}" @if(Route::is('viewMyPoint')) aria-current="page" @endif href="{{ route('viewMyPoint', ['id' => Auth::id()]) }}">My Point</a>
                     </li>
                 @endif
             </ul>

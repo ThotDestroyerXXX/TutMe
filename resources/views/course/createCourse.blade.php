@@ -2,10 +2,8 @@
 
 @section('content')
     <div class="homepage" style="max-width: 80rem; margin: 2rem auto;">
-        <a href="{{ '/' }}">
-            <button type="button" class="btn btn-primary mt-2 rounded-5"
-                style="width: 3rem; background-color: gray; border-color: gray;">
-                < </button>
+        <a href="{{ url()->previous() }}" class="text-decoration-none d-inline-flex align-items-center mb-3 back-link">
+            <span class="badge bg-light text-dark me-2">&larr; {{ __('messages.back') ?? 'Back' }}</span>
         </a>
         <div class="content" style="display: flex; gap: 3rem; justify-content: space-between;">
             <div class="preview-wrapper" style="flex: 1; display: flex; justify-content: center; align-items: center;">
@@ -263,8 +261,6 @@
             </div>
         </div>
     </div>
-
-    {{-- CSS --}}
     <style>
         .btn-active {
             background-color: #007bff !important;
@@ -282,6 +278,15 @@
 
         .day-btn.locked {
             pointer-events: none;
+        }
+        .back-link { cursor: pointer; }
+        .back-link .badge {
+            transition: background-color .15s ease, color .15s ease, transform .12s ease;
+        }
+        .back-link:hover .badge {
+            background-color: #d3d3d3 !important;
+            color: #000 !important;
+            transform: translateY(-1px);
         }
     </style>
 
