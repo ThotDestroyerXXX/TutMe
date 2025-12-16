@@ -22,17 +22,25 @@
                                 <canvas id="donationChart" width="220" height="220"></canvas>
                             </div>
                             <div>
-                                <p class="mb-1 fs-5"><strong>{{ __('messages.total') }}:</strong> {{ $formattedTotal ?? 'Rp 0' }}</p>
-                                <p class="mb-1"><strong>{{ __('messages.used') }}:</strong> {{ $formattedUsed ?? 'Rp 0' }}</p>
-                                <p class="mb-1"><strong>{{ __('messages.remaining') }}:</strong> {{ number_format((($donation ?? 0) - ($usedPoint ?? 0)), 0, ',', '.') }}</p>
+                                <p class="mb-1 fs-5"><strong>{{ __('messages.total') }}:</strong>
+                                    {{ $formattedTotal ?? 'Rp 0' }}</p>
+                                <p class="mb-1"><strong>{{ __('messages.used') }}:</strong> {{ $formattedUsed ?? 'Rp 0' }}
+                                </p>
+                                <p class="mb-1"><strong>{{ __('messages.remaining') }}:</strong>
+                                    {{ number_format(($donation ?? 0) - ($usedPoint ?? 0), 0, ',', '.') }}</p>
                                 <div class="progress mt-3" style="height:14px; border-radius:8px; overflow:hidden;">
-                                    <div class="progress-bar bg-primary" role="progressbar" style="width: {{ round($percentage ?? 0, 2) }}%" aria-valuenow="{{ round($percentage ?? 0, 2) }}" aria-valuemin="0" aria-valuemax="100"></div>
+                                    <div class="progress-bar bg-primary" role="progressbar"
+                                        style="width: {{ round($percentage ?? 0, 2) }}%"
+                                        aria-valuenow="{{ round($percentage ?? 0, 2) }}" aria-valuemin="0"
+                                        aria-valuemax="100"></div>
                                 </div>
-                                <small class="text-muted d-block mt-2">{{ round($percentage ?? 0, 2) }}% {{ __('messages.of_total_funds') }}</small>
+                                <small class="text-muted d-block mt-2">{{ round($percentage ?? 0, 2) }}%
+                                    {{ __('messages.of_total_funds') }}</small>
                             </div>
                         </div>
                         <div class="mt-auto">
-                            <p class="small text-muted mb-0">{{ __('messages.donation_insight') ?? 'Funds are used for supporting learners.' }}</p>
+                            <p class="small text-muted mb-0">
+                                {{ __('messages.donation_insight') ?? 'Funds are used for supporting learners.' }}</p>
                         </div>
                     </div>
                 </div>
@@ -48,12 +56,19 @@
                                 <label for="amount" class="form-label">{{ __('messages.donation_amount') }}</label>
                                 <div class="input-group">
                                     <span class="input-group-text">Rp</span>
-                                    <input type="number" class="form-control" id="amount" name="amount" required min="1000" step="1000" placeholder="{{ __('messages.enter_amount') }}">
+                                    <input type="number" class="form-control" id="amount" name="amount" required
+                                        min="1000" step="1000" placeholder="{{ __('messages.enter_amount') }}">
+                                    @error('amount')
+                                        <div class="invalid-feedback d-block">{{ $message }}</div>
+                                    @enderror
                                 </div>
                                 <div class="mt-2 d-flex gap-2 flex-wrap">
-                                    <button type="button" class="btn btn-sm btn-outline-secondary quick-amount" data-amount="50000">50k</button>
-                                    <button type="button" class="btn btn-sm btn-outline-secondary quick-amount" data-amount="100000">100k</button>
-                                    <button type="button" class="btn btn-sm btn-outline-secondary quick-amount" data-amount="250000">250k</button>
+                                    <button type="button" class="btn btn-sm btn-outline-secondary quick-amount"
+                                        data-amount="50000">50k</button>
+                                    <button type="button" class="btn btn-sm btn-outline-secondary quick-amount"
+                                        data-amount="100000">100k</button>
+                                    <button type="button" class="btn btn-sm btn-outline-secondary quick-amount"
+                                        data-amount="250000">250k</button>
                                 </div>
                             </div>
                             <div class="d-flex gap-2 align-items-center">
@@ -63,10 +78,12 @@
 
                         <div class="mt-2 d-flex gap-2 justify-content-center flex-wrap">
                             @if (Route::has('transactions.export'))
-                                <a href="{{ route('transactions.export') }}" class="btn btn-sm btn-outline-primary">{{ __('messages.export_transactions') }}</a>
+                                <a href="{{ route('transactions.export') }}"
+                                    class="btn btn-sm btn-outline-primary">{{ __('messages.export_transactions') }}</a>
                             @endif
                             @if (Route::has('transactionPoints.export'))
-                                <a href="{{ route('transactionPoints.export') }}" class="btn btn-sm btn-outline-primary">{{ __('messages.export_transaction_points') }}</a>
+                                <a href="{{ route('transactionPoints.export') }}"
+                                    class="btn btn-sm btn-outline-primary">{{ __('messages.export_transaction_points') }}</a>
                             @endif
                         </div>
 
@@ -79,11 +96,14 @@
                                     @foreach ($transactions->take(5) as $tx)
                                         <li class="list-group-item d-flex justify-content-between align-items-center">
                                             <div>
-                                                <div class="fw-medium">{{ $tx->description ?? __('messages.donation') }}</div>
-                                                <small class="text-muted">{{ optional($tx->transaction_date)->diffForHumans() ?? '' }}</small>
+                                                <div class="fw-medium">{{ $tx->description ?? __('messages.donation') }}
+                                                </div>
+                                                <small
+                                                    class="text-muted">{{ optional($tx->transaction_date)->diffForHumans() ?? '' }}</small>
                                             </div>
                                             <div class="text-end">
-                                                <div class="fw-semibold">{{ number_format($tx->amount, 0, ',', '.') }}</div>
+                                                <div class="fw-semibold">{{ number_format($tx->amount, 0, ',', '.') }}
+                                                </div>
                                                 <small class="text-muted">{{ $tx->status ?? '' }}</small>
                                             </div>
                                         </li>
@@ -145,7 +165,12 @@
                     let centerX = chart.width / 2;
                     let centerY = chart.height / 2;
                     if (chart.chartArea) {
-                        const {left, right, top, bottom} = chart.chartArea;
+                        const {
+                            left,
+                            right,
+                            top,
+                            bottom
+                        } = chart.chartArea;
                         centerX = (left + right) / 2;
                         centerY = (top + bottom) / 2;
                     }
