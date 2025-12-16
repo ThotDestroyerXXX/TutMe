@@ -73,6 +73,8 @@ class TransactionsController extends Controller
 
     public function export()
     {
-        return Excel::download(new TransactionsExport, 'transactions.xlsx');
+        // Use temp disk for serverless environments like Vercel
+        return Excel::download(new TransactionsExport, 'transactions.xlsx')
+            ->deleteFileAfterSend(true);
     }
 }
