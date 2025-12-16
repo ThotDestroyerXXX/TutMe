@@ -50,7 +50,7 @@ class TransactionsController extends Controller
 
         if (in_array($status, ['capture', 'settlement'])) {
             $newTr = Transactions::create([
-                'id' => Str::uuid(),
+                'id' => Str::ulid(),
                 'amount' => $amount,
                 'transaction_date' => now(),
                 'email' => App(UserController::class)->getUserById(Auth::id())->email,
