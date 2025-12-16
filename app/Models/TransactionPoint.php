@@ -17,7 +17,8 @@ class TransactionPoint extends Model
     protected $fillable = [
         'user_id',
         'amount',
-        'course_id'
+        'course_id',
+        'type',
     ];
 
     public function user()

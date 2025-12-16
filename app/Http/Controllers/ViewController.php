@@ -22,13 +22,19 @@ class ViewController extends Controller
     {
         $view = $this->viewMap[$role] ?? 'home.tutee';
 
-        $courses = App(CourseController::class)->getAllCourse();
-
-        $courses = Course::whereNotIn('id', function ($query) {
-            $query->select('course_id')
-                ->from('enrollments')
-                ->where('user_id', Auth::id());
-        })->paginate(10);
+        // For mentors, get all their created courses
+        // For tutees, get courses they haven't enrolled in yet
+        if ($role === 'Mentor') {
+            $courses = Course::where('instructor_id', Auth::id())
+                ->orderBy('created_at', 'desc')
+                ->paginate(10);
+        } else {
+            $courses = Course::whereNotIn('id', function ($query) {
+                $query->select('course_id')
+                    ->from('enrollments')
+                    ->where('user_id', Auth::id());
+            })->paginate(10);
+        }
 
         $data = [
             'courses' => $courses,
@@ -104,13 +110,14 @@ class ViewController extends Controller
         return redirect()->route('home', ['role' => Auth::user()->role]);
     }
 
-    public function viewMyPoint($id){
+    public function viewMyPoint($id)
+    {
         $data = App(UserController::class)->getUserById($id);
         $point_spent = App(EnrollmentController::class)->getPointSpent($id);
         $data = [
             'availPoint' => $data->point,
             'pointSpent' => $point_spent,
-            'userRole' => $data->role, 
+            'userRole' => $data->role,
         ];
         return view('home.point', $data);
     }

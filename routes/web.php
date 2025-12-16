@@ -10,23 +10,6 @@ use App\Http\Controllers\TransactionsController;
 use App\Http\Controllers\LocaleController;
 use Illuminate\Support\Facades\Route;
 
-// Route::get('/learning-history', function () {
-//     return view('home.page');
-// });
-
-// Route::get('/transaction-log', function () {
-//     return view('home.page');
-// });
-
-// Route::get('/profile', function () {
-//     return view('home.page');
-// });
-
-// Route::fallback(function (){
-//     return view("not-found");
-// });
-
-
 //Main Route
 Route::get('/', [HomeController::class, 'index'])->name('home');
 
@@ -41,11 +24,6 @@ Route::middleware('role:Mentor')->group(function () {
     Route::get('/acceptEnrollment/{id}/{bool}', [HomeController::class, 'acceptEnrollment'])->name('acceptEnrollment');
     Route::get('/finishMentoring/{id}/{userId}', [HomeController::class, 'finishMentoring'])->name('finishMentoring');
 });
-
-//Enrollment Route
-Route::get('/enrollmentDetail/{id}', [HomeController::class, 'getEnrollmentDetail'])->name('enrollmentDetail');
-Route::get('/acceptEnrollment/{id}/{bool}', [HomeController::class, 'acceptEnrollment'])->name('acceptEnrollment');
-Route::get('/finishMentoring/{id}/{userId}', [HomeController::class, 'finishMentoring'])->name('finishMentoring');
 
 //Point Page Route
 Route::get('/myPoint/{id?}', [HomeController::class, 'viewMyPoint'])->name('viewMyPoint');

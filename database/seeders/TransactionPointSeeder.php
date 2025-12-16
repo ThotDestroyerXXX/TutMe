@@ -25,7 +25,7 @@ class TransactionPointSeeder extends Seeder
                 'id' => Str::ulid(),
                 'user_id' => $faker->randomElement($userId),
                 'amount' => $faker->numberBetween(100, 1000),
-                'type' => $faker->randomElement(['credit', 'debit']),
+                'type' => 'session',
                 'course_id' => $faker->randomElement($courseId),
                 'created_at' => now(),
                 'updated_at' => now(),

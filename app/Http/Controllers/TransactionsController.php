@@ -23,7 +23,7 @@ class TransactionsController extends Controller
         Config::$is3ds = true;
 
         $request->validate([
-            'amount' => 'required|numeric|min:1000',
+            'amount' => 'required|numeric|between:1000,1000000',
         ]);
 
         $amount = $request->input('amount');

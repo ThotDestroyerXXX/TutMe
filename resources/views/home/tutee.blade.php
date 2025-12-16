@@ -99,7 +99,7 @@
                         @endif
                         <div class="cardList">
                             @foreach ($coursesById as $course)
-                                <a href="{{ Auth::user() ? route('enrollmentDetail', ['id' => $course->id]) : route('login') }}"
+                                <a href="{{ Auth::user() ? route('enrollmentDetail', ['id' => $course->enrollment_id]) : route('login') }}"
                                     style="text-decoration: none; color: inherit;">
                                     <div class="course-card" data-level="{{ $course->level }}">
                                         <div class="sub-course-card">
@@ -107,7 +107,7 @@
                                                 alt="{{ $course->title }}">
                                             <div class="sessionInfo">
                                                 {{ $course->session }} {{ __('messages.session') }} |
-                                                {{ $course->duration }} 60 {{ __('messages.minutes') }}
+                                                {{ $course->session * 60 }} {{ __('messages.minutes') }}
                                             </div>
                                         </div>
 

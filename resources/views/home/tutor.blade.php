@@ -5,15 +5,29 @@
 
 @section('content')
     <style>
-        .course-card{
-            display:flex;
-            flex-direction:column;
-            min-height:330px;
+        .course-card {
+            display: flex;
+            flex-direction: column;
+            min-height: 330px;
             transition: .25s ease-in-out;
         }
-        .cardList > a > .course-card { height: 100%; display:flex; flex-direction:column; }
-        .course-card img { object-fit: cover; }
-        .courseTitleTopics { flex: 1; display: flex; flex-direction: column; }
+
+        .cardList>a>.course-card {
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .course-card img {
+            object-fit: cover;
+        }
+
+        .courseTitleTopics {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
         .course-card:hover {
             cursor: pointer;
             transform: scale(1.05);
@@ -40,7 +54,7 @@
                     @endif
                     <div class="cardList">
                         @foreach ($coursesById as $course)
-                            <a href="{{ Auth::user() ? route('enrollmentDetail', ['id' => $course->id]) : route('login') }}"
+                            <a href="{{ Auth::user() ? route('enrollmentDetail', ['id' => $course->enrollment_id]) : route('login') }}"
                                 style="text-decoration: none; color: inherit;">
                                 <div class="course-card" data-level="{{ $course->level }}">
                                     <div class="sub-course-card">
@@ -104,7 +118,7 @@
                     <p style="text-align:center;">{{ __('messages.no_courses_created') }}</p>
                 @endif
                 <div style="display: flex; gap: 20px; overflow-x: auto; padding: 20px;">
-                    @foreach ($courses->where('instructor_id', Auth::user()->id) as $course)
+                    @foreach ($courses as $course)
                         <a href="{{ route('course', ['id' => $course->id]) }}"
                             style="text-decoration: none; color: inherit;">
                             <div class="course-card" data-level="{{ $course->level }}"

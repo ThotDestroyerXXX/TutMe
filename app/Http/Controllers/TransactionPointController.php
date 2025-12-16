@@ -16,6 +16,7 @@ class TransactionPointController extends Controller
             'user_id' => $userId,
             'amount' => 25,
             'course_id' => $courseId,
+            'type' => 'session',
         ]);
 
         $mentor = App(UserController::class)->getUserById(App(CourseController::class)->getCourseById($courseId)->instructor_id);
