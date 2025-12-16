@@ -5,26 +5,41 @@
 
 @section('content')
     <style>
-        .course-card{
-            display:flex;
-            flex-direction:column;
-            min-height:330px;
+        .course-card {
+            display: flex;
+            flex-direction: column;
+            min-height: 330px;
             transition: .25s ease-in-out;
         }
-        .cardList > a > .course-card { height: 100%; display:flex; flex-direction:column; }
-        .course-card img { object-fit: cover; }
-        .courseTitleTopics { flex: 1; display: flex; flex-direction: column; }
+
+        .cardList>a>.course-card {
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .course-card img {
+            object-fit: cover;
+        }
+
+        .courseTitleTopics {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
         .course-card:hover {
             cursor: pointer;
             transform: scale(1.05);
         }
-        .inputGroup{
+
+        .inputGroup {
             float: right;
             display: flex;
             gap: 1rem;
         }
 
-        #Search{
+        #Search {
             height: 2.5rem;
         }
     </style>
@@ -42,7 +57,7 @@
                 <h3>{{ __('messages.hi') }}, {{ optional(Auth::user())->name ?? 'Tutee' }}!</h3>
                 <h6>{{ __('messages.what_to_learn_today') }}</h6>
             </div>
-            
+
             <div class="carousel" style="margin-top: 65px;">
                 <div id="carouselExampleCaptions" class="carousel slide" data-bs-ride="carousel">
                     <div class="carousel-indicators">
@@ -95,7 +110,7 @@
                                                 {{ $course->duration }} 60 {{ __('messages.minutes') }}
                                             </div>
                                         </div>
-    
+
                                         <div class="courseInfo">
                                             <div class="subCourseInfo"
                                                 style=" @if ($course->is_active) background-color: #00ff6aff; @endif
@@ -145,8 +160,9 @@
                             <div class="modal-body">
                                 <div class="container-fluid">
                                     <div class="row">
-                                        <button type="button" class="btn btn-secondary col-md-6" onclick="selectLevel('7')"
-                                            data-bs-dismiss="modal">{{ __('messages.class') }} 7</button>
+                                        <button type="button" class="btn btn-secondary col-md-6"
+                                            onclick="selectLevel('7')" data-bs-dismiss="modal">{{ __('messages.class') }}
+                                            7</button>
                                         <button type="button" class="btn btn-secondary col-md-6 ms-auto"
                                             data-bs-dismiss="modal" onclick="selectLevel('8')">{{ __('messages.class') }}
                                             8</button>
@@ -155,14 +171,16 @@
                                         <button type="button" class="btn btn-secondary col-md-6" data-bs-dismiss="modal"
                                             onclick="selectLevel('9')">{{ __('messages.class') }} 9</button>
                                         <button type="button" class="btn btn-secondary col-md-6 ms-auto"
-                                            data-bs-dismiss="modal" onclick="selectLevel('10')">{{ __('messages.class') }}
+                                            data-bs-dismiss="modal"
+                                            onclick="selectLevel('10')">{{ __('messages.class') }}
                                             10</button>
                                     </div>
                                     <div class="row">
                                         <button type="button" class="btn btn-secondary col-md-6" data-bs-dismiss="modal"
                                             onclick="selectLevel('11')">{{ __('messages.class') }} 11</button>
                                         <button type="button" class="btn btn-secondary col-md-6 ms-auto"
-                                            data-bs-dismiss="modal" onclick="selectLevel('12')">{{ __('messages.class') }}
+                                            data-bs-dismiss="modal"
+                                            onclick="selectLevel('12')">{{ __('messages.class') }}
                                             12</button>
                                     </div>
                                 </div>
@@ -187,8 +205,8 @@
                     <div class="d-flex flex-wrap gap-4 justify-content-center">
                         @foreach ($courses as $course)
                             @if ($course->is_active)
-                                <a href="{{ Auth::user() ? route('selectCourse', ['id' => $course->id]) : route('login') }}" id="courseLink"
-                                    style="text-decoration: none; color: inherit;">
+                                <a href="{{ Auth::user() ? route('selectCourse', ['id' => $course->id]) : route('login') }}"
+                                    id="courseLink" style="text-decoration: none; color: inherit;">
                                     <div class="course-card" data-level="{{ $course->level }}"
                                         style="transition: .5s ease-in-out; background-color: #f3f3f3; border: 1px solid #ccc; border-radius: 12px; padding: 12px; width: 240px;  min-width: 240px; flex-shrink: 0; position: relative;">
                                         <div style="position: relative; border-radius: 10px; overflow: hidden;">
