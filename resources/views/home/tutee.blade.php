@@ -144,10 +144,16 @@
                     </div>
                 </div>
             @endif
-            <div class="inputGroup mb-3">
-                <input type="text" class="form-control" placeholder="{{ __('messages.search') }}" id="Search">
+            <div class="inputGroup mb-3" style="display: flex; gap: 0.5rem; align-items: center;">
+                <form method="GET" action="{{ route('home') }}" class="d-flex align-items-center">
+                    <input type="text" class="form-control" placeholder="{{ __('messages.search') }}" id="Search"
+                        name="search" value="{{ $search ?? '' }}" style="flex: 1; ">
+                    <button type="submit" class="btn btn-primary"
+                        style="white-space: nowrap; max-width: 100px;">{{ __('messages.search') }}</button>
+                </form>
                 <button type="button" class="btn btn-primary modalBtn" data-bs-toggle="modal" data-bs-target="#myModal"
-                    id="modalLevel">{{ __('messages.level') }} {{ __('messages.all') }}</button>
+                    id="modalLevel" style="white-space: nowrap;">{{ __('messages.level') }}
+                    {{ __('messages.all') }}</button>
                 <div class="modal fade" id="myModal" tabindex="-1" aria-labelledby="exampleModalLabel"
                     aria-hidden="true">
                     <div class="modal-dialog modal-dialog-centered">

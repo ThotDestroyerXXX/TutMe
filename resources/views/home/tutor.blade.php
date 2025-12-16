@@ -98,7 +98,15 @@
                     </div>
                 </div>
             </div>
-            <div style="display: flex; margin-top: 5rem;">
+            <div class="inputGroup mb-3" style="margin-top: 3rem;">
+                <form method="GET" action="{{ route('home') }}" style="display: flex; gap: 0.5rem;">
+                    <input type="text" class="form-control" placeholder="{{ __('messages.search') }}" id="Search"
+                        name="search" value="{{ $search ?? '' }}" style="flex: 1;">
+                    <button type="submit" class="btn btn-primary"
+                        style="white-space: nowrap; max-width: 100px;">{{ __('messages.search') }}</button>
+                </form>
+            </div>
+            <div style="display: flex; margin-top: 2rem;">
                 <h6>{{ __('messages.your_courses') }}</h6>&nbsp;&nbsp;&nbsp;&nbsp;
                 <svg xmlns="http://www.w3.org/2000/svg" height="20px" viewBox="0 -960 960 960" width="20px"
                     fill="#000000ff">

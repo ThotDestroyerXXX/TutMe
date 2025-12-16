@@ -21,24 +21,43 @@ class ViewController extends Controller
     public function Dashboard($role)
     {
         $view = $this->viewMap[$role] ?? 'home.tutee';
+        $search = request()->get('search', '');
 
         // For mentors, get all their created courses
         // For tutees, get courses they haven't enrolled in yet
         if ($role === 'Mentor') {
             $courses = Course::where('instructor_id', Auth::id())
+                ->when($search, function ($query, $search) {
+                    return $query->where(function ($q) use ($search) {
+                        $q->where('title', 'like', '%' . $search . '%')
+                            ->orWhere('subject', 'like', '%' . $search . '%')
+                            ->orWhere('topics', 'like', '%' . $search . '%');
+                    });
+                })
                 ->orderBy('created_at', 'desc')
-                ->paginate(10);
+                ->paginate(10)
+                ->appends(['search' => $search]);
         } else {
             $courses = Course::whereNotIn('id', function ($query) {
                 $query->select('course_id')
                     ->from('enrollments')
                     ->where('user_id', Auth::id());
-            })->paginate(10);
+            })
+                ->when($search, function ($query, $search) {
+                    return $query->where(function ($q) use ($search) {
+                        $q->where('title', 'like', '%' . $search . '%')
+                            ->orWhere('subject', 'like', '%' . $search . '%')
+                            ->orWhere('topics', 'like', '%' . $search . '%');
+                    });
+                })
+                ->paginate(10)
+                ->appends(['search' => $search]);
         }
 
         $data = [
             'courses' => $courses,
             'coursesById' => App(CourseController::class)->getCoursesById(Auth::id()),
+            'search' => $search,
         ];
 
         if ($role === 'Donator') {
