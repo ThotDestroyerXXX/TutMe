@@ -8,7 +8,7 @@ use App\Models\Course;
 use Carbon\Carbon;
 
 class CourseController extends Controller
-{
+{ 
     public function getAllCourse(){
         return Course::All();
     }
