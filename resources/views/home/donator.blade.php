@@ -50,7 +50,8 @@
                 <div class="card shadow-sm h-100">
                     <div class="card-body d-flex flex-column">
                         <h5 class="card-title">{{ __('messages.donate_now') }}</h5>
-                        <form id="donationForm" action="{{ route('transaction.donate') }}" method="POST" class="mt-3">
+                        <form id="donationForm" action="{{ route('transaction.donate') }}" method="POST" class="mt-3"
+                            novalidate>
                             @csrf
                             <div class="mb-3">
                                 <label for="amount" class="form-label">{{ __('messages.donation_amount') }}</label>
