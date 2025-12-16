@@ -42,7 +42,7 @@ class RegisterController extends Controller
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
-            'role' => ['required', 'in:Student,Tutor,Donator'],
+            'role' => ['required', 'in:Tutee,Mentor,Donator'],
         ]);
 
         // Create the user with a 10-digit unique code
@@ -51,7 +51,7 @@ class RegisterController extends Controller
             'email' => $validated['email'],
             'password' => Hash::make($validated['password']),
             'role' => $validated['role'],
-            'point' => $validated['role'] == 'Student' ? 50 : 0,
+            'point' => $validated['role'] == 'Tutee' ? 50 : 0,
         ]);
 
         // Log the user in
