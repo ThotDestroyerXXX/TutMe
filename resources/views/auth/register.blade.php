@@ -23,15 +23,21 @@
 
                                         <div class="mb-3">
                                             <label for="name" class="form-label">{{ __('messages.name') }}</label>
-                                            <input id="name" type="text" class="form-control form-control-lg @error('name') is-invalid @enderror" name="name" value="{{ old('name') }}" required autocomplete="name" autofocus>
+                                            <input id="name" type="text"
+                                                class="form-control form-control-lg @error('name') is-invalid @enderror"
+                                                name="name" value="{{ old('name') }}" required autocomplete="name"
+                                                autofocus>
                                             @error('name')
                                                 <div class="invalid-feedback">{{ $message }}</div>
                                             @enderror
                                         </div>
 
                                         <div class="mb-3">
-                                            <label for="email" class="form-label">{{ __('messages.email_address') }}</label>
-                                            <input id="email" type="email" class="form-control form-control-lg @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email">
+                                            <label for="email"
+                                                class="form-label">{{ __('messages.email_address') }}</label>
+                                            <input id="email" type="email"
+                                                class="form-control form-control-lg @error('email') is-invalid @enderror"
+                                                name="email" value="{{ old('email') }}" required autocomplete="email">
                                             @error('email')
                                                 <div class="invalid-feedback">{{ $message }}</div>
                                             @enderror
@@ -39,35 +45,51 @@
 
                                         <div class="mb-3">
                                             <label for="password" class="form-label">{{ __('messages.password') }}</label>
-                                            <input id="password" type="text" class="form-control form-control-lg @error('password') is-invalid @enderror" name="password" required autocomplete="new-password">
+                                            <input id="password" type="text"
+                                                class="form-control form-control-lg @error('password') is-invalid @enderror"
+                                                name="password" required autocomplete="new-password">
                                             @error('password')
                                                 <div class="invalid-feedback d-block">{{ $message }}</div>
                                             @enderror
                                         </div>
 
                                         <div class="mb-3">
-                                            <label for="password-confirm" class="form-label">{{ __('messages.confirm_password') }}</label>
-                                            <input id="password-confirm" type="text" class="form-control form-control-lg" name="password_confirmation" required autocomplete="new-password">
+                                            <label for="password-confirm"
+                                                class="form-label">{{ __('messages.confirm_password') }}</label>
+                                            <input id="password-confirm" type="text" class="form-control form-control-lg"
+                                                name="password_confirmation" required autocomplete="new-password">
                                         </div>
 
                                         <div class="mb-3">
-                                            <label class="form-label">{{ __('messages.select_role') }} <span class="text-danger">*</span></label>
-                                            <div class="btn-group d-flex role-btn" role="group" aria-label="Role selection">
-                                                <input type="radio" class="btn-check" name="role" id="roleStudent" value="Student" autocomplete="off" {{ old('role') == 'Student' ? 'checked' : '' }} required>
-                                                <label class="btn btn-outline-primary" for="roleStudent">{{ __('messages.student') }}</label>
+                                            <label class="form-label">{{ __('messages.select_role') }} <span
+                                                    class="text-danger">*</span></label>
+                                            <div class="btn-group d-flex role-btn" role="group"
+                                                aria-label="Role selection">
+                                                <input type="radio" class="btn-check" name="role" id="roleStudent"
+                                                    value="Tutee" autocomplete="off"
+                                                    {{ old('role') == 'Tutee' ? 'checked' : '' }} required>
+                                                <label class="btn btn-outline-primary"
+                                                    for="roleStudent">{{ __('messages.student') }}</label>
 
-                                                <input type="radio" class="btn-check" name="role" id="roleTutor" value="Tutor" autocomplete="off" {{ old('role') == 'Tutor' ? 'checked' : '' }}>
-                                                <label class="btn btn-outline-primary" for="roleTutor">{{ __('messages.tutor') }}</label>
+                                                <input type="radio" class="btn-check" name="role" id="roleTutor"
+                                                    value="Mentor" autocomplete="off"
+                                                    {{ old('role') == 'Mentor' ? 'checked' : '' }}>
+                                                <label class="btn btn-outline-primary"
+                                                    for="roleTutor">{{ __('messages.tutor') }}</label>
 
-                                                <input type="radio" class="btn-check" name="role" id="roleDonator" value="Donator" autocomplete="off" {{ old('role') == 'Donator' ? 'checked' : '' }}>
-                                                <label class="btn btn-outline-primary" for="roleDonator">{{ __('messages.donator') }}</label>
+                                                <input type="radio" class="btn-check" name="role" id="roleDonator"
+                                                    value="Donator" autocomplete="off"
+                                                    {{ old('role') == 'Donator' ? 'checked' : '' }}>
+                                                <label class="btn btn-outline-primary"
+                                                    for="roleDonator">{{ __('messages.donator') }}</label>
                                             </div>
                                             @error('role')
                                                 <div class="invalid-feedback d-block">{{ $message }}</div>
                                             @enderror
                                         </div>
 
-                                        <button type="submit" class="btn btn-primary btn-lg w-100 rounded-pill">{{ __('messages.register') }}</button>
+                                        <button type="submit"
+                                            class="btn btn-primary btn-lg w-100 rounded-pill">{{ __('messages.register') }}</button>
                                     </form>
                                 </div>
                             </div>
@@ -79,11 +101,30 @@
     </div>
 
     <style>
-        .auth-visual{ background: linear-gradient(135deg,#3a7bd5 0%,#3a60e6 100%); color:#fff; }
-        .auth-card{ border-radius:.75rem; overflow:hidden; }
-        .auth-form .form-control{ height:calc(1.5em + 1rem); padding:.5rem .75rem; }
-        .role-btn .btn{ flex:1; }
-        @media (max-width:767px){ .auth-page{ padding-top:2.5rem; padding-bottom:2.5rem; } }
-    </style>
+        .auth-visual {
+            background: linear-gradient(135deg, #3a7bd5 0%, #3a60e6 100%);
+            color: #fff;
+        }
 
+        .auth-card {
+            border-radius: .75rem;
+            overflow: hidden;
+        }
+
+        .auth-form .form-control {
+            height: calc(1.5em + 1rem);
+            padding: .5rem .75rem;
+        }
+
+        .role-btn .btn {
+            flex: 1;
+        }
+
+        @media (max-width:767px) {
+            .auth-page {
+                padding-top: 2.5rem;
+                padding-bottom: 2.5rem;
+            }
+        }
+    </style>
 @endsection
