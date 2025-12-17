@@ -69,6 +69,9 @@
         "APP_SERVICES_CACHE": "/tmp/services.php",
         "VIEW_COMPILED_PATH": "/tmp",
 
+        "EXCEL_TEMP_PATH": "/tmp",
+        "EXCEL_CACHE_PATH": "/tmp",
+
         "CACHE_DRIVER": "array",
         "LOG_CHANNEL": "stderr",
         "SESSION_DRIVER": "cookie"
