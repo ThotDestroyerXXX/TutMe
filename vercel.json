@@ -71,6 +71,7 @@
 
         "EXCEL_TEMP_PATH": "/tmp",
         "EXCEL_CACHE_PATH": "/tmp",
+        "TEMP_DISK_ROOT": "/tmp",
 
         "CACHE_DRIVER": "array",
         "LOG_CHANNEL": "stderr",

@@ -12,7 +12,22 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register(): void
     {
-        //
+        // Configure PhpSpreadsheet to use /tmp for Vercel
+        if (
+            isset($_ENV['VERCEL']) || isset($_SERVER['VERCEL']) ||
+            (isset($_ENV['APP_ENV']) && $_ENV['APP_ENV'] === 'production')
+        ) {
+            // Set PhpSpreadsheet temp directory early
+            \PhpOffice\PhpSpreadsheet\Settings::setLibXmlLoaderOptions(
+                LIBXML_DTDLOAD | LIBXML_DTDATTR | LIBXML_COMPACT | LIBXML_PARSEHUGE
+            );
+
+            // Force temp directory
+            putenv('TMPDIR=/tmp');
+            if (!is_dir('/tmp/phpspreadsheet')) {
+                @mkdir('/tmp/phpspreadsheet', 0755, true);
+            }
+        }
     }
 
     /**

@@ -62,7 +62,7 @@ return [
 
         'temp' => [
             'driver' => 'local',
-            'root' => sys_get_temp_dir(),
+            'root' => env('TEMP_DISK_ROOT', sys_get_temp_dir()),
             'visibility' => 'public',
             'throw' => false,
         ],
